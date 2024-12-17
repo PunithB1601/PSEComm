@@ -43,7 +43,7 @@
 </head>
 <body>
 
-    <form action="forgotPassword" method="post" class="forgot">
+    <form action="resetPassword" method="post" class="forgot">
         <h2>Reset Password</h2>
         
         <%String success=(String)request.getAttribute("success"); 
@@ -66,7 +66,7 @@
         </div>
         <div class="mb-2">
             <label for="exampleInputPassword1" class="form-label">Confirm Your Password</label>
-            <input type="password" name="confirm" class="form-control" id="exampleInputPassword1" placeholder="Confirm New Password">
+            <input type="password" name="confirm_password" class="form-control" id="exampleInputPassword1" placeholder="Confirm New Password">
           </div>
         <div class="mb-2 form-check">
           <input type="checkbox" class="form-check-input" id="exampleCheck1">
