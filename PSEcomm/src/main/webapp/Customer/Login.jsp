@@ -175,7 +175,7 @@
 </head>
 <body>
   <div class="wrapper">
-    <form action="#" id="login">
+    <form action="login" id="login">
       <h2>Login</h2>
       <div class="input-field">
         <input type="text" name="email" id="email" required>
