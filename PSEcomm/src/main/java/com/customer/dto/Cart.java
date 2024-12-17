@@ -9,11 +9,8 @@ import lombok.Setter;
 @Setter
 public class Cart
 {
- @Override
-	public String toString() {
-		return "Cart [cartId=" + cartId + ", cid=" + cid + ", productId=" + productId + "]";
-	}
-private int cartId;
+	
+ private int cartId;
  private int cid;
  private int productId;
 }

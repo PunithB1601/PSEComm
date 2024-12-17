@@ -16,11 +16,6 @@ public class Customer
   private String email;
   private String password;
   private long phone;
-@Override
-public String toString() {
-	return "Customer [cid=" + cid + ", firstName=" + firstName + ", lastName=" + lastName + ", lid=" + lid + ", email="
-			+ email + ", password=" + password + ", phone=" + phone + "]";
-}
   
 }
 

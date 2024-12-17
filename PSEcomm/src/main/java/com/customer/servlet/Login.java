@@ -38,7 +38,7 @@ public class Login extends HttpServlet{
 				rd.forward(req, resp);		
 			}		
 		}else {
-			req.setAttribute("failure", "Email not exists");
+			req.setAttribute("failure", "Email does not exists");
 			RequestDispatcher rd=req.getRequestDispatcher("Login.jsp"); //login
 			rd.forward(req, resp);
 		}
