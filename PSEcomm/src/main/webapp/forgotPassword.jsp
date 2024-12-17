@@ -31,6 +31,12 @@
         .forgot .btn{
            margin: 20px;
         }
+        .back
+        {
+        	text-decoration:none;
+        	color:white;
+        	
+        }
         .success{
         	margin-top:20px;
         	text-align:center;
@@ -73,7 +79,8 @@
           <label class="form-check-label" for="exampleCheck1">Check me out</label>
         </div>
         
-       <center><button type="submit" class="btn btn-primary">Reset Password</button></center>
+       <center><input type="submit" value="Reset Password" class="btn btn-primary">
+       <a href="employeelogin.jsp" class="back btn btn-primary">Back</a></center>
       </form>
     
 </body>
