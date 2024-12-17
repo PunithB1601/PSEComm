@@ -69,7 +69,7 @@
         .dashboard {
             padding: 20px;
             display: flex;
-            gap: 20px;
+            gap: 10px;
             flex-wrap: wrap;
             justify-content: center;
         }
@@ -115,11 +115,10 @@
 <body>
     <div class="sidebar">
         <h2>HR Dashboard</h2>
-        <a href="#">Employee Records</a>
-        <a href="#">Attendance</a>
-        <a href="#">Leave Requests</a>
-        <a href="#">Add employee</a>
+        <a href="ViewEmp.jsp">Employee Records</a>
+        <a href="AddEmployee.jsp">Add employee</a>
         <a href="#">Remove employee</a>
+        <a href="#">My Profile</a>
     </div>
     <div class="main">
         <div class="topbar">
@@ -130,20 +129,33 @@
              <div class="card">
                 <h3>Total Employees</h3>
                 <p>120</p>
-                <button class="btn1">view employees</button>
-            </div> 
-            <div class="card">
-                <h3>Active Projects</h3>
-                <p>15</p>
-                <button class="btn1">view Projects</button>
-            </div>
+                <form action="ViewEmp.jsp" method="post"><button class="btn1" type="submit">view employees</button></form>
+            </div>  
              <div class="card">
                 <h3>Active Products</h3>
                 <p>5</p>
                 <button class="btn1">view Products</button>
             </div>
+            <div class="card">
+                <h3>Add Employee</h3>
+                <p>15</p>
+              <form action="AddEmployee.jsp" method="post"> <button class="btn1" type="submit">Add Employee</button></form> 
+            </div>
+            <div class="card">
+                <h3>Remove Employee</h3>
+                <p>15</p>
+                <button class="btn1">Remove Employee</button>
+            </div>
+            
+            <div>
+           
+                                               
+                            
+            </div>
+            
+            
+            
         </div>
-
     </div>
 
 </body>
