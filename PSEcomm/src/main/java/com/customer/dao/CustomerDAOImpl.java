@@ -4,30 +4,52 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
 import com.customer.dto.Customer;
+import com.database.DBConnection;
 
 public class CustomerDAOImpl implements CustomerDAO {
 	private Connection con;
+	
+	public CustomerDAOImpl() {
+		this.con=DBConnection.getConnection();
+	}
 
 	@Override
 	public Customer addCustomer(Customer c) {
-		String query = "INSERT INTO CUSTOMER (FIRST_NAME,LAST_NAME,EMAIL,PASSWORD,PHONE) VALUES(?,?,?,?,?)";
-		int count = 0;
-
-		try (PreparedStatement ps = con.prepareStatement(query);) {
+		String query = "insert into customer(first_name,last_name,email,password,phone)values(?,?,?,?,?)";
+		int res = 0;
+		
+		PreparedStatement ps=null;
+		try{
+			ps = con.prepareStatement(query,Statement.RETURN_GENERATED_KEYS);
 			ps.setString(1, c.getFirstName());
 			ps.setString(2, c.getLastName());
 			ps.setString(3, c.getEmail());
 			ps.setString(4, c.getPassword());
 			ps.setLong(5, c.getPhone());
-			count = ps.executeUpdate();
+			res = ps.executeUpdate();
+			
 		} catch (SQLException e) {
 			e.getMessage();
 		}
-		if (count > 0) {
+		
+		if (res > 0) {
+			
+			try {
+				ResultSet rs = ps.getGeneratedKeys();
+				if (rs.next()) { 
+					c.setCid(rs.getInt(1));
+	            }
+				
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
 			return c;
 		} else {
 			return null;

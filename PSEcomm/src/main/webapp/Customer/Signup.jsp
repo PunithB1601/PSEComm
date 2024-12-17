@@ -11,6 +11,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://unpkg.com/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
     <style>
         .form-container {
             border: 2px solid #ccc;
@@ -42,6 +43,15 @@
 </head>
 
 <body>
+	<%String success=(String) request.getAttribute("success");
+     if(success!=null){%>
+     	<h1 class="text-2xl text-center font-bold text-green-600"> <%=success%></h1>
+     <%}%>
+     
+     <%String fail=(String) request.getAttribute("failure");
+     if(fail!=null){%>
+   		 <h1 class=" text-2xl text-center font-bold text-red-600"> <%=fail%></h1>
+     <%}%>
     <!-- Registration Form -->
     <section class="py-3 py-md-5 py-l-8">
         <div class="container">
@@ -49,14 +59,14 @@
                 <div class="col-12">
                     <div class="form-container">
                         <h2 class="display-5 fw-bold text-center">Register!</h2>
-                        <form id="signup" action="#!">
+                        <form id="signup" action="signup" method="post">
                             <div class="form-floating">
                                 <input type="text" class="form-control border-0 border-bottom rounded-0" name="firstName" id="firstName" placeholder="First Name" required>
                                 <label for="firstName" class="form-label">First Name</label>
                             </div>
                             <div class="form-floating">
                                 <input type="text" class="form-control border-0 border-bottom rounded-0" name="lastName" id="lastName" placeholder="Last Name" required>
-                                <label for="lastName" class="form-label">Last Name</label>
+                                <label for="lastName"  class="form-label">Last Name</label>
                             </div>
                             <div class="form-floating">
                                 <input type="phone" class="form-control border-0 border-bottom rounded-0" name="phone" id="phone" placeholder="Phone Number" required>
