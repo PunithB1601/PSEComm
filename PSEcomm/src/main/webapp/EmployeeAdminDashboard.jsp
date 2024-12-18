@@ -10,6 +10,9 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
     <style>
+    body{
+    background-color: #F1F0E8;
+    }
         .sidebar {
             height: 100vh;
             overflow-y: auto;
@@ -53,7 +56,7 @@
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light" style="background-color: white;">
         <div class="container-fluid">
-            <a class="navbar-brand fw-bold text-primary" href="#">Admin Dashboard</a>
+            <a class="navbar-brand fw-bold text-primary" href="#" style="color: black;">Admin Dashboard</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -69,20 +72,20 @@
         </div>
     </nav>
 
-    <div class="d-flex">
-        <div class="sidebar p-3">
+    <div class="d-flex" >
+        <div class="sidebar p-3" style="background-color:#3C3D37;">
             <a href="#dashboard">Dashboard</a>
             <a href="#users">Manage Users</a>
             <a href="#settings">Settings</a>
-            <a href="#reports">Reports</a>
+            <a href="#reports">Profile</a>
             <a href="employeelogin.jsp">Logout</a>
         </div>
 
-        <div class="content flex-grow-1">
-            <div class="row mb-4">
-               <a href="AddProduct.jsp" > <div class="col-md-3">
-                <div class="card text-center text-bg-primary">
-                    <div class="card-body">
+        <div class="content flex-grow-1" >
+            <div class="row mb-4" >
+               <a href="AddProduct.jsp" > <div class="col-md-3" >
+                <div class="card text-center text-bg-primary" >
+                    <div class="card-body" style="background-color:white; color: black;border-radius: 10px ">
                         <h5 class="card-title">Add Product</h5>
                         <p class="card-text fs-4">150</p>
                     </div>
@@ -91,7 +94,7 @@
                 <div class="col-md-3">
                     <a href="DeleteProduct.jsp">
                         <div class="card text-center text-bg-success">
-                            <div class="card-body">
+                            <div class="card-body" style="background-color:white; color: black; border-radius: 10px">
                                 <h5 class="card-title">Delete Product</h5>
                                 <p class="card-text fs-4">24</p>
                             </div>
@@ -99,7 +102,7 @@
                 </div>
                 <div class="col-md-3">
                     <a href="AddEmployee.jsp"><div class="card text-center text-bg-warning">
-                        <div class="card-body">
+                        <div class="card-body" style="background-color:white; color: black;border-radius: 10px ">
                             <h5 class="card-title">Add Employees</h5>
                             <p class="card-text fs-4">8</p>
                         </div>
@@ -108,7 +111,7 @@
                 <div class="col-md-3">
                    <a href="AddLocation.jsp">
                     <div class="card text-center text-bg-danger">
-                        <div class="card-body">
+                        <div class="card-body" style="background-color:white; color: black; border-radius: 10px">
                             <h5 class="card-title">Add Locations</h5>
                             <p class="card-text fs-4">2</p>
                         </div>
