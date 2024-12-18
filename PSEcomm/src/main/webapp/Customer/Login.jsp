@@ -2,218 +2,154 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Login Form</title>
-  <style>
-  @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@200;300;400;500;600;700&display=swap");
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign In</title>
+    <script type="text/javascript"
+        src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
+    <link rel="stylesheet"
+        href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet"
+        href="https://unpkg.com/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap"
+        rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: "Open Sans", sans-serif;
-  }
-  
-  body {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    min-height: 100vh;
-    width: 100%;
-    padding: 0 10px;
-    background: url("mountain.jpg") center/cover no-repeat;
-    position: relative;
-  }
-  
-  body::before {
-    content: "";
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5); 
-  }
-  
-  .wrapper {
-    width: 400px;
-    border-radius: 8px;
-    padding: 30px;
-    text-align: center;
-    border: 1px solid rgba(255, 255, 255, 0.5);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    z-index: 1;
-  }
-  
-  form {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  h2 {
-    font-size: 2rem;
-    margin-bottom: 20px;
-    color: #fff;
-  }
-  
-  .input-field {
-    position: relative;
-    margin: 15px 0;
-  }
-  
-  .input-field label {
-    position: absolute;
-    top: 50%;
-    left: 0;
-    transform: translateY(-50%);
-    color: #fff;
-    font-size: 16px;
-    pointer-events: none;
-    transition: 0.15s ease;
-  }
-  
-  .input-field input {
-    width: 100%;
-    height: 40px;
-    background: transparent;
-    border: none;
-    border-bottom: 2px solid #ccc;
-    outline: none;
-    font-size: 16px;
-    color: #fff;
-  }
-  
-  .input-field input:focus ~ label,
-  .input-field input:valid ~ label {
-    font-size: 0.8rem;
-    top: 10px;
-    transform: translateY(-120%);
-  }
+    <style>
+        * {
+            box-shadow: none !important;
+        }
 
-  /* Error message styling */
-  label.error {
-    display: block;
-    color: #ff4d4d;
-    font-size: 0.85rem;
-    margin-top: 5px;
-    text-align: left;
-  }
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: "Outfit", sans-serif;
+            padding: 40px 0px;
+        }
 
-  .forget {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin: 25px 0 35px 0;
-    color: #fff;
-  }
-  
-  .forget label {
-    display: flex;
-    align-items: center;
-  }
-  
-  .forget label p {
-    margin-left: 8px;
-  }
-  
-  .wrapper a {
-    color: #efefef;
-    text-decoration: none;
-  }
-  
-  .wrapper a:hover {
-    text-decoration: underline;
-  }
-  
-  button {
-    background: #fff;
-    color: #000;
-    font-weight: 600;
-    border: none;
-    padding: 12px 20px;
-    cursor: pointer;
-    border-radius: 3px;
-    font-size: 16px;
-    border: 2px solid transparent;
-    transition: 0.3s ease;
-  }
-  
-  button:hover {
-    color: #fff;
-    border-color: #fff;
-    background: rgba(255, 255, 255, 0.15);
-  }
-  
-  .register {
-    text-align: center;
-    margin-top: 30px;
-    color: #fff;
-  }
+        #signin {
+            width: 400px;
+            margin: 0 auto;
+            border-radius: 10px;
+            border: 1px solid gray;
+            padding: 10px;
+            box-shadow: 1px 2px 5px graytext !important;
+        }
 
-  /* Footer Styling */
-  footer {
-    position: fixed; /* Fixed to the bottom right corner */
-    bottom: 10px;
-    right: 10px;
-    color: #ccc;
-    font-size: 0.9rem;
-  }
+        #signin h4 {
+            font-size: 1.6rem;
+            color: #7209b7;
+        }
 
-  footer a {
-    color: #fff;
-    text-decoration: none;
-    transition: color 0.3s ease;
-  }
+        .form-footer {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
 
-  footer a:hover {
-    text-decoration: underline;
-    color: #efefef;
-  }
-  .error{
-  color: white;
-  z-index: 2;
-  margin-bottom: -2px;
-  text-align: center;
-  
-  }
-  </style>
-  
+        .form-footer button {
+            width: 80%;
+            background: #14213d;
+            color: white;
+        }
+
+        .form-footer p {
+            font-size: 0.8rem;
+        }
+
+        .error {
+            color: red;
+            font-size: 0.6rem;
+        }
+
+        .is-invalid {
+            border-color: red !important;
+        }
+
+        .is-valid {
+            border-color: green !important;
+        }
+    </style>
 </head>
-<body>
-<%String fail=(String) request.getAttribute("failure");
-     if(fail!=null){%>
-   		 <h2 class="error"><%=fail%></h2>
-     <%}%>
-  <div class="wrapper">
-    <form action="login" id="login" method="post">
-      <h2>Login</h2>
-      <div class="input-field">
-        <input type="text" name="email" id="email" required>
-        <label for="email">Enter your email:</label>
-      </div>
-      <div class="input-field">
-        <input type="password" name="password" id="password" required>
-        <label for="password">Enter your password:</label>
-      </div>
-      <div class="forget">
-        <label for="remember">
-          <input type="checkbox" id="remember">
-          <p>Remember me</p>
-        </label>
-        <a href="Forgot.jsp">Forgot password?</a>
-      </div>
-      <button type="submit">Log In</button>
-      <div class="register">
-        <p>Don't have an account? <a href="Signup.jsp">Register!</a></p>
-      </div>
-    </form>
-  </div>
 
-  <!-- Footer -->
-  <footer>
-    <p> For Employee Login | <a href="#" style="color: grey;"><i><b>Click here!</b></i></a></p>
-  </footer>
+<body>
+    <form id="signin" method="post" action="loginUser">
+
+        <h4 class="text-center">Sign In</h4>
+
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" class="form-control" name="email" id="email">
+        </div>
+
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" class="form-control" name="password" id="password">
+        </div>
+
+        <div class="form-footer">
+            <button type="submit" class="btn btn-primary mb-3">Sign In</button>
+            <p>
+                Don't have an account? <a href="<%=request.getContextPath()+"/Customer/Signup.jsp"%>">Sign Up</a>
+            </p>
+        </div>
+    </form>
+
+    <script>
+        // Backend Error Display
+        <% if (request.getAttribute("failure") != null) { 
+            String message = (String) request.getAttribute("failure");
+            request.removeAttribute("failure");
+        %>
+        Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "<%= message %>"
+        });
+        <% } %>
+
+        // Frontend Validation
+        $(document).ready(function () {
+            $("#signin").validate({
+                rules: {
+                    email: {
+                        required: true,
+                        email: true
+                    },
+                    password: {
+                        required: true,
+                        minlength: 6
+                    }
+                },
+                messages: {
+                    email: "Please enter a valid email address",
+                    password: {
+                        required: "Please enter your password",
+                        minlength: "Password must be at least 6 characters long"
+                    }
+                },
+                errorElement: "div",
+                errorPlacement: function (error, element) {
+                    error.addClass("error");
+                    error.insertAfter(element);
+                },
+                highlight: function (element) {
+                    $(element).addClass("is-invalid").removeClass("is-valid");
+                },
+                unhighlight: function (element) {
+                    $(element).addClass("is-valid").removeClass("is-invalid");
+                }
+            });
+        });
+    </script>
 </body>
+
 </html>

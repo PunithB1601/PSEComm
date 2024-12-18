@@ -129,7 +129,7 @@
         <div class="form-footer">
             <button type="submit" class="btn btn-primary mb-3">Sign Up</button>
             <p>
-                Already have an account? <a href="#">Sign In</a>
+                Already have an account? <a href="<%=request.getContextPath()+"/Customer/Login.jsp"%>">Sign In</a>
             </p>
         </div>
     </form>
