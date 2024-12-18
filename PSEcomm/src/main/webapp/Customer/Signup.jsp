@@ -49,7 +49,7 @@
                 <div class="col-12">
                     <div class="form-container">
                         <h2 class="display-5 fw-bold text-center">Register!</h2>
-                        <form id="signup" action="#!">
+                        <form id="signup" action="signup/Customer">
                             <div class="form-floating">
                                 <input type="text" class="form-control border-0 border-bottom rounded-0" name="firstName" id="firstName" placeholder="First Name" required>
                                 <label for="firstName" class="form-label">First Name</label>
