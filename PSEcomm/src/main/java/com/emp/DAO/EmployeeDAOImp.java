@@ -221,7 +221,7 @@ public class EmployeeDAOImp implements EmployeeDAO
                 e.setDno(rs.getInt("dno"));
                 e.setCid(rs.getInt("cid"));
                 e.setPhone(rs.getLong("phone"));
-                e.setMail(rs.getString("emailid"));
+                e.setMail(rs.getString("mailid"));
                 e.setPassword(rs.getString("password"));
                 emp.add(e);
             }
