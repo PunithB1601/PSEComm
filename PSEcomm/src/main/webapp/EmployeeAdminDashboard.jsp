@@ -86,7 +86,7 @@
             <a href="#dashboard">Dashboard</a>
             <a href="#users">Manage Users</a>
 
-            <a href="#settings">Profile</a>
+            <a href="AdminProfile.jsp">Profile</a>
          
 
             <a href="employeelogin.jsp">Logout</a>
