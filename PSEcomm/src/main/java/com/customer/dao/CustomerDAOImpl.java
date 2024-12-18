@@ -20,7 +20,7 @@ public class CustomerDAOImpl implements CustomerDAO {
 
 	@Override
 	public Customer addCustomer(Customer c) {
-		String query = "insert into customer(first_name,last_name,email,password,phone)values(?,?,?,?,?)";
+		String query = "insert into customer(first_name,last_name,lid,email,password,phone)values(?,?,?,?,?,?)";
 		int res = 0;
 		
 		PreparedStatement ps=null;
@@ -28,9 +28,10 @@ public class CustomerDAOImpl implements CustomerDAO {
 			ps = con.prepareStatement(query,Statement.RETURN_GENERATED_KEYS);
 			ps.setString(1, c.getFirstName());
 			ps.setString(2, c.getLastName());
-			ps.setString(3, c.getEmail());
-			ps.setString(4, c.getPassword());
-			ps.setLong(5, c.getPhone());
+			ps.setInt(3, c.getLid());
+			ps.setString(4, c.getEmail());
+			ps.setString(5, c.getPassword());
+			ps.setLong(6, c.getPhone());
 			res = ps.executeUpdate();
 			
 		} catch (SQLException e) {
@@ -90,6 +91,7 @@ public class CustomerDAOImpl implements CustomerDAO {
 			ps.setString(1, email);
 			rs = ps.executeQuery();
 			while (rs.next()) {
+				System.out.println("Here");
 				Customer c = new Customer();
 				c.setCid(rs.getInt("CID"));
 				c.setFirstName(rs.getString("FIRST_NAME"));

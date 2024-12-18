@@ -1,5 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+    
+<%
+  
+%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -81,7 +86,8 @@
 </head>
 
 <body>
-    <form id="signup" method="post" action="registerUser">
+
+    <form id="signup" method="post" action="<%=request.getContextPath()+"/signup/Customer"%>">
 
         <h4 class="text-center">Sign Up</h4>
 
@@ -119,10 +125,10 @@
             <label for="inputState">Location</label>
             <select name="location" id="inputState" class="form-control">
                 <option value="">Choose</option>
-                <option value="New York">New York</option>
-                <option value="London">London</option>
-                <option value="Paris">Paris</option>
-                <option value="Tokyo">Tokyo</option>
+                <option value="1">New York</option>
+                <option value="2">London</option>
+                <option value="3">Paris</option>
+                <option value="4">Tokyo</option>
             </select>
         </div>
 
