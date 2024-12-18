@@ -84,7 +84,7 @@
                             </div>
                         </form>
                         <div class="text-center mt-3">
-                            <a href="forgotpassword.jsp" class="btn-link-custom">
+                            <a href="forgotPassword.jsp" class="btn-link-custom">
                                 <i class="bi bi-key"></i> Forgot Password?
                             </a>
                         </div>

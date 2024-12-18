@@ -75,7 +75,7 @@
             <a href="#users">Manage Users</a>
             <a href="#settings">Settings</a>
             <a href="#reports">Reports</a>
-            <a href="#logout">Logout</a>
+            <a href="employeelogin.jsp">Logout</a>
         </div>
 
         <div class="content flex-grow-1">
