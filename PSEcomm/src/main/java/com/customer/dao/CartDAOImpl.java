@@ -22,7 +22,7 @@ public class CartDAOImpl implements CartDAO{
 	public Cart insertCart(Cart c) {
 		PreparedStatement ps=null;
 
-		String query="insert into cart(cid,productid) values(?,?)";
+		String query="insert into cart(cid,productid)values(?,?)";
 		int res=0;
 		
 		try {
@@ -39,7 +39,9 @@ public class CartDAOImpl implements CartDAO{
 		if(res>0) {
 			try {
 				ResultSet rs=ps.getGeneratedKeys();
-				c.setCartId(rs.getInt(1));
+				if (rs.next()) { // Ensure there's a key to retrieve
+	                c.setCartId(rs.getInt(1));
+	            }
 				con.commit();
 			} catch (SQLException e) {
 				e.printStackTrace();

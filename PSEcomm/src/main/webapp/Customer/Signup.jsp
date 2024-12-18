@@ -19,6 +19,7 @@
         href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap"
         rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
     <style>
         * {
             box-shadow: none !important;
@@ -80,7 +81,17 @@
 </head>
 
 <body>
+	<%String success=(String) request.getAttribute("success");
+     if(success!=null){%>
+     	<h1 class="text-2xl text-center font-bold text-green-600"> <%=success%></h1>
+     <%}%>
+     
+     <%String fail=(String) request.getAttribute("failure");
+     if(fail!=null){%>
+   		 <h1 class=" text-2xl text-center font-bold text-red-600"> <%=fail%></h1>
+     <%}%>
     <!-- Registration Form -->
+<<<<<<< HEAD
     <form id="signup" method="post" action="registerUser">
 
         <h4 class="text-center">Sign Up</h4>

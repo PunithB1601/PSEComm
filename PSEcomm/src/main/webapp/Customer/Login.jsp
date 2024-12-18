@@ -171,11 +171,23 @@
     text-decoration: underline;
     color: #efefef;
   }
+  .error{
+  color: white;
+  z-index: 2;
+  margin-bottom: -2px;
+  text-align: center;
+  
+  }
   </style>
+  
 </head>
 <body>
+<%String fail=(String) request.getAttribute("failure");
+     if(fail!=null){%>
+   		 <h2 class="error"><%=fail%></h2>
+     <%}%>
   <div class="wrapper">
-    <form action="login" id="login">
+    <form action="login" id="login" method="post">
       <h2>Login</h2>
       <div class="input-field">
         <input type="text" name="email" id="email" required>

@@ -42,17 +42,33 @@
         footer {
             text-align: center;
         }
+   		.error{
+  		color: red;
+  		text-align: center;
+  		}
+		.success{
+		color: green;
+  		text-align: center;
+		}
     </style>
 </head>
 
 <body>
+<%String success=(String) request.getAttribute("success");
+     if(success!=null){%>
+     	<h2 class="success"> <%=success%></h2>
+     <%}%>
+<%String fail=(String) request.getAttribute("failure");
+     if(fail!=null){%>
+   		 <h2 class="error"><%=fail%></h2>
+     <%}%>
     <section class="py-3 py-md-5 py-xl-8">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-12 col-lg-6">
                     <div class="form-container">
                         <h2 class="display-5 fw-bold text-center">Forgot Password?</h2>
-                        <form id="forgotPasswordForm" action="#" method="post">
+                        <form id="forgotPasswordForm" action="forgotPassword" method="post">
                             <div class="form-floating">
                                 <input type="tel" class="form-control border-0 border-bottom rounded-0" name="phone" id="phone" placeholder="Phone Number" required>
                                 <label for="phone" class="form-label">Phone Number</label>
