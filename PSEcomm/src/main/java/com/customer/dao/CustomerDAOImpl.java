@@ -91,6 +91,7 @@ public class CustomerDAOImpl implements CustomerDAO {
 			ps.setString(1, email);
 			rs = ps.executeQuery();
 			while (rs.next()) {
+				System.out.println("Here");
 				Customer c = new Customer();
 				c.setCid(rs.getInt("CID"));
 				c.setFirstName(rs.getString("FIRST_NAME"));

@@ -29,10 +29,11 @@ public class Register extends HttpServlet{
 		
 		//Customer c=new Customer();
 		CustomerDAO cdao=new CustomerDAOImpl();
-		Customer c=cdao.getCustomer(mail);
+		Customer findCustomer=cdao.getCustomer(mail);
 		
-		if(c !=null)
+		if(findCustomer ==null)
 		{
+			Customer c=new Customer();
 			c.setFirstName(fname);
 			c.setLastName(lname);
 			c.setPhone(phone);
