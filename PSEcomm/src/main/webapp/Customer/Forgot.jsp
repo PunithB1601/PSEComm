@@ -11,93 +11,134 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://unpkg.com/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap"
+        rel="stylesheet">
+   
     <style>
-        .form-container {
-            border: 2px solid #ccc;
+        * {
+            box-shadow: none !important;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: "Outfit", sans-serif;
+            padding: 40px 0px;
+        }
+
+        #forgotPasswordForm {
+            width: 400px;
+            margin: 0 auto;
             border-radius: 10px;
-            padding: 30px;
-            background-color: #f9f9f9;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            max-width: 500px;
-            margin: auto;
+            border: 1px solid gray;
+            padding: 10px;
+            box-shadow: 1px 2px 5px graytext !important;
         }
-        
-        .form-floating {
-            margin-bottom: 15px;
+
+        #signin h4 {
+            font-size: 1.6rem;
+            color: #7209b7;
         }
-        
-        .form-container h2 {
-            margin-bottom: 20px;
+
+        .form-footer {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
         }
-        
-        .btn {
-            background-color: #333;
-            color: #fff;
+
+        .form-footer button {
+            width: 80%;
+            background: #14213d;
+            color: white;
         }
-        
-        .btn:hover {
-            background-color: #555;
+
+        .form-footer p {
+            font-size: 0.8rem;
         }
-        
-        footer {
-            text-align: center;
+
+        .error {
+            color: red;
+            font-size: 0.6rem;
         }
-   		.error{
-  		color: red;
-  		text-align: center;
-  		}
-		.success{
-		color: green;
-  		text-align: center;
-		}
+
+        .is-invalid {
+            border-color: red !important;
+        }
+
+        .is-valid {
+            border-color: green !important;
+        }
+        .forgot-password{
+         font-size: 0.7rem;
+        }
+        .forgot-password a{
+         text-decoration: none;
+         color: graytext;
+        }
+        footer p{
+          font-size: 0.7rem;
+          text-align: center;
+        }
     </style>
 </head>
 
 <body>
-<%String success=(String) request.getAttribute("success");
-     if(success!=null){%>
-     	<h2 class="success"> <%=success%></h2>
-     <%}%>
-<%String fail=(String) request.getAttribute("failure");
-     if(fail!=null){%>
-   		 <h2 class="error"><%=fail%></h2>
-     <%}%>
-    <section class="py-3 py-md-5 py-xl-8">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-12 col-lg-6">
-                    <div class="form-container">
-                        <h2 class="display-5 fw-bold text-center">Forgot Password?</h2>
-                        <form id="forgotPasswordForm" action="forgotPassword" method="post">
-                            <div class="form-floating">
-                                <input type="tel" class="form-control border-0 border-bottom rounded-0" name="phone" id="phone" placeholder="Phone Number" required>
-                                <label for="phone" class="form-label">Phone Number</label>
-                            </div>
-                            <div class="form-floating">
-                                <input type="email" class="form-control border-0 border-bottom rounded-0" name="email" id="email" placeholder="name@example.com" required>
-                                <label for="email" class="form-label">Email</label>
-                            </div>
-                            <div class="form-floating">
-                                <input type="password" class="form-control border-0 border-bottom rounded-0" name="password" id="password" placeholder="Password" required>
-                                <label for="password" class="form-label">Password</label>
-                            </div>
-                            <div class="form-floating">
-                                <input type="password" class="form-control border-0 border-bottom rounded-0" name="confirm" id="confirm" placeholder="Confirm Password" required>
-                                <label for="confirm" class="form-label">Confirm Password</label>
-                            </div>
-                            <div class="d-grid">
-                                <button class="btn btn-lg btn-dark rounded-0 fs-6" type="submit">Done</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
+     
+     <form id="forgotPasswordForm" method="post" action="loginUser">
+
+        <h4 class="text-center">Forgot Password</h4>
+        
+        <div class="form-group">
+            <label for="email" class="form-label">Email</label>
+            <input type="email" class="form-control" name="email" id="email" placeholder="Email" required>
+           
         </div>
-    </section>
-    <footer>
-        <p>&copy; 2024 Your Company Name. All Rights Reserved.</p>
-    </footer>
+
+        <div class="form-group">
+            <label for="phone" class="form-label">Phone Number</label>
+            <input type="tel" class="form-control" name="phone" id="phone" placeholder="Phone Number" required>
+           
+        </div>
+
+        <div class="form-group">
+        <label for="password" class="form-label">Password</label>
+             <input type="password" class="form-control " name="password" id="password" placeholder="Password" required>
+                                
+        </div>
+        
+        <div class="form-group">
+        <label for="confirm" class="form-label">Confirm Password</label>
+             <input type="password" class="form-control " name="confirm" id="confirm" placeholder="Confirm Password" required>
+                                
+        </div>
+
+        <div class="form-footer">
+            <button type="submit" class="btn btn-primary mb-3">Reset Password</button>
+            
+        </div>
+        <footer>
+           <p>&copy; 2024 Your Company Name. All Rights Reserved.</p>
+        </footer>
+    </form>
+    
+     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
+         
+    <% if (request.getAttribute("failure") != null) { 
+        String message = (String) request.getAttribute("failure");
+        request.removeAttribute("failure");
+    %>
+    Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "<%= message %>"
+    });
+    <% } %>
+     
         $(document).ready(function() {
             $("#forgotPasswordForm").validate({
                 rules: {
@@ -141,7 +182,10 @@
                     }
                 },
                 errorElement: 'div',
-                errorClass: 'text-danger',
+                errorPlacement: function (error, element) {
+                    error.addClass("error");
+                    error.insertAfter(element);
+                },
                 highlight: function(element) {
                     $(element).addClass('is-invalid');
                 },

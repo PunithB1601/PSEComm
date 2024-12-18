@@ -6,9 +6,10 @@ import java.sql.SQLException;
 
 public class DBConnection
 {
+
 	static String url = "jdbc:mysql://localhost:3306/ecommarce";
 	static String username = "root";
-	static String password = "tiger";
+	static String password = "root";
 	static Connection conn = null;
 
 	public static Connection getConnection() {

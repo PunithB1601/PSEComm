@@ -77,6 +77,13 @@
         .is-valid {
             border-color: green !important;
         }
+        .forgot-password{
+         font-size: 0.7rem;
+        }
+        .forgot-password a{
+         text-decoration: none;
+         color: graytext;
+        }
     </style>
 </head>
 
@@ -93,6 +100,7 @@
         <div class="form-group">
             <label for="password">Password</label>
             <input type="password" class="form-control" name="password" id="password">
+            <p class="text-end forgot-password"><a href="<%= request.getContextPath()+"/Customer/Forgot.jsp"%>">Forgot Password ?</a></p>
         </div>
 
         <div class="form-footer">
