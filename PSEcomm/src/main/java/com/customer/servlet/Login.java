@@ -14,7 +14,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
-@WebServlet("/Customer/login")
+@WebServlet("/Customer/loginUser")
 public class Login extends HttpServlet{
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -38,7 +38,7 @@ public class Login extends HttpServlet{
 				rd.forward(req, resp);		
 			}		
 		}else {
-			req.setAttribute("failure", "Email does not exists");
+			req.setAttribute("failure", "Email does not exists......");
 			RequestDispatcher rd=req.getRequestDispatcher("Login.jsp"); //login
 			rd.forward(req, resp);
 		}
