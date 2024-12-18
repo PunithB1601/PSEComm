@@ -7,89 +7,149 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register Page</title>
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://unpkg.com/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <script type="text/javascript"
+        src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
+    <link rel="stylesheet"
+        href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet"
+        href="https://unpkg.com/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap"
+        rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
     <style>
-        .form-container {
-            border: 2px solid #ccc;
+        * {
+            box-shadow: none !important;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: "Outfit", sans-serif;
+            padding: 40px 0px;
+        }
+
+        #signup {
+            width: 400px;
+            margin: 0 auto;
             border-radius: 10px;
-            padding: 20px;
-            background-color: #f9f9f9;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            max-width: 500px;
-            margin: auto;
+            border: 1px solid gray;
+            padding: 10px;
+            box-shadow: 1px 2px 5px graytext !important;
         }
-        
-        .form-floating {
-            margin-bottom: 15px;
+
+        #signup h4 {
+            font-size: 1.6rem;
+            color: #7209b7;
         }
-        
-        .form-container h2 {
-            margin-bottom: 20px;
+
+        .form-footer {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
         }
-        
-        .btn {
-            background-color: #333;
-            color: #fff;
+
+        .form-footer button {
+            width: 80%;
+            background: #14213d;
+            color: white;
         }
-        
-        .btn:hover {
-            background-color: #555;
+
+        .form-footer p {
+            font-size: 0.8rem;
+        }
+
+        .error {
+            color: red;
+            font-size: 0.6rem;
+        }
+
+        .is-invalid {
+            border-color: red !important;
+        }
+
+        .is-valid {
+            border-color: green !important;
         }
     </style>
 </head>
 
 <body>
-    <!-- Registration Form -->
-    <section class="py-3 py-md-5 py-l-8">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-12">
-                    <div class="form-container">
-                        <h2 class="display-5 fw-bold text-center">Register!</h2>
-                        <form id="signup" action="signup/Customer">
-                            <div class="form-floating">
-                                <input type="text" class="form-control border-0 border-bottom rounded-0" name="firstName" id="firstName" placeholder="First Name" required>
-                                <label for="firstName" class="form-label">First Name</label>
-                            </div>
-                            <div class="form-floating">
-                                <input type="text" class="form-control border-0 border-bottom rounded-0" name="lastName" id="lastName" placeholder="Last Name" required>
-                                <label for="lastName" class="form-label">Last Name</label>
-                            </div>
-                            <div class="form-floating">
-                                <input type="phone" class="form-control border-0 border-bottom rounded-0" name="phone" id="phone" placeholder="Phone Number" required>
-                                <label for="phone" class="form-label">Phone Number</label>
-                            </div>
-                            <div class="form-floating">
-                                <input type="email" class="form-control border-0 border-bottom rounded-0" name="email" id="email" placeholder="name@example.com" required>
-                                <label for="email" class="form-label">Email</label>
-                            </div>
-                            <div class="form-floating">
-                                <input type="password" class="form-control border-0 border-bottom rounded-0" name="password" id="password" placeholder="Password" required>
-                                <label for="password" class="form-label">Password</label>
-                            </div>
-                            <div class="form-check mb-3">
-                                <input class="form-check-input" type="checkbox" name="iAgree" id="iAgree" required>
-                                <label class="form-check-label text-secondary" for="iAgree">
-                                    I agree to the <a href="#!" class="link-primary text-decoration-none">terms and conditions</a>
-                                </label>
-                            </div>
-                            <div class="d-grid">
-                                <button type="submit" class="btn btn-primary w-100">Register</button>
-                            </div>
-                        </form>
-                        <br>
-                        <p class="text-center m-0">Already have an account? <a href="Login.jsp" class="link-primary text-decoration-none">Sign in</a></p>
-                    </div>
-                </div>
-            </div>
+
+    <form id="signup" method="post" action="registerUser">
+
+        <h4 class="text-center">Sign Up</h4>
+
+        <div class="form-group">
+            <label for="fname">First Name</label>
+            <input type="text" class="form-control" name="firstName" id="fname">
         </div>
-    </section>
+
+        <div class="form-group">
+            <label for="lname">Last Name</label>
+            <input type="text" class="form-control" name="lastName" id="lname">
+        </div>
+
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" class="form-control" name="email" id="email">
+        </div>
+
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" class="form-control" name="password" id="password">
+        </div>
+
+        <div class="form-group">
+            <label for="confirmPassword">Confirm Password</label>
+            <input type="password" class="form-control" name="confirmPassword" id="confirmPassword">
+        </div>
+
+        <div class="form-group">
+            <label for="mobile">Mobile</label>
+            <input type="text" class="form-control" name="phone" id="mobile">
+        </div>
+
+        <div class="form-group">
+            <label for="inputState">Location</label>
+            <select name="location" id="inputState" class="form-control">
+                <option value="">Choose</option>
+                <option value="New York">New York</option>
+                <option value="London">London</option>
+                <option value="Paris">Paris</option>
+                <option value="Tokyo">Tokyo</option>
+            </select>
+        </div>
+
+        <div class="form-footer">
+            <button type="submit" class="btn btn-primary mb-3">Sign Up</button>
+            <p>
+                Already have an account? <a href="<%=request.getContextPath()+"/Customer/Login.jsp"%>">Sign In</a>
+            </p>
+        </div>
+    </form>
 
     <script>
-        $(document).ready(function() {
+        // Backend Error Display
+        <% if (request.getAttribute("failure") != null) { 
+            String message = (String) request.getAttribute("failure");
+            request.removeAttribute("failure");
+        %>
+        Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "<%= message %>"
+        });
+        <% } %>
+
+        // Frontend Validation
+        $(document).ready(function () {
             $("#signup").validate({
                 rules: {
                     firstName: {
@@ -100,12 +160,6 @@
                         required: true,
                         minlength: 2
                     },
-                    phone: {
-                        required: true,
-                        digits: true,
-                        minlength: 10,
-                        maxlength: 10
-                    },
                     email: {
                         required: true,
                         email: true
@@ -114,31 +168,42 @@
                         required: true,
                         minlength: 6
                     },
-                    iAgree: {
+                    confirmPassword: {
+                        required: true,
+                        minlength: 6,
+                        equalTo: "#password"
+                    },
+                    phone: {
+                        required: true,
+                        digits: true,
+                        minlength: 10,
+                        maxlength: 10
+                    },
+                    location: {
                         required: true
                     }
                 },
                 messages: {
                     firstName: "Please enter a valid first name",
                     lastName: "Please enter a valid last name",
-                    phone: "Please enter a valid phone number",
-                    email: "Please enter a valid email",
+                    email: "Please enter a valid email address",
                     password: "Password must be at least 6 characters long",
-                    iAgree: "You must agree to the terms and conditions"
+                    confirmPassword: {
+                        required: "Please confirm your password",
+                        equalTo: "Passwords do not match"
+                    },
+                    phone: "Please enter a valid 10-digit mobile number",
+                    location: "Please select a location"
                 },
                 errorElement: "div",
-                errorPlacement: function(error, element) {
-                    error.addClass("invalid-feedback");
-                    if (element.prop("type") === "checkbox") {
-                        error.insertAfter(element.next("label"));
-                    } else {
-                        error.insertAfter(element);
-                    }
+                errorPlacement: function (error, element) {
+                    error.addClass("error");
+                    error.insertAfter(element);
                 },
-                highlight: function(element) {
+                highlight: function (element) {
                     $(element).addClass("is-invalid").removeClass("is-valid");
                 },
-                unhighlight: function(element) {
+                unhighlight: function (element) {
                     $(element).addClass("is-valid").removeClass("is-invalid");
                 }
             });
