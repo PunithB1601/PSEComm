@@ -51,7 +51,7 @@
     </style>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light" style="background-color: white;">
         <div class="container-fluid">
             <a class="navbar-brand fw-bold text-primary" href="#">Admin Dashboard</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -75,7 +75,7 @@
             <a href="#users">Manage Users</a>
             <a href="#settings">Settings</a>
             <a href="#reports">Reports</a>
-            <a href="#logout">Logout</a>
+            <a href="employeelogin.jsp">Logout</a>
         </div>
 
         <div class="content flex-grow-1">
@@ -147,7 +147,7 @@
                                         <td>Total Employees</td>
                                         <td>150</td>
                                         <td>
-                                            <a href="./employees.html"><button class="btn btn-info" type="button" data-bs-toggle="collapse" data-bs-target="#employeeList" aria-expanded="false" aria-controls="employeeList">
+                                            <a href="ViewEmp.jsp"><button class="btn btn-info" type="button" data-bs-toggle="collapse" data-bs-target="#employeeList" aria-expanded="false" aria-controls="employeeList">
                                                 View Employees
                                             </button>
                                         </a>
