@@ -21,6 +21,11 @@
                 <div class="card" style="box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;">
                     <div class="card-header text-center" >
                         <h3>Login</h3>
+                        <%String success=(String)request.getAttribute("success");
+                        if(success!= null){
+                        %>
+                        <p style="color: green; font-size: 0.8rem;"><%=success %></p>
+                        <%} %>
                         <%String failure=(String)request.getAttribute("failure");
                         if(failure!= null){
                         %>
