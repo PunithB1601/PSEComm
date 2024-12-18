@@ -1,3 +1,12 @@
+<%@page import="com.emp.DTO.Location"%>
+<%@page import="com.emp.DAO.locationDAOimp"%>
+<%@page import="com.emp.DAO.locationDAO"%>
+<%@page import="com.emp.DTO.Product"%>
+<%@page import="com.emp.DAO.ProductDAOImp"%>
+<%@page import="com.emp.DAO.ProductDAO"%>
+<%@page import="com.emp.DAO.EmployeeDAOImp"%>
+<%@page import="com.emp.DAO.EmployeeDAO"%>
+<%@page import="java.util.List"%>
 <%@page import="com.emp.DTO.Employee"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -82,14 +91,21 @@
 
             <a href="employeelogin.jsp">Logout</a>
         </div>
-
+<%
+EmployeeDAO e1= new EmployeeDAOImp();
+List<Employee> employees =e1.getEmployee();
+ProductDAO dao = new ProductDAOImp();
+List<Product> products = dao.getproducts();
+//locationDAO dao2 = new locationDAOimp();
+//List<Location> locations =dao2.getlocation();
+%>
         <div class="content flex-grow-1" >
             <div class="row mb-4" >
                <a href="AddProduct.jsp" > <div class="col-md-3" >
                 <div class="card text-center text-bg-primary" >
                     <div class="card-body" style="background-color:white; color: black;border-radius: 10px ">
                         <h5 class="card-title">Add Product</h5>
-                        <p class="card-text fs-4">150</p>
+                        <p class="card-text fs-4"><%=products.size() %></p>
                     </div>
                 </div></a>
             </div>
@@ -98,7 +114,7 @@
                         <div class="card text-center text-bg-success">
                             <div class="card-body" style="background-color:white; color: black; border-radius: 10px">
                                 <h5 class="card-title">Delete Product</h5>
-                                <p class="card-text fs-4">24</p>
+                                <p class="card-text fs-4">0</p>
                             </div>
                         </div></a>
                 </div>
@@ -106,7 +122,7 @@
                     <a href="AddEmployee.jsp"><div class="card text-center text-bg-warning">
                         <div class="card-body" style="background-color:white; color: black;border-radius: 10px ">
                             <h5 class="card-title">Add Employees</h5>
-                            <p class="card-text fs-4">8</p>
+                            <p class="card-text fs-4"><%=employees.size() %></p>
                         </div>
                     </div></a>
                 </div>
@@ -115,7 +131,7 @@
                     <div class="card text-center text-bg-danger">
                         <div class="card-body" style="background-color:white; color: black; border-radius: 10px">
                             <h5 class="card-title">Add Locations</h5>
-                            <p class="card-text fs-4">2</p>
+                            <p class="card-text fs-4">0</p>
                         </div>
                     </div>
                    </a>
