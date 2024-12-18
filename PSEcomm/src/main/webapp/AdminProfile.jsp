@@ -83,8 +83,8 @@
                                 <div class="invalid-feedback">Passwords do not match.</div>
                             </div>
                             <div class="form-actions">
-                                    <button type="submit" class="btn btn-success">Add Product</button>
-                                    <a href="EmployeeAdminDashboard.jsp" class="btn btn-secondary" style="margin-left: 210px">Back to Dashboard</a>
+                                    <button type="submit" class="btn btn-success">Update profile</button>
+                                    <a href="EmployeeAdminDashboard.jsp" class="btn btn-secondary" style="margin-left: 200px">Back to Dashboard</a>
                                 </div>
                         </form>
                     </div>

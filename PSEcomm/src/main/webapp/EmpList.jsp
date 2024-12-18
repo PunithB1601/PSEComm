@@ -11,10 +11,11 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
         body {
-            background-color: #f8f9fa;
+            background-color: #F1F8E8;
         }
         .container {
             margin-top: 50px;
+            background-color: white;
         }
         table {
             margin-top: 20px;
@@ -23,12 +24,20 @@
             display: flex;
             justify-content: space-between;
         }
+        tr{
+        background-color: white;
+        }
+        tr:hover {
+        
+	opacity: 0.7;
+	background-color: #D9EAFD;
+}
     </style>
 </head>
 <body>
-    <div class="container">
+    <div class="container" style="box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px; padding: 40px; background-color: whiresmoke; border-radius: 15px;">
         <h1 class="text-center">Employee List</h1>
-        <table class="table table-bordered table-striped">
+        <table class="table ">
             <thead class="thead-dark">
                 <tr>
                     <th>Employee ID</th>
@@ -65,6 +74,9 @@
                 %>
             </tbody>
         </table>
+        <div>
+       <a href="EmployeeAdminDashboard.jsp"><button type="button" class="btn btn-primary" style="font-size: 1.2rem; color: black;">Back</button></a>
+        </div>
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
