@@ -47,7 +47,15 @@
                             </div>
                             <div class="form-group">
                                 <label for="gender">Gender:</label>
-                                <input type="text" id="gender" name="gender" class="form-control" required value="<%= e.getGender()%>">
+                                <%if(e.getGender().equalsIgnoreCase("m")) {%>
+                             <input type="text" id="gender" name="gender" class="form-control" required value="<%= "Male"%>">
+                              <%} %>
+                                  <%if(e.getGender().equalsIgnoreCase("f")) {%>
+                             <input type="text" id="gender" name="gender" class="form-control" required value="<%= "Female"%>">
+                              <%} %>
+                                <%if(e.getGender().equalsIgnoreCase("o")) {%>
+                             <input type="text" id="gender" name="gender" class="form-control" required value="<%= "Other"%>">
+                              <%} %>
                             </div>
                             <div class="form-group">
                                 <label for="job">Job:</label>
@@ -67,11 +75,11 @@
                             </div>
                             <div class="form-group">
                                 <label for="password">Password:</label>
-                                <input type="password" id="password" name="password" class="form-control">
+                                <input type="password" id="password" name="password" class="form-control"  value="<%= e.getPassword()%>">
                             </div>
                             <div class="form-group">
                                 <label for="confirmPassword">Confirm Password:</label>
-                                <input type="password" id="confirmPassword" name="confirmPassword" class="form-control">
+                                <input type="password" id="confirmPassword" name="confirmPassword" class="form-control" value="<%= e.getPassword()%>">
                                 <div class="invalid-feedback">Passwords do not match.</div>
                             </div>
                             <div class="form-actions">
