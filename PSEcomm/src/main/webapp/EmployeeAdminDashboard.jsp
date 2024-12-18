@@ -147,7 +147,7 @@
                                         <td>Total Employees</td>
                                         <td>150</td>
                                         <td>
-                                            <a href="./employees.html"><button class="btn btn-info" type="button" data-bs-toggle="collapse" data-bs-target="#employeeList" aria-expanded="false" aria-controls="employeeList">
+                                            <a href="ViewEmp.jsp"><button class="btn btn-info" type="button" data-bs-toggle="collapse" data-bs-target="#employeeList" aria-expanded="false" aria-controls="employeeList">
                                                 View Employees
                                             </button>
                                         </a>
