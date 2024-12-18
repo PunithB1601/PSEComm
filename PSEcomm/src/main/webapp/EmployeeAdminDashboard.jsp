@@ -73,7 +73,7 @@
         <div class="sidebar p-3">
             <a href="#dashboard">Dashboard</a>
             <a href="#users">Manage Users</a>
-            <a href="#settings">Settings</a>
+            <a href="#settings">Profile</a>
             <a href="#reports">Reports</a>
             <a href="employeelogin.jsp">Logout</a>
         </div>
@@ -165,7 +165,7 @@
                                         <td>Managers</td>
                                         <td>10</td>
                                         <td>
-                                            <a href="./1.html"><button class="btn btn-info" type="button" data-bs-toggle="collapse" data-bs-target="#managerList" aria-expanded="false" aria-controls="managerList">
+                                            <a href="ViewManager.jsp"><button class="btn btn-info" type="button" data-bs-toggle="collapse" data-bs-target="#managerList" aria-expanded="false" aria-controls="managerList">
                                                 View Managers
                                             </button>
                                         </a>
@@ -182,7 +182,7 @@
                                         <td>Salesmen</td>
                                         <td>50</td>
                                         <td>
-                                            <a href="/1.html"><button class="btn btn-info" type="button" data-bs-toggle="collapse" data-bs-target="#salesmanList" aria-expanded="false" aria-controls="salesmanList">
+                                            <a href="ViewSalesmen.jsp"><button class="btn btn-info" type="button" data-bs-toggle="collapse" data-bs-target="#salesmanList" aria-expanded="false" aria-controls="salesmanList">
                                                 View Salesmen
                                             </button>
                                         </a>
