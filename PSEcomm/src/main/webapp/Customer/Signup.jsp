@@ -1,9 +1,14 @@
+<%@page import="com.emp.DTO.Location"%>
+<%@page import="java.util.List"%>
+<%@page import="com.emp.DAO.locationDAOimp"%>
+<%@page import="com.emp.DAO.locationDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
     
 <%
-  
+  locationDAO locationDAO = new locationDAOimp();
+   List<Location> locations = locationDAO.getlocation();
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -125,11 +130,16 @@
             <label for="inputState">Location</label>
             <select name="location" id="inputState" class="form-control">
                 <option value="">Choose</option>
-                <option value="1">New York</option>
-                <option value="2">London</option>
-                <option value="3">Paris</option>
-                <option value="4">Tokyo</option>
+                <%
+                 for(Location location : locations)
+                 {
+                	 %>
+                	  <option value="<%=location.getLid() %>" ><%=location.getLocation()+" , "+location.getCity()+" , "+location.getState() %></option>
+                	 <%
+                 }
+                %>
             </select>
+            <p class="text-end request-location"><a href="#" >Request Location</a></p>
         </div>
 
         <div class="form-footer">
