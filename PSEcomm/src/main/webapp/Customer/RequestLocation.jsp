@@ -69,13 +69,13 @@
 </head>
 
 <body>
-    <form id="location" method="post" action="requestLocation">
+    <form id="location" method="post" action="<%= request.getContextPath()+"/customer/requestLocation"%>">
 
-        <h4 class="text-center">Register Location</h4>
+        <h4 class="text-center">Request Location</h4>
 
         <div class="form-group">
             <label for="text">New Location</label>
-            <input type="text" class="form-control" name="newLocation" >
+            <input type="text" class="form-control" name="newLocation"  required="required">
         </div>
         <div class="form-footer">
             <button type="submit" class="btn btn-primary mb-3">Submit Request</button>

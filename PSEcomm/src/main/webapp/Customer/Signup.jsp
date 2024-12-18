@@ -87,6 +87,12 @@
         .is-valid {
             border-color: green !important;
         }
+        .request-location{
+         font-size: 0.6rem;
+        }
+        .request-location a{
+         color: graytext;
+        }
     </style>
 </head>
 
@@ -139,7 +145,7 @@
                  }
                 %>
             </select>
-            <p class="text-end request-location"><a href="#" >Request Location</a></p>
+            <p class="text-end request-location"><a href="<%=request.getContextPath()+"/Customer/RequestLocation.jsp" %>" >Request Location</a></p>
         </div>
 
         <div class="form-footer">
