@@ -19,22 +19,20 @@ public class ProductDAOImp implements ProductDAO
 	}
 	
 	@Override
-	public boolean addProduct(Product p) 
+	public Product addProduct(Product p) 
 	{
 		PreparedStatement ps=null;
 		int res=0;
-		String query="INSERT INTO PRODUCT VALUES(?,?,?,?,?)";
+		String query="INSERT INTO PRODUCT (PNAME,PRICE,IMG,CATEGORY_ID) VALUES(?,?,?,?)";
 		try {
 			con.setAutoCommit(false);
 			ps=con.prepareStatement(query);
-			ps.setInt(1, p.getProduct_Id());
-			ps.setString(2, p.getProducr_Name());
-			ps.setDouble(3, p.getPrice());
-			ps.setString(4, p.getImg());
+			ps.setString(1, p.getProducr_Name());
+			ps.setDouble(2, p.getPrice());
+			ps.setString(3, p.getImg());
 			ps.setInt(5, p.getCategory_Id());
 			res=ps.executeUpdate();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		if(res>0)
@@ -42,22 +40,22 @@ public class ProductDAOImp implements ProductDAO
 			try {
 				con.commit();
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			return true;
+			return p;
 		}
 		else
 		{
 			try {
 				con.rollback();
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			return false;
+			return null;
 		}
 	}
+	
+	
 
 	@Override
 	public boolean deleteProduct(Product p) 
