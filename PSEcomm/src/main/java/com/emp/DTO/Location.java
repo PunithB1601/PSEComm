@@ -4,8 +4,19 @@ public class Location {
     String Location; // Changed from City to Location
     String City;     // Changed from Pincode to City
     String State;
+    int lid;
+    
+    
 
-    // Getter and Setter for Location
+    public int getLid() {
+		return lid;
+	}
+
+	public void setLid(int lid) {
+		this.lid = lid;
+	}
+
+	// Getter and Setter for Location
     public String getLocation() {
         return Location;
     }

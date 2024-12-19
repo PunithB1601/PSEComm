@@ -1,6 +1,7 @@
 package com.emp.DAO;
 
 import com.database.DBConnection;
+import com.emp.DTO.Department;
 import com.emp.DTO.Employee;
 
 import java.sql.Connection;
@@ -102,7 +103,6 @@ public class EmployeeDAOImp implements EmployeeDAO
 
             }
         } catch (SQLException e1) {
-            // TODO Auto-generated catch block
             e1.printStackTrace();
         }
 
@@ -387,6 +387,32 @@ public class EmployeeDAOImp implements EmployeeDAO
         }
         return emp;
 		
+	}
+
+	@Override
+	public List getDetails() {
+		 ArrayList<Department>dept=new ArrayList<Department>();
+	        Department d=null;
+	        PreparedStatement ps=null;
+	        ResultSet rs=null;
+	        String query="SELECT count(*)as \"count\",E.DNO,D.DNAME FROM EMP E INNER JOIN DEPT D ON E.DNO=D.DNO GROUP BY DNO;";
+	        
+	        try {
+	            ps=con.prepareStatement(query);
+	            rs=ps.executeQuery();
+	            while (rs.next())
+	            {
+	                d=new Department();
+
+	                d.setDno(rs.getInt("dno"));
+	                d.setDname(rs.getString("dname"));
+	                d.setCount(rs.getInt("count"));
+	                dept.add(d);
+	            }
+	        } catch (SQLException ex) {
+	            throw new RuntimeException(ex);
+	        }
+	        return dept;
 	}
 
 	
