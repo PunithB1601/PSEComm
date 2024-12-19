@@ -7,10 +7,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @Getter
 @Setter
-public class Cart
-{
-	
- private int cartId;
- private int cid;
- private int productId;
+public class RequestedLocation {
+private int req_id;
+private String requested_location;
 }

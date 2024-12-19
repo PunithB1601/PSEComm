@@ -1,6 +1,7 @@
 package com.emp.DAO;
 
 import com.database.DBConnection;
+import com.emp.DTO.Department;
 import com.emp.DTO.Employee;
 
 import java.sql.Connection;
@@ -97,12 +98,11 @@ public class EmployeeDAOImp implements EmployeeDAO
                 e.setDno(rs.getInt("dno"));
                 e.setCid(rs.getInt("cid"));
                 e.setPhone(rs.getLong("phone"));
-                e.setMail(rs.getString("emailid"));
+                e.setMail(rs.getString("mailid"));
                 e.setPassword(rs.getString("password"));
 
             }
         } catch (SQLException e1) {
-            // TODO Auto-generated catch block
             e1.printStackTrace();
         }
 
@@ -140,7 +140,7 @@ public class EmployeeDAOImp implements EmployeeDAO
                 e.setDno(rs.getInt("dno"));
                 e.setCid(rs.getInt("cid"));
                 e.setPhone(rs.getLong("phone"));
-                e.setMail(rs.getString("emailid"));
+                e.setMail(rs.getString("mailid"));
                 e.setPassword(rs.getString("password"));
 
             }
@@ -181,7 +181,7 @@ public class EmployeeDAOImp implements EmployeeDAO
                 e.setDno(rs.getInt("dno"));
                 e.setCid(rs.getInt("cid"));
                 e.setPhone(rs.getLong("phone"));
-                e.setMail(rs.getString("emailid"));
+                e.setMail(rs.getString("mailid"));
                 e.setPassword(rs.getString("password"));
 
             }
@@ -221,7 +221,7 @@ public class EmployeeDAOImp implements EmployeeDAO
                 e.setDno(rs.getInt("dno"));
                 e.setCid(rs.getInt("cid"));
                 e.setPhone(rs.getLong("phone"));
-                e.setMail(rs.getString("emailid"));
+                e.setMail(rs.getString("mailid"));
                 e.setPassword(rs.getString("password"));
                 emp.add(e);
             }
@@ -313,4 +313,107 @@ public class EmployeeDAOImp implements EmployeeDAO
             return false;
         }
     }
+
+	@Override
+	public List getManager() {
+
+		ArrayList<Employee>emp=new ArrayList<Employee>();
+        Employee e=null;
+        PreparedStatement ps=null;
+        ResultSet rs=null;
+        String query="SELECT * FROM EMP WHERE JOB='MANAGER'";
+        try {
+            ps=con.prepareStatement(query);
+            rs=ps.executeQuery();
+            while (rs.next())
+            {
+                e=new Employee();
+                e.setEid(rs.getInt("eid"));
+                e.setFname(rs.getString("fname"));
+                e.setLname(rs.getString("lname"));
+                e.setDOB(rs.getString("dob"));
+                e.setGender(rs.getString("gender"));
+                e.setJob(rs.getString("job"));
+                e.setMgr(rs.getInt("mgr"));
+                e.setDoj(rs.getString("doj"));
+                e.setSalary(rs.getLong("sal"));
+                e.setCommition(rs.getLong("comm"));
+                e.setDno(rs.getInt("dno"));
+                e.setCid(rs.getInt("cid"));
+                e.setPhone(rs.getLong("phone"));
+                e.setMail(rs.getString("mailid"));
+                e.setPassword(rs.getString("password"));
+                emp.add(e);
+            }
+        } catch (SQLException ex) {
+            throw new RuntimeException(ex);
+        }
+        return emp;
+	}
+
+	@Override
+	public List getSalesman() {
+
+		ArrayList<Employee>emp=new ArrayList<Employee>();
+        Employee e=null;
+        PreparedStatement ps=null;
+        ResultSet rs=null;
+        String query="SELECT * FROM EMP WHERE JOB='SALESMAN'";
+        try {
+            ps=con.prepareStatement(query);
+            rs=ps.executeQuery();
+            while (rs.next())
+            {
+                e=new Employee();
+                e.setEid(rs.getInt("eid"));
+                e.setFname(rs.getString("fname"));
+                e.setLname(rs.getString("lname"));
+                e.setDOB(rs.getString("dob"));
+                e.setGender(rs.getString("gender"));
+                e.setJob(rs.getString("job"));
+                e.setMgr(rs.getInt("mgr"));
+                e.setDoj(rs.getString("doj"));
+                e.setSalary(rs.getLong("sal"));
+                e.setCommition(rs.getLong("comm"));
+                e.setDno(rs.getInt("dno"));
+                e.setCid(rs.getInt("cid"));
+                e.setPhone(rs.getLong("phone"));
+                e.setMail(rs.getString("mailid"));
+                e.setPassword(rs.getString("password"));
+                emp.add(e);
+            }
+        } catch (SQLException ex) {
+            throw new RuntimeException(ex);
+        }
+        return emp;
+		
+	}
+
+	@Override
+	public List getDetails() {
+		 ArrayList<Department>dept=new ArrayList<Department>();
+	        Department d=null;
+	        PreparedStatement ps=null;
+	        ResultSet rs=null;
+	        String query="SELECT count(*)as \"count\",E.DNO,D.DNAME FROM EMP E INNER JOIN DEPT D ON E.DNO=D.DNO GROUP BY DNO;";
+	        
+	        try {
+	            ps=con.prepareStatement(query);
+	            rs=ps.executeQuery();
+	            while (rs.next())
+	            {
+	                d=new Department();
+
+	                d.setDno(rs.getInt("dno"));
+	                d.setDname(rs.getString("dname"));
+	                d.setCount(rs.getInt("count"));
+	                dept.add(d);
+	            }
+	        } catch (SQLException ex) {
+	            throw new RuntimeException(ex);
+	        }
+	        return dept;
+	}
+
+	
 }
