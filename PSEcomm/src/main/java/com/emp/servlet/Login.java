@@ -30,11 +30,11 @@ public class Login extends HttpServlet
 		e=edao.getEmployee(eid,password);
 		if(e!=null && e.getJob().equalsIgnoreCase("hr"))
 		{
-			session.setAttribute("Hr", e);
+			session.setAttribute("employee", e);
 			RequestDispatcher rd=req.getRequestDispatcher("HrDashboard.jsp");
 			rd.forward(req, resp);
 		}
-		else if(e!=null)
+		else if(e!=null && e.getJob().equalsIgnoreCase("CEO"))
 		{
 			session.setAttribute("employee", e);
 			RequestDispatcher rd=req.getRequestDispatcher("EmployeeAdminDashboard.jsp");
