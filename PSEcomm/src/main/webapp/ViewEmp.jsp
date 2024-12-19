@@ -104,7 +104,7 @@ padding-bottom: 20px;
     
     
     <%EmployeeDAO edao=new EmployeeDAOImp();
-    List<Employee> employees = edao.getEmployee();
+    List<Employee> employees =edao.getEmployee();
     Employee emp=null;
     Iterator<Employee> it= employees.iterator(); %>
     <main class="employee-container">
