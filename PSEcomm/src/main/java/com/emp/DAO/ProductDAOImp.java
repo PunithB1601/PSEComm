@@ -23,14 +23,14 @@ public class ProductDAOImp implements ProductDAO
 	{
 		PreparedStatement ps=null;
 		int res=0;
-		String query="INSERT INTO PRODUCT (PNAME,PRICE,IMG,CATEGORY_ID) VALUES(?,?,?,?)";
+		String query="INSERT INTO PRODUCT (PNAME,PRICE,IMG,CATEGORYID) VALUES(?,?,?,?)";
 		try {
 			con.setAutoCommit(false);
 			ps=con.prepareStatement(query);
 			ps.setString(1, p.getProducr_Name());
 			ps.setDouble(2, p.getPrice());
 			ps.setString(3, p.getImg());
-			ps.setInt(5, p.getCategory_Id());
+			ps.setInt(4, p.getCategory_Id());
 			res=ps.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();

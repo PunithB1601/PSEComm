@@ -1,5 +1,14 @@
+<%@page import="com.productCategory.DAO.productCategoryDDAOImpl"%>
+<%@page import="com.productCategory.DAO.productCategoryDAO"%>
+<%@page import="com.productCategory.DTO.ProductCategory"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+<%
+  productCategoryDAO productCategoryDAO= new productCategoryDDAOImpl();
+  List<ProductCategory> productCategories =  productCategoryDAO.getProductCategory();
+%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -87,24 +96,27 @@
                     <div class="card">
                         <div class="card-header bg-primary text-white">Add New Product</div>
                         <div class="card-body">
-                            <form method="post" action="<%= request.getContextPath()+"/addProduct"%>">
+                            <form method="post" action="<%= request.getContextPath()+"/product/add"%>" enctype="multipart/form-data">
                                 <div class="mb-3">
                                     <label for="productName" class="form-label">Product Name</label>
-                                    <input type="text" class="form-control" id="productName" placeholder="Enter Product Name">
+                                    <input type="text" class="form-control" name="productName" id="productName" placeholder="Enter Product Name">
                                 </div>
                                 <div class="mb-3">
                                     <label for="productPrice" class="form-label">Price</label>
-                                    <input type="number" class="form-control" id="productPrice" placeholder="Enter Price">
+                                    <input type="number" class="form-control" name="productPrice" id="productPrice" placeholder="Enter Price">
                                 </div>
                                 <div class="mb-3">
                                     <label for="productCategory" class="form-label">Category</label>
                                     <select class="form-select" name="productCategory" id="productCategory">
                                         <option value="">Select Category</option>
-                                        <option value="electronics">Electronics</option>
-                                        <option value="clothes">Clothes</option>
-                                        <option value="home-appliances">Home Appliances</option>
-                                        <option value="books">Books</option>
-                                        <option value="others">Others</option>
+                                        <%
+                                         for(ProductCategory productCategory :productCategories)
+                                         {
+                                        	 %>
+                                        	  <option value="<%= productCategory.getCategoryId()%>"><%=productCategory.getName() %></option>
+                                        	 <%
+                                         }
+                                        %>
                                     </select>
                                 </div>
                                 <div class="mb-3">
