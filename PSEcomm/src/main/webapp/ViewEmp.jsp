@@ -121,6 +121,18 @@ padding-bottom: 20px;
         <%} %>
              
     </main>
+    
+ 
+    
+     <%Employee hr=(Employee)session.getAttribute("Hr"); %>
+     <%Employee e=(Employee)session.getAttribute("employee"); %>
+        <div>
+     <% if(e.getJob().equalsIgnoreCase("ceo")){ %>
+     <a href="EmployeeAdminDashboard.jsp" ><button>Back to Dashboard</button></a>
+     <%} else if(hr.getJob().equalsIgnoreCase("hr")){ %>
+     <a href="HrDashboard.jsp" ><button>Back to Dashboard</button></a>
+    <%} %>
+    </div>
 </body>
 </html>
     
