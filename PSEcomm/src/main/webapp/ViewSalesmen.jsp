@@ -98,19 +98,21 @@ padding-bottom: 20px;
 </head>
 <body>
     <header class="header">  
-     <h1>Employee Directory</h1>
+     <h1>Salesman Directory</h1>
        <!--  <button>back</button> -->
     </header>
     
     
     <%EmployeeDAO edao=new EmployeeDAOImp();
-    List<Employee> employees =edao.getEmployee();
+    List<Employee> employees = edao.getSalesman(); 
     Employee emp=null;
-    Iterator<Employee> it= employees.iterator(); %>
-    <main class="employee-container">
-  <%  while(it.hasNext()){
+    Iterator<Employee> it= employees.iterator();
+    while(it.hasNext()){
     	emp=it.next();
     %>
+    
+    
+    <main class="employee-container">
         <div class="employee-card">
         
             <div class="profile-pic"><%=emp.getFname().charAt(0) %></div>
