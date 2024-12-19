@@ -28,14 +28,19 @@ public class Login extends HttpServlet
 		Employee e=new Employee();
 		EmployeeDAO edao=new EmployeeDAOImp();
 		e=edao.getEmployee(eid,password);
-		if(e!=null)
+		if(e!=null && e.getJob().equalsIgnoreCase("hr"))
+		{
+			session.setAttribute("Hr", e);
+			RequestDispatcher rd=req.getRequestDispatcher("HrDashboard.jsp");
+			rd.forward(req, resp);
+		}
+		else if(e!=null)
 		{
 			session.setAttribute("employee", e);
 			RequestDispatcher rd=req.getRequestDispatcher("EmployeeAdminDashboard.jsp");
 			rd.forward(req, resp);
 		}
-		else
-		{
+		else {
 			req.setAttribute("failure", "failed to login, try Again!");
 			RequestDispatcher rd=req.getRequestDispatcher("employeelogin.jsp");
 			rd.forward(req, resp);

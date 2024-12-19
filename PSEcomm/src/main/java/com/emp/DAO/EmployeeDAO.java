@@ -15,5 +15,6 @@ public interface EmployeeDAO
     public boolean deleteemployee(Employee e);
     public List getManager();
     public List getSalesman();
+    public List getDetails();
 
 }
