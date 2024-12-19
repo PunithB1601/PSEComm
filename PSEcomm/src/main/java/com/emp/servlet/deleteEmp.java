@@ -18,7 +18,7 @@ public class deleteEmp extends HttpServlet
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException
 	{
-		HttpSession Session=req.getSession(false);
+		HttpSession session=req.getSession(false);
 	    String eid = req.getParameter("eid");
 	    String delete =req.getParameter("delete");
 	    
@@ -33,7 +33,6 @@ public class deleteEmp extends HttpServlet
 	    if (eid != null && "Delete".equals(delete)) 
 	    {
 	        int empid = Integer.parseInt(eid);
-	        HttpSession session = req.getSession(false);
 	        EmployeeDAO edao = new EmployeeDAOImp();
 
 	        Employee currentUser = (Employee) session.getAttribute("Employee");

@@ -1,3 +1,12 @@
+<%@page import="com.emp.DTO.Location"%>
+<%@page import="com.emp.DAO.locationDAOimp"%>
+<%@page import="com.emp.DAO.locationDAO"%>
+<%@page import="com.emp.DTO.Product"%>
+<%@page import="com.emp.DAO.ProductDAOImp"%>
+<%@page import="com.emp.DAO.ProductDAO"%>
+<%@page import="com.emp.DAO.EmployeeDAOImp"%>
+<%@page import="com.emp.DAO.EmployeeDAO"%>
+<%@page import="java.util.List"%>
 <%@page import="com.emp.DTO.Employee"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -10,6 +19,9 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
     <style>
+    body{
+    background-color: #F1F0E8;
+    }
         .sidebar {
             height: 100vh;
             overflow-y: auto;
@@ -49,16 +61,23 @@
             
         }
     </style>
+    <% 
+    response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate"); // HTTP 1.1.
+    response.setHeader("Pragma", "no-cache"); // HTTP 1.0.
+    response.setDateHeader("Expires", 0); // Proxies.
+%>
+    
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light" style="background-color: white;">
         <div class="container-fluid">
-            <a class="navbar-brand fw-bold text-primary" href="#">Admin Dashboard</a>
+            <a class="navbar-brand fw-bold text-primary" href="#" style="color: black;">Admin Dashboard</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
+                
                 <%Employee e=(Employee)session.getAttribute("employee"); %>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Welcome, <%=e.getFname() %></a>
@@ -69,48 +88,57 @@
         </div>
     </nav>
 
-    <div class="d-flex">
-        <div class="sidebar p-3">
+    <div class="d-flex" >
+        <div class="sidebar p-3" style="background-color:#3C3D37;">
             <a href="#dashboard">Dashboard</a>
-            <a href="#users">Manage Users</a>
-            <a href="#settings">Settings</a>
-            <a href="#reports">Reports</a>
-            <a href="#logout">Logout</a>
-        </div>
+            <a href="EmpList.jsp">Manage Users</a>
 
-        <div class="content flex-grow-1">
-            <div class="row mb-4">
-               <a href="AddProduct.jsp" > <div class="col-md-3">
-                <div class="card text-center text-bg-primary">
-                    <div class="card-body">
+            <a href="AdminProfile.jsp">Profile</a>
+         
+
+            <a href="employeelogin.jsp">Logout</a>
+        </div>
+<%
+EmployeeDAO e1= new EmployeeDAOImp();
+List<Employee> employees =e1.getEmployee();
+ProductDAO dao = new ProductDAOImp();
+List<Product> products = dao.getproducts();
+//locationDAO dao2 = new locationDAOimp();
+//List<Location> locations =dao2.getlocation();
+%>
+        <div class="content flex-grow-1" >
+            <div class="row mb-4" >
+               <a href="AddProduct.jsp" > <div class="col-md-3" >
+                <div class="card text-center text-bg-primary" >
+                    <div class="card-body" style="background-color:white; color: black;border-radius: 10px ">
                         <h5 class="card-title">Add Product</h5>
-                        <p class="card-text fs-4">150</p>
+                        <p class="card-text fs-4"><%=products.size() %></p>
                     </div>
                 </div></a>
             </div>
                 <div class="col-md-3">
                     <a href="DeleteProduct.jsp">
                         <div class="card text-center text-bg-success">
-                            <div class="card-body">
+                            <div class="card-body" style="background-color:white; color: black; border-radius: 10px">
                                 <h5 class="card-title">Delete Product</h5>
-                                <p class="card-text fs-4">24</p>
+                                <p class="card-text fs-4">0</p>
                             </div>
                         </div></a>
                 </div>
                 <div class="col-md-3">
                     <a href="AddEmployee.jsp"><div class="card text-center text-bg-warning">
-                        <div class="card-body">
+                        <div class="card-body" style="background-color:white; color: black;border-radius: 10px ">
                             <h5 class="card-title">Add Employees</h5>
-                            <p class="card-text fs-4">8</p>
+                            <p class="card-text fs-4"><%=employees.size() %></p>
                         </div>
                     </div></a>
                 </div>
                 <div class="col-md-3">
                    <a href="AddLocation.jsp">
                     <div class="card text-center text-bg-danger">
-                        <div class="card-body">
+                        <div class="card-body" style="background-color:white; color: black; border-radius: 10px">
                             <h5 class="card-title">Add Locations</h5>
-                            <p class="card-text fs-4">2</p>
+                            <p class="card-text fs-4">0</p>
                         </div>
                     </div>
                    </a>
@@ -147,7 +175,7 @@
                                         <td>Total Employees</td>
                                         <td>150</td>
                                         <td>
-                                            <a href="./employees.html"><button class="btn btn-info" type="button" data-bs-toggle="collapse" data-bs-target="#employeeList" aria-expanded="false" aria-controls="employeeList">
+                                            <a href="ViewEmp.jsp"><button class="btn btn-info" type="button" data-bs-toggle="collapse" data-bs-target="#employeeList" aria-expanded="false" aria-controls="employeeList">
                                                 View Employees
                                             </button>
                                         </a>
@@ -165,7 +193,7 @@
                                         <td>Managers</td>
                                         <td>10</td>
                                         <td>
-                                            <a href="./1.html"><button class="btn btn-info" type="button" data-bs-toggle="collapse" data-bs-target="#managerList" aria-expanded="false" aria-controls="managerList">
+                                            <a href="ViewManager.jsp"><button class="btn btn-info" type="button" data-bs-toggle="collapse" data-bs-target="#managerList" aria-expanded="false" aria-controls="managerList">
                                                 View Managers
                                             </button>
                                         </a>
@@ -182,7 +210,7 @@
                                         <td>Salesmen</td>
                                         <td>50</td>
                                         <td>
-                                            <a href="/1.html"><button class="btn btn-info" type="button" data-bs-toggle="collapse" data-bs-target="#salesmanList" aria-expanded="false" aria-controls="salesmanList">
+                                            <a href="ViewSalesmen.jsp"><button class="btn btn-info" type="button" data-bs-toggle="collapse" data-bs-target="#salesmanList" aria-expanded="false" aria-controls="salesmanList">
                                                 View Salesmen
                                             </button>
                                         </a>

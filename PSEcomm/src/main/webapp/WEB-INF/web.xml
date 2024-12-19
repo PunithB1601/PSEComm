@@ -6,6 +6,6 @@
   <display-name>Archetype Created Web Application</display-name>
   <welcome-file-list>
     <welcome-file>employeelogin.jsp</welcome-file>
-    
+     <welcome-file>location.jsp</welcome-file> 
   </welcome-file-list>
 </web-app>
