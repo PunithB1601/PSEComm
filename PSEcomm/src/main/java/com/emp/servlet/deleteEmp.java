@@ -8,11 +8,12 @@ import com.emp.DTO.Employee;
 
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-
+@WebServlet("/DeleteEmployeeServlet")
 public class deleteEmp extends HttpServlet 
 {
 	@Override
@@ -25,7 +26,7 @@ public class deleteEmp extends HttpServlet
 	    if (eid == null || eid.isEmpty()) 
 	    {
 	        req.setAttribute("failed", "EID number is missing.");
-	        RequestDispatcher rd = req.getRequestDispatcher("#");
+	        RequestDispatcher rd = req.getRequestDispatcher("EmpList.jsp");
 	        rd.forward(req, resp);
 	        return;
 	    }
@@ -54,7 +55,7 @@ public class deleteEmp extends HttpServlet
 	                if (res)
 	                {
 	                    req.setAttribute("success", "Employee is Deleted Successfully");
-	                    RequestDispatcher rd = req.getRequestDispatcher("#");
+	                    RequestDispatcher rd = req.getRequestDispatcher("EmpList.jsp");
 	                    rd.forward(req, resp);
 	                    return;
 	                } 
@@ -69,7 +70,7 @@ public class deleteEmp extends HttpServlet
 	            req.setAttribute("failure", "Employee not found.");
 	        }
 	        
-	        RequestDispatcher rd = req.getRequestDispatcher("#");
+	        RequestDispatcher rd = req.getRequestDispatcher("EmpList.jsp");
 	        rd.forward(req, resp);
 	    }
 	}

@@ -60,7 +60,7 @@
                     <td><%= emp.getJob() %></td>
                     <td class="table-actions">
                         <form action="DeleteEmployeeServlet" method="post" style="display:inline;">
-                            <input type="hidden" name="eid" value="<%= emp.getEid() %>">
+                            <input type="hidden" name="eid" value="<%= emp.getEid()%>">
                             <button type="submit" class="btn btn-danger">Delete</button>
                         </form>
                         <form action="ViewEmployeeServlet" method="get" style="display:inline;">

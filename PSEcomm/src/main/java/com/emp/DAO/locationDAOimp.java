@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.tomcat.dbcp.dbcp2.ConnectionFactory;
@@ -20,11 +21,11 @@ import com.emp.DTO.Location;
 public   class locationDAOimp implements locationDAO {
     private Connection con;
 
-    
-    public void EmployeeDAOImp()
-    {
-        this.con=DBConnection.getConnection();
-    }
+   
+    public locationDAOimp() {
+    	 this.con=DBConnection.getConnection();
+	}
+   
     @Override
     public boolean insertlocation(Location l) {
         String query = "INSERT INTO location (Location, City, State) VALUES (?, ?, ?);"; 
@@ -129,8 +130,28 @@ public   class locationDAOimp implements locationDAO {
 
 	@Override
 	public List<Location> getlocation() {
-		// TODO Auto-generated method stub
-		return null;
+		List<Location> locations = new ArrayList<Location>();
+		
+		String query = "SELECT * FROM LOCATION ";
+		try {
+			PreparedStatement preparedStatement= con.prepareStatement(query);
+			ResultSet resultSet = preparedStatement.executeQuery();
+			while(resultSet.next())
+			{
+				Location location = new Location();
+				location.setLid(resultSet.getInt("LID"));
+				location.setLocation(resultSet.getString("LOCATION"));
+				location.setCity(resultSet.getString("CITY"));
+				location.setState(resultSet.getString("STATE"));
+				locations.add(location);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		return locations;
 	}
 
         

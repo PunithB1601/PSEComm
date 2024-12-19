@@ -7,18 +7,18 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-import com.customer.dto.Requested_location;
+
+import com.customer.dto.RequestedLocation;
 import com.database.DBConnection;
 
-public class Requested_locationDAOImp implements Requested_locationDAO {
+public class RequestedLocationDAOImp implements RequestedLocationDAO {
 	private Connection con;
 
-	public Requested_locationDAOImp() {
+	public RequestedLocationDAOImp() {
 		this.con = DBConnection.getConnection();
-		
 	}
 	
-	public Requested_location insertRequested_location(Requested_location r) {
+	public RequestedLocation insertRequested_location(RequestedLocation r) {
 		PreparedStatement ps = null;
 		int res=0;
 		String query = "INSERT INTO Requested_location(requested_location)VALUE(?)";
@@ -49,7 +49,7 @@ public class Requested_locationDAOImp implements Requested_locationDAO {
 	}
 
 	@Override
-	public boolean deleteRequested_locationt(Requested_location r) {
+	public boolean deleteRequested_locationt(RequestedLocation r) {
 		PreparedStatement ps=null;
 
 		String query="delete from Requested_location where req_id=?";
@@ -85,10 +85,10 @@ public class Requested_locationDAOImp implements Requested_locationDAO {
 	}
 
 	@Override
-	public Requested_location getRequested_location(int req_id) {
+	public RequestedLocation getRequested_location(int req_id) {
 		PreparedStatement ps=null;
 		ResultSet rs=null;
-		Requested_location r=null;
+		RequestedLocation r=null;
 		
 		String query="select * from Requested_location where req_id=?";
 	
@@ -97,7 +97,7 @@ public class Requested_locationDAOImp implements Requested_locationDAO {
 			ps.setInt(1, req_id);
 			rs=ps.executeQuery();
 			while(rs.next()) {
-				r=new Requested_location();
+				r=new RequestedLocation();
 				r.setReq_id(rs.getInt(1));
 				r.setRequested_location(rs.getString(2));
 			}
@@ -110,11 +110,11 @@ public class Requested_locationDAOImp implements Requested_locationDAO {
 	}
 
 	@Override
-	public List<Requested_location> getRequested_location() {
+	public List<RequestedLocation> getRequested_location() {
 		PreparedStatement ps=null;
 		ResultSet rs=null;
-		Requested_location r=null;
-		ArrayList<Requested_location> a1=new ArrayList<Requested_location>();
+		RequestedLocation r=null;
+		ArrayList<RequestedLocation> a1=new ArrayList<RequestedLocation>();
 		
 		String query="select * from Requested_location order by desc";
 	
@@ -123,7 +123,7 @@ public class Requested_locationDAOImp implements Requested_locationDAO {
 			
 			rs=ps.executeQuery();
 			while(rs.next()) {
-				r=new Requested_location();
+				r=new RequestedLocation();
 				r.setReq_id(rs.getInt(1));
 				r.setRequested_location(rs.getString(2));
 				a1.add(r);
