@@ -35,11 +35,11 @@ public class CustomerDAOImpl implements CustomerDAO {
 			res = ps.executeUpdate();
 			
 		} catch (SQLException e) {
-			e.getMessage();
+			e.printStackTrace();;
 		}
 		
 		if (res > 0) {
-			
+			System.out.println("Here");
 			try {
 				ResultSet rs = ps.getGeneratedKeys();
 				if (rs.next()) { 
