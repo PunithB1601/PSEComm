@@ -106,13 +106,11 @@ padding-bottom: 20px;
     <%EmployeeDAO edao=new EmployeeDAOImp();
     List<Employee> employees = edao.getEmployee();
     Employee emp=null;
-    Iterator<Employee> it= employees.iterator();
-    while(it.hasNext()){
+    Iterator<Employee> it= employees.iterator(); %>
+    <main class="employee-container">
+  <%  while(it.hasNext()){
     	emp=it.next();
     %>
-    
-    
-    <main class="employee-container">
         <div class="employee-card">
         
             <div class="profile-pic"><%=emp.getFname().charAt(0) %></div>
