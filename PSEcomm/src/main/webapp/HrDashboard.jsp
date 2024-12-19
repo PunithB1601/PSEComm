@@ -1,3 +1,10 @@
+
+<%@page import="com.emp.DTO.Department"%>
+<%@page import="java.util.Iterator"%>
+<%@page import="java.util.List"%>
+<%@page import="com.emp.DAO.EmployeeDAOImp"%>
+<%@page import="com.emp.DAO.EmployeeDAO"%>
+<%@page import="com.emp.DTO.Employee"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -110,6 +117,69 @@
             cursor: pointer;
             color:black;
         }
+        
+        
+        
+.table-container {
+  width: 80%;
+  margin: 50px auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  overflow: hidden;
+}
+
+/* Header */
+.table-header {
+  background-color: #007bff;
+  color: white;
+  padding: 15px;
+  font-size: 20px;
+  font-weight: bold;
+  text-align: left;
+}
+
+/* Table */
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th, td {
+  text-align: left;
+  padding: 15px;
+}
+
+th {
+  background-color: #f9f9f9;
+  font-weight: bold;
+}
+
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+tr:hover {
+  background-color: #e6f7ff;
+}
+
+/* Buttons */
+.details-button {
+  display: inline-block;
+  background-color: #00c6ff;
+  color: #fff;
+  text-decoration: none;
+  padding: 8px 12px;
+  border-radius: 5px;
+  text-align: center;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.details-button:hover {
+  background-color: #00a0cc;
+  transition: 0.3s;
+}
     </style>
 </head>
 <body>
@@ -120,10 +190,12 @@
         <a href="#">Remove employee</a>
         <a href="#">My Profile</a>
     </div>
+    
+  <%Employee hr=(Employee)session.getAttribute("Hr"); %>
     <div class="main">
         <div class="topbar">
-            <h1>Welcome HR</h1>
-            <button class="btn" >Logout</button>
+            <h1>Welcome <%=hr.getFname() %></h1>
+          <form action="logout" method="post"> <button class="btn" type="submit" value="logout" name="logout" >Logout</button></form> 
         </div>
         <div class="dashboard">
              <div class="card">
@@ -148,16 +220,46 @@
             </div>
             
             <div>
-           
-                                               
-                            
+  
+            
             </div>
             
             
             
         </div>
+        
+         <div class="table-container">
+    <div class="table-header">
+      Details 
+    </div>
+    <table>
+      <thead>
+        <tr>
+          <th>Department Name</th>
+          <th>Dept No</th>
+          <th>Count</th>
+        </tr>
+      </thead>
+      <tbody>
+          <%EmployeeDAO edao=new EmployeeDAOImp();
+    List<Department> dept = edao.getDetails();
+    Department department=null;
+    Iterator<Department> it= dept.iterator();  %>
+    <% while(it.hasNext()){
+    	department=it.next();
+    %>
+        <tr>
+          <td><%=department.getDname() %></td>
+          <td><%=department.getDno() %></td>
+          <td><%=department.getCount() %></td>
+          
+        </tr>
+        <%} %>
+        
+      </tbody>
+    </table>
+  </div>
     </div>
 
 </body>
 </html>
-    

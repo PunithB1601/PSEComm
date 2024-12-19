@@ -38,10 +38,14 @@
                         <%} %>
                     </div>
                     <div class="card-body">
-                        <form action="employeeLogin" method="post" onsubmit="return validateForm()">
+                        <form action="employeeLogin" method="post" >
                             <div class="form-group">
+
+                               
+
                                 <label for="username">Employee id :</label>
-                                <input type="number" id="username" name="empId" class="form-control" placeholder="Employee id" required>
+                                <input type="tel" id="username" name="empId" class="form-control" placeholder="Employee id" required>
+
                                 <div class="invalid-feedback">Username is required.</div>
                             </div>
                             <div class="form-group">
