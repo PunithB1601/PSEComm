@@ -61,6 +61,12 @@
             
         }
     </style>
+    <% 
+    response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate"); // HTTP 1.1.
+    response.setHeader("Pragma", "no-cache"); // HTTP 1.0.
+    response.setDateHeader("Expires", 0); // Proxies.
+%>
+    
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light" style="background-color: white;">
@@ -71,6 +77,7 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
+                
                 <%Employee e=(Employee)session.getAttribute("employee"); %>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Welcome, <%=e.getFname() %></a>

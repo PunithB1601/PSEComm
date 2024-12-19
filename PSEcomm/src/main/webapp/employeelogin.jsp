@@ -31,6 +31,11 @@
                         %>
                         <p style="color: red; font-size: 0.8rem;"><%=failure %></p>
                         <%} %>
+                        <%String success1=(String)request.getAttribute("success");
+                        if(success1!= null){
+                        %>
+                        <p style="color: red; font-size: 0.8rem;"><%=success1 %></p>
+                        <%} %>
                     </div>
                     <div class="card-body">
                         <form action="employeeLogin" method="post" onsubmit="return validateForm()">

@@ -9,7 +9,7 @@ public class DBConnection
 	static String url = "jdbc:mysql://localhost:3306/ecommerce";
 	static String username = "root";
 
-	static String password = "root";
+	static String password = "tiger";
 
 	static Connection conn = null;
 
