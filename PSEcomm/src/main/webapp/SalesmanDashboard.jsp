@@ -1,3 +1,6 @@
+<%@page import="com.productCategory.DAO.productCategoryDDAOImpl"%>
+<%@page import="com.productCategory.DAO.productCategoryDAO"%>
+<%@page import="com.productCategory.DTO.ProductCategory"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@page import="com.emp.DTO.Employee"%>
@@ -109,6 +112,8 @@ a:hover {
 			<div class="row mb-4">
 				<% ProductDAO productDAO = new ProductDAOImp();
                    List<Product> products = productDAO.getproducts();
+                   productCategoryDAO pdao= new productCategoryDDAOImpl();
+                   ProductCategory pc=new ProductCategory();
                 %>
 				<div class="col-md-4">
 					<div class="card text-center">
@@ -160,7 +165,8 @@ a:hover {
                             int count = 0; 
                             for (Product product : products) { 
                                 if (count == 5) break; 
-                        %>
+                                 //pc=pdao.getProductCategoryById(product.getCategory_Id());
+                       				 %>
 									<tr>
 										<td><%= product.getProduct_Id() %></td>
 										<td><%= product.getProducr_Name() %></td>
