@@ -113,7 +113,7 @@ public class EmployeeDAOImp implements EmployeeDAO
     @Override
     public Employee grtEmployee(String email, String password)
     {
-        String query="SELECT * FROM EMP WHERE EMAILID=? AND PASSWORD=?";
+        String query="SELECT * FROM EMP WHERE MAILID=? AND PASSWORD=?";
         Employee e=null;
         PreparedStatement ps=null;
         ResultSet rs=null;
@@ -234,7 +234,7 @@ public class EmployeeDAOImp implements EmployeeDAO
     @Override
     public boolean updateemployee(Employee e) {
 
-        String query="UPDATE EMP SET FNAME=?,LNAME=?,DOB=?,GENDER=?,JOB=?,MGR=?,DOJ=?,SAL=?,COMM=?,DNO=?,CID=?,PHONE=?,EMAILID=?,PASSWORD=?";
+        String query="UPDATE EMP SET FNAME=?,LNAME=?,DOB=?,GENDER=?,JOB=?,MGR=?,DOJ=?,SAL=?,COMM=?,DNO=?,CID=?,PHONE=?,MAILID=?,PASSWORD=?";
         PreparedStatement ps=null;
         int res=0;
 
