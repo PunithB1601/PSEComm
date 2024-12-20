@@ -13,11 +13,6 @@ import com.database.DBConnection;
 
 import com.emp.DTO.Location;
 
-
-
-
-
-
 public   class locationDAOimp implements locationDAO {
     private Connection con;
 
@@ -28,33 +23,56 @@ public   class locationDAOimp implements locationDAO {
    
     @Override
     public boolean insertlocation(Location l) {
-        String query = "INSERT INTO location (Location, City, State) VALUES (?, ?, ?);"; 
-        PreparedStatement ps = null;
-        int res1 = 0;
-
-        try {
-            ps = con.prepareStatement(query);
-            ps.setString(1, l.getLocation());  // Set location
-            ps.setString(2, l.getCity());      // Set city
-            ps.setString(3, l.getState());     // Set state
-            res1 = ps.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-        return res1 > 0; 
+        String query = "INSERT INTO location (LOCATION, CITY, STATE) VALUES (?, ?, ?);"; 
+        PreparedStatement ps =null;
+		int res = 0;
+		
+		try {
+			con.setAutoCommit(false);
+			ps = con.prepareStatement(query);
+			
+			ps.setString(1,l.getLocation());
+			ps.setString(2,l.getCity());
+			ps.setString(3,l.getState());
+			res = ps.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		if(res>0) {
+			try {
+				con.commit();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			return true;
+		}
+		else {
+			try {
+				con.rollback();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			return false;
+		}
     }
+    
+    
     @Override
     public boolean updatelocation(Location l) {
     	PreparedStatement ps=null;
-    	String query="update location set location=?,city=?,state=? where id=?";
+    	String query="update location set location=?,city=?,state=? where lid=?";
     	int res=0;
     	try {
     		con.setAutoCommit(false);
     		ps=con.prepareStatement(query);
-    		ps.setString(3, l.getLocation());
-			ps.setString(4, l.getCity());
-			ps.setString(5, l.getState());
+    		
+    		ps.setString(1, l.getLocation());
+    		ps.setString(2, l.getCity());
+    		ps.setString(3, l.getState());
+    		ps.setInt(4, l.getLid());
+    		
 			res = ps.executeUpdate();
     	}
     	catch (SQLException e) {
@@ -79,82 +97,128 @@ public   class locationDAOimp implements locationDAO {
 		}
     }
 
+
 	@Override
-	public boolean setlocation(int id) {
-		// TODO Auto-generated method stub
-		PreparedStatement ps=null;
-		ResultSet rs=null;
-		Location l=null;
-		String query="SELECT * FROM location WHERE id=?  ";
+	public boolean deletelocation(int lid) {
+		
+		String query = "DELETE FROM LOCATION WHERE LID=?";
+		PreparedStatement ps =null;
+		int res = 0;
+		
 		try {
-			ps=con.prepareStatement(query);
-			ps.setInt(1, id);
-			rs=ps.executeQuery();
-			if(rs.next()) {
-			l=new Location();
-			l.setLocation( rs.getString("Location"));
-			l.setCity ( rs.getString("City"));
-			l.setState(rs.getString("State"));
-			}
+			con.setAutoCommit(false);
+			ps = con.prepareStatement(query);
+			ps.setInt(1, lid);
+			
+			res = ps.executeUpdate();
+			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
-		return false;
-	}
-
-	@Override
-	public boolean deletelocation(Location l) {
-		// TODO Auto-generated method stub
-		PreparedStatement ps=null;
-		ResultSet rs=null;
-		String query="delete from location where location=?";
-		int res=0;
-		try {
-			ps=con.prepareStatement(query);
-			ps.setString(1, l.getLocation());
-			res=ps.executeUpdate();
-			if(res>0) {
-			return true;
-		}else {
-			return false;
-		}
-		}
-		 catch (SQLException e) {
-				// TODO Auto-generated catch block
+		if(res>0) {
+			try {
+				con.commit();
+			} catch (SQLException e) {
 				e.printStackTrace();
 			}
-		return false;
+			return true;
+		}
+		else {
+			try {
+				con.rollback();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			return false;
+		}
 	}
+	
 
 	@Override
 	public List<Location> getlocation() {
 		List<Location> locations = new ArrayList<Location>();
 		
-		String query = "SELECT * FROM LOCATION ";
+		String query = "SELECT * FROM location";
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		Location l = null;
+		
 		try {
-			PreparedStatement preparedStatement= con.prepareStatement(query);
-			ResultSet resultSet = preparedStatement.executeQuery();
-			while(resultSet.next())
-			{
-				Location location = new Location();
-				location.setLid(resultSet.getInt("LID"));
-				location.setLocation(resultSet.getString("LOCATION"));
-				location.setCity(resultSet.getString("CITY"));
-				location.setState(resultSet.getString("STATE"));
-				locations.add(location);
+			ps = con.prepareStatement(query);
+			
+			rs = ps.executeQuery();
+			
+			while(rs.next()) {
+				l = new Location();
+				l.setLid(rs.getInt(1));
+				l.setLocation(rs.getString(2));
+				l.setCity(rs.getString(3));
+				l.setState(rs.getString(4));
+				locations.add(l);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return locations;
+	}
+
+	@Override
+	public Location getLocation(int lid) {
+		    Location l = null;
+		    PreparedStatement ps = null;
+		    ResultSet rs = null;
+		    String query = "SELECT * FROM location WHERE lid = ?";
+		    
+		    try {
+		        ps = con.prepareStatement(query);
+		        ps.setInt(1, lid);
+		        rs = ps.executeQuery();
+		        
+		        if (rs.next()) {
+		            l = new Location();
+		            l.setLid(rs.getInt(1));
+		            l.setLocation(rs.getString(2));
+		            l.setCity(rs.getString(3));
+		            l.setState(rs.getString(4));
+		        }
+		    } catch (SQLException e) {
+		        e.printStackTrace();
+		    } 
+		        
+		    
+		    return l;
+		}
+
+	@Override
+	public boolean setlocation(int id) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public int getCount() {
+		String query = "SELECT COUNT(*) FROM LOCATION";
+		PreparedStatement ps = null;
+	    ResultSet rs = null;
+	    int count = 0;
+	    
+	    try {
+			ps = con.prepareStatement(query);
+			
+			rs = ps.executeQuery();
+			
+			while(rs.next()) {
+				count = rs.getInt(1);
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
-		
-		return locations;
+		return count;
 	}
 
-        
-            
-    }
+}   
 
