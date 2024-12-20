@@ -1,265 +1,105 @@
-
 <%@page import="com.emp.DTO.Department"%>
 <%@page import="java.util.Iterator"%>
 <%@page import="java.util.List"%>
 <%@page import="com.emp.DAO.EmployeeDAOImp"%>
 <%@page import="com.emp.DAO.EmployeeDAO"%>
 <%@page import="com.emp.DTO.Employee"%>
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HR Dashboard</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: Arial, sans-serif;
-        }
-
-        body {
-            display: flex;
-            height: 100vh;
-            background-color: #f4f6f9;
-        }
-
-        .sidebar {
-            width: 250px;
-            background-color: #2c3e50;
-            color: white;
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
-
-        .sidebar h2 {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-
-        .sidebar a {
-            color: white;
-            text-decoration: none;
-            padding: 10px 15px;
-            border-radius: 5px;
-            transition: background 0.3s;
-        }
-
-        .sidebar a:hover {
-            background-color: #34495e;
-        }
-
-        .main {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .topbar {
-            background-color: #ffffff;
-            padding: 15px 20px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .topbar h1 {
-            font-size: 20px;
-        }
-
-        .dashboard {
-            padding: 20px;
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-
-        .card {
-            background: white;
-            width: 300px;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            text-align: center;
-        }
-
-        .card h3 {
-            font-size: 18px;
-            margin-bottom: 10px;
-        }
-
-        .card p {
-            font-size: 24px;
-            font-weight: bold;
-            color: #3498db;
-        }
-        .btn{
-            padding: 10px 20px; 
-            border: none;
-             border-radius: 5px; 
-             background-color: #3498db;
-              color: white;  
-              cursor: pointer;
-
-        }
-        .btn1{
-            padding: 5px 10px;
-            border: soild black 2px;
-             border-radius: 5px;
-            background-color: aliceblue;
-            cursor: pointer;
-            color:black;
-        }
-        
-        
-        
-.table-container {
-  width: 80%;
-  margin: 50px auto;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  background-color: #fff;
-  overflow: hidden;
-}
-
-/* Header */
-.table-header {
-  background-color: #007bff;
-  color: white;
-  padding: 15px;
-  font-size: 20px;
-  font-weight: bold;
-  text-align: left;
-}
-
-/* Table */
-table {
-  width: 100%;
-  border-collapse: collapse;
-}
-
-th, td {
-  text-align: left;
-  padding: 15px;
-}
-
-th {
-  background-color: #f9f9f9;
-  font-weight: bold;
-}
-
-tr:nth-child(even) {
-  background-color: #f2f2f2;
-}
-
-tr:hover {
-  background-color: #e6f7ff;
-}
-
-/* Buttons */
-.details-button {
-  display: inline-block;
-  background-color: #00c6ff;
-  color: #fff;
-  text-decoration: none;
-  padding: 8px 12px;
-  border-radius: 5px;
-  text-align: center;
-  font-size: 14px;
-  font-weight: bold;
-}
-
-.details-button:hover {
-  background-color: #00a0cc;
-  transition: 0.3s;
-}
-    </style>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
-<body>
-    <div class="sidebar">
-        <h2>HR Dashboard</h2>
-        <a href="ViewEmp.jsp">Employee Records</a>
-        <a href="AddEmployee.jsp">Add employee</a>
-        <a href="#">Remove employee</a>
-        <a href="#">My Profile</a>
-    </div>
-    
-  <%Employee hr=(Employee)session.getAttribute("Hr"); %>
-    <div class="main">
-        <div class="topbar">
-            <h1>Welcome <%=hr.getFname() %></h1>
-          <form action="logout" method="post"> <button class="btn" type="submit" value="logout" name="logout" >Logout</button></form> 
-        </div>
-        <div class="dashboard">
-             <div class="card">
-                <h3>Total Employees</h3>
-                <p>120</p>
-                <form action="ViewEmp.jsp" method="post"><button class="btn1" type="submit">view employees</button></form>
-            </div>  
-             <div class="card">
-                <h3>Active Products</h3>
-                <p>5</p>
-                <button class="btn1">view Products</button>
-            </div>
-            <div class="card">
-                <h3>Add Employee</h3>
-                <p>15</p>
-              <form action="AddEmployee.jsp" method="post"> <button class="btn1" type="submit">Add Employee</button></form> 
-            </div>
-            <div class="card">
-                <h3>Remove Employee</h3>
-                <p>15</p>
-                <button class="btn1">Remove Employee</button>
-            </div>
-            
-            <div>
-  
-            
-            </div>
-            
-            
-            
-        </div>
-        
-         <div class="table-container">
-    <div class="table-header">
-      Details 
-    </div>
-    <table>
-      <thead>
-        <tr>
-          <th>Department Name</th>
-          <th>Dept No</th>
-          <th>Count</th>
-        </tr>
-      </thead>
-      <tbody>
-          <%EmployeeDAO edao=new EmployeeDAOImp();
-    List<Department> dept = edao.getDetails();
-    Department department=null;
-    Iterator<Department> it= dept.iterator();  %>
-    <% while(it.hasNext()){
-    	department=it.next();
-    %>
-        <tr>
-          <td><%=department.getDname() %></td>
-          <td><%=department.getDno() %></td>
-          <td><%=department.getCount() %></td>
-          
-        </tr>
-        <%} %>
-        
-      </tbody>
-    </table>
-  </div>
+
+<body class="d-flex vh-100 bg-light">
+    <div class="bg-dark text-white p-3 d-flex flex-column gap-3" style="width: 250px;">
+        <h2 class="text-center">HR Dashboard</h2>
+        <a href="ViewEmp.jsp" class="text-white text-decoration-none p-2 rounded bg-secondary">Employee Records</a>
+        <a href="AddEmployee.jsp" class="text-white text-decoration-none p-2 rounded bg-secondary">Add Employee</a>
+        <a href="#" class="text-white text-decoration-none p-2 rounded bg-secondary">Remove Employee</a>
+        <a href="#" class="text-white text-decoration-none p-2 rounded bg-secondary">My Profile</a>
     </div>
 
+    <% Employee hr = (Employee) session.getAttribute("employee"); %>
+    <div class="flex-grow-1 d-flex flex-column">
+        <div class="d-flex justify-content-between align-items-center p-3 bg-white shadow-sm">
+            <h1>Welcome <%= hr.getFname() %></h1>
+            <form action="logout" method="post">
+                <button class="btn btn-primary" type="submit" value="logout" name="logout">Logout</button>
+            </form>
+        </div>
+
+        <div class="d-flex flex-wrap justify-content-center gap-3 p-4">
+            <div class="card text-center" style="width: 18rem;">
+                <div class="card-body">
+                    <h5 class="card-title">Total Employees</h5>
+                    <p class="card-text fs-4 text-primary">120</p>
+                    <form action="ViewEmp.jsp" method="post">
+                        <button class="btn btn-secondary" type="submit">View Employees</button>
+                    </form>
+                </div>
+            </div>
+            <div class="card text-center" style="width: 18rem;">
+                <div class="card-body">
+                    <h5 class="card-title">Active Products</h5>
+                    <p class="card-text fs-4 text-primary">5</p>
+                    <button class="btn btn-secondary">View Products</button>
+                </div>
+            </div>
+            <div class="card text-center" style="width: 18rem;">
+                <div class="card-body">
+                    <h5 class="card-title">Add Employee</h5>
+                    <p class="card-text fs-4 text-primary">15</p>
+                    <form action="AddEmployee.jsp" method="post">
+                        <button class="btn btn-secondary" type="submit">Add Employee</button>
+                    </form>
+                </div>
+            </div>
+            <div class="card text-center" style="width: 18rem;">
+                <div class="card-body">
+                    <h5 class="card-title">Remove Employee</h5>
+                    <p class="card-text fs-4 text-primary">15</p>
+                    <button class="btn btn-secondary">Remove Employee</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="container my-4">
+            <div class="bg-primary text-white p-3 rounded-top">
+                <h4>Details</h4>
+            </div>
+            <table class="table table-bordered table-striped">
+                <thead class="table-primary">
+                    <tr>
+                        <th>Department Name</th>
+                        <th>Dept No</th>
+                        <th>Count</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% EmployeeDAO edao = new EmployeeDAOImp();
+                        List<Department> dept = edao.getDetails();
+                        Department department = null;
+                        Iterator<Department> it = dept.iterator();
+                        while (it.hasNext()) {
+                            department = it.next();
+                    %>
+                    <tr>
+                        <td><%= department.getDname() %></td>
+                        <td><%= department.getDno() %></td>
+                        <td><%= department.getCount() %></td>
+                    </tr>
+                    <% } %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>

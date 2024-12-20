@@ -62,14 +62,14 @@
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
-            <a class="navbar-brand fw-bold text-primary" href="#">Admin Dashboard</a>
+            <a class="navbar-brand fw-bold text-primary" href="#">Manage Employee</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Welcome, Admin</a>
+                       <!--  <a class="nav-link" href="#">Welcome</a> -->
                     </li>
                     <li class="nav-item">
                         <a class="nav-link text-danger" href="#logout">Logout</a>
@@ -80,14 +80,14 @@
     </nav>
 
     <div class="d-flex">
-        <div class="sidebar p-3">
+        <!-- <div class="sidebar p-3">
             <h4 class="text-white">Menu</h4>
             <a href="#dashboard">Dashboard</a>
             <a href="#users">Manage Users</a>
             <a href="#settings">Settings</a>
             <a href="#reports">Reports</a>
             <a href="#logout">Logout</a>
-        </div>
+        </div> -->
 
         <div class="content flex-grow-1">
             <div class="row mb-4">
