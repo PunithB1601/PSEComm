@@ -97,7 +97,8 @@ a:hover {
 	<div class="d-flex">
 		<!-- Sidebar -->
 		<div class="sidebar">
-			<a href="#dashboard">Dashboard</a> <a href="ViewProducts.jsp">View Products</a>
+			<a href="#dashboard">Dashboard</a>
+			 <a href="ViewProduct.jsp">View Products</a>
 			 <a href="AddOrder.jsp">Add Orders</a> 
 			 <a href="EmployeeProfile.jsp">Profile</a>
 			 <a href="forgotPassword.jsp">ResetPin</a>
