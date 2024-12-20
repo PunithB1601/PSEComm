@@ -1,3 +1,7 @@
+<%@page import="com.productCategory.DAO.productCategoryDAO"%>
+<%@page import="com.productCategory.DAO.productCategoryDDAOImpl"%>
+<%@page import="com.productCategory.DTO.ProductCategory"%>
+<%@page import="java.util.List"%>
 <%@page import="java.util.Iterator"%>
 <%@page import="com.emp.DTO.Product"%>
 <%@page import="java.util.ArrayList"%>
@@ -71,17 +75,27 @@
             </tr>
         </thead>
         <tbody>
-        <%ProductDAO pdao=new ProductDAOImp();
-        ArrayList<Product> list=(ArrayList<Product>)pdao.getproducts();
-        Iterator<Product> it=list.iterator();
-        while(it.hasNext()) {
-        Product p=it.next();%>
+        <%ProductDAO products=new ProductDAOImp();
+        productCategoryDAO pdao=new productCategoryDDAOImpl();
+        ArrayList<Product> list=(ArrayList<Product>)products.getproducts();
+        for(Product p:products){
+        List<ProductCategory> pc=pdao.getProductCategoryById(p.getCategory_Id());%>
+       
             <tr>
                 <td><%=count++ %></td>
                 <td><%=p.getProduct_Id() %></td>
                 <td><%=p.getProducr_Name() %></td>
                 <td><%=p.getPrice() %></td>
-                <td><%=p.getCategory_Id() %></td>
+                <td>
+                 <%if (pc != null && !pc.isEmpty()) {
+					for (ProductCategory procat : pc) { %>
+					<%= procat.getName() %>
+					<% }
+					  } else { %>
+						N/A
+					<% } %>
+                
+                </td>
                 
             </tr>
             <%} %>
