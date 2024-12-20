@@ -138,7 +138,9 @@ List<Product> products = dao.getproducts();
                     <div class="card text-center text-bg-danger">
                         <div class="card-body" style="background-color:white; color: black; border-radius: 10px">
                             <h5 class="card-title">Add Locations</h5>
-                            <p class="card-text fs-4">0</p>
+                            <%locationDAO ldao = new locationDAOimp();
+                               int count = ldao.getCount();%>
+                            <p class="card-text fs-4"><%=count%></p>
                         </div>
                     </div>
                    </a>
