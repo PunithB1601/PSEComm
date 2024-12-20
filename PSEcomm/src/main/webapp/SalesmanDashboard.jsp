@@ -1,3 +1,7 @@
+<%@page import="java.util.ArrayList"%>
+<%@page import="com.productCategory.DAO.productCategoryDDAOImpl"%>
+<%@page import="com.productCategory.DAO.productCategoryDAO"%>
+<%@page import="com.productCategory.DTO.ProductCategory"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@page import="com.emp.DTO.Employee"%>
@@ -93,14 +97,15 @@ a:hover {
 	<div class="d-flex">
 		<!-- Sidebar -->
 		<div class="sidebar">
-			<a href="#dashboard">Dashboard</a> <a href="ViewProducts.jsp">View Products</a>
+			<a href="#dashboard">Dashboard</a>
+			 <a href="ViewProduct.jsp">View Products</a>
 			 <a href="AddOrder.jsp">Add Orders</a> 
+			 <a href="ViewDispatcher.jsp">view Dispatcher</a> 
 			 <a href="EmployeeProfile.jsp">Profile</a>
 			 <a href="forgotPassword.jsp">ResetPin</a>
 			<form action="logout" method="post">
-				<a href="employeelogin.jsp">Logout</a>
-			</form>
-
+                <input type="submit" name="logout" value="Logout" class="btn btn-outline-light btn-sm ms-3">
+            </form>
 		</div>
 
 		<!-- Main Content -->
@@ -109,6 +114,7 @@ a:hover {
 			<div class="row mb-4">
 				<% ProductDAO productDAO = new ProductDAOImp();
                    List<Product> products = productDAO.getproducts();
+                   productCategoryDAO pdao= new productCategoryDDAOImpl();
                 %>
 				<div class="col-md-4">
 					<div class="card text-center">
@@ -156,18 +162,31 @@ a:hover {
 									</tr>
 								</thead>
 								<tbody>
-									<% 
-                            int count = 0; 
-                            for (Product product : products) { 
-                                if (count == 5) break; 
-                        %>
-									<tr>
-										<td><%= product.getProduct_Id() %></td>
-										<td><%= product.getProducr_Name() %></td>
-										<td><%= product.getPrice() %></td>
-										<td><%= product.getCategory_Id() %></td>
-									</tr>
-									<% count++; } %>
+								    <% 
+								        int count = 0; 
+								        for (Product p : products) { 
+								            if (count == 5) break; // Limit to 5 products for the table
+								            List<ProductCategory> pc = pdao.getProductCategoryById(p.getCategory_Id());
+								    %>
+								    <tr>
+								        <td><%= p.getProduct_Id() %></td>
+								        <td><%= p.getProducr_Name() %></td>
+								        <td><%= p.getPrice() %></td>
+								        <td>
+								            <% 
+								                if (pc != null && !pc.isEmpty()) {
+								                    for (ProductCategory procat : pc) { 
+								            %>
+								            <%= procat.getName() %>
+								            <% 
+								                    }
+								                } else { 
+								            %>
+								            N/A
+								            <% } %>
+								        </td>
+								    </tr>
+								    <% count++; } %>
 								</tbody>
 							</table>
 						</div>
