@@ -57,9 +57,9 @@
 		<h5 class="success"><%=success %></h5>
 		<%}%>
 	
-		<%String fail=(String)request.getAttribute("fail");
-		if(fail!=null) {%>
-		<h5 class="fail"><%=fail %></h5>
+		<%String failure=(String)request.getAttribute("failure");
+		if(failure!=null) {%>
+		<h5 class="fail"><%=failure %></h5>
 		<%}%>
         <div class="mb-2">
         
