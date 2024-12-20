@@ -42,4 +42,24 @@ private Connection con;
 		return pList;
 	}
 
+	@Override
+	public List getProductCategoryName() {
+		String query = "SELECT NAME FROM PRODUCT_CATEGORY";
+		List<String> categoryName = new ArrayList<String>();
+		ResultSet rs = null;
+		try {
+			PreparedStatement ps = con.prepareStatement(query);
+			
+			rs = ps.executeQuery();
+			while(rs.next()){
+				categoryName.add(rs.getString(2));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return categoryName;
+	}
+
 }
