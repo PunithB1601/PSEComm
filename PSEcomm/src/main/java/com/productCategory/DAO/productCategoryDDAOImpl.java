@@ -18,6 +18,28 @@ private Connection con;
 	public productCategoryDDAOImpl() {
 		this.con=DBConnection.getConnection();
 	}
+	
+	@Override
+		public ProductCategory getById(int id) {
+			String query="SELECT * FROM PRODUCT_CATEGORY WHERE CATEGORYID=?";
+			try {
+				PreparedStatement preparedStatement= con.prepareStatement(query);
+				preparedStatement.setInt(1, id);
+				ResultSet resultSet= preparedStatement.executeQuery();
+				if(resultSet.next())
+				{
+					ProductCategory productCategory= new ProductCategory();
+					productCategory.setCategoryId(resultSet.getInt(1));
+					productCategory.setName(resultSet.getString(2));
+					return productCategory;
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return null;
+		}
+	
 
 	@Override
 	public List getProductCategory() {

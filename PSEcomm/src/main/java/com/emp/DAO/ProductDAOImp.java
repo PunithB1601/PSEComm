@@ -131,7 +131,7 @@ public class ProductDAOImp implements ProductDAO
 		PreparedStatement ps=null;
 		ResultSet rs=null;
 		Product p=null;
-		String query="SELECT * FROM PRODUCT";
+		String query="SELECT * FROM PRODUCT ORDER BY PRODUCT_ID DESC";
 		try 
 		{
 			ps=con.prepareStatement(query);
@@ -154,5 +154,85 @@ public class ProductDAOImp implements ProductDAO
 		}
 		return products;
 	}
-
+	
+	
+	@Override
+	public List getAllProducts(int categoryId, int page, int limit) {
+		List<Product>products=new ArrayList<Product>();
+		ResultSet rs=null;
+		Product p=null;
+		String query=null;
+		int skip =  (page -1 ) * limit;
+		if(categoryId !=-1)
+		{
+			query = "select * from product where categoryId = ? order by product_id desc limit ? offset ?";
+		}else {
+			query = "select * from product  order by product_id desc limit ? offset ?";
+		}
+		try 
+		{
+			PreparedStatement ps=con.prepareStatement(query);
+			
+			if(categoryId==-1)
+			{
+				ps.setInt(1, limit);
+				ps.setInt(2, skip);
+			}else {
+				ps.setInt(1, categoryId);
+				ps.setInt(2, limit);
+				ps.setInt(3, skip);
+			}
+			
+			rs=ps.executeQuery();
+			while(rs.next())
+			{
+				p=new Product();
+				p.setProduct_Id(rs.getInt(1));
+				p.setProducr_Name(rs.getString(2));
+				p.setPrice(rs.getDouble(3));
+				p.setImg(rs.getString(4));
+				p.setCategory_Id(rs.getInt(5));
+				products.add(p);
+			}
+			
+		} 
+		catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return products;
+	}
+	
+	@Override
+	public int getAllProductsCount(int categoryId) {
+		ResultSet rs=null;
+		Product p=null;
+		String query=null;
+		if(categoryId !=-1)
+		{
+			query = "select COUNT(*) from product where categoryId = ? ";
+		}else {
+			query = "select COUNT(*) from product  ";
+		}
+		try 
+		{
+			PreparedStatement ps=con.prepareStatement(query);
+			
+			if(categoryId!=-1)
+			{
+				ps.setInt(1, categoryId);
+			}
+			rs=ps.executeQuery();
+			if(rs.next())
+			{
+				return rs.getInt(1);
+			}
+			
+		}
+		catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return 0;
+	}
 }

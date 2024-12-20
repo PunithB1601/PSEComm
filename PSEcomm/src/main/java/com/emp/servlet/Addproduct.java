@@ -37,7 +37,7 @@ public class Addproduct extends HttpServlet {
 		File uploadDir = new File(uploadPath);
 		if (!uploadDir.exists()) {
 			boolean dirsCreated = uploadDir.mkdirs();
-			System.out.println("Directory created: " + dirsCreated); // Debugging: Check if directory was created
+			System.out.println("Directory created: " + dirsCreated); 
 		}
 
 		String filePath = uploadPath + File.separator + filename;
