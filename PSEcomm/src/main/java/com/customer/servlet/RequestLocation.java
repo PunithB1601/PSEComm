@@ -35,7 +35,7 @@ public class RequestLocation extends HttpServlet {
 	    RequestDispatcher requestDispatcher =null;
 	    if(requestedLocation !=null)
 	    {
-	    	requestDispatcher = request.getRequestDispatcher("/Customer/SignUp.jsp");
+	    	requestDispatcher = request.getRequestDispatcher("/Customer/Signup.jsp");
 	    }else {
 	    	request.setAttribute("failure","Something Went Wrong");
 	    	requestDispatcher = request.getRequestDispatcher("/Customer/RequestLocation.jsp");
@@ -44,8 +44,6 @@ public class RequestLocation extends HttpServlet {
 	    requestDispatcher.forward(request, response);
 	    
 	    
-	    
-		
 	}
 
 }

@@ -22,15 +22,14 @@ public class Login extends HttpServlet{
 		String mail=req.getParameter("email");
 		String password=req.getParameter("password");
 		
-		Customer c=new Customer();
 		CustomerDAO cdao=new CustomerDAOImpl();
-		Customer email=cdao.getCustomer(mail);
-		if(email!=null)
+		Customer c=cdao.getCustomer(mail);
+		if(c!=null)
 		{
-			if(password.equals(email.getPassword()))
+			if(password.equals(c.getPassword()))
 			{
 				session.setAttribute("customer", c);
-				RequestDispatcher rd=req.getRequestDispatcher("Signup.jsp"); // dashboard
+				RequestDispatcher rd=req.getRequestDispatcher("UpdateProfile.jsp"); // dashboard
 				rd.forward(req, resp);			
 			}else {
 				req.setAttribute("failure", "Invalid Password");

@@ -1,3 +1,4 @@
+<%@page import="com.customer.dto.Customer"%>
 <%@page import="com.emp.DTO.Location"%>
 <%@page import="java.util.List"%>
 <%@page import="com.emp.DAO.locationDAOimp"%>
@@ -9,14 +10,16 @@
 <%
   locationDAO locationDAO = new locationDAOimp();
    List<Location> locations = locationDAO.getlocation();
-%>
+%> 
+<%Customer c=(Customer)session.getAttribute("customer");%>
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register Page</title>
+    <title>Update Profile</title>
     <script type="text/javascript"
         src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <script
@@ -45,32 +48,40 @@
         }
 
         #signup {
-            width: 400px;
+            width: 450px;
             margin: 0 auto;
             border-radius: 10px;
             border: 1px solid gray;
-            padding: 10px;
+            padding: 15px;
             box-shadow: 1px 2px 5px graytext !important;
         }
 
         #signup h4 {
             font-size: 1.6rem;
             color: #7209b7;
+            margin-top: 15px;
+            margin-bottom: 20px;
         }
 
         .form-footer {
             display: flex;
             justify-content: center;
             align-items: center;
-            flex-direction: column;
+            gap: 20px;
         }
 
         .form-footer button {
-            width: 80%;
+            width: 35%;
             background: #14213d;
             color: white;
         }
-
+        #cancel{
+            width: 100%;
+            color: white;
+            text-decoration: none;
+            display: block;
+        }
+       
         .form-footer p {
             font-size: 0.8rem;
         }
@@ -93,67 +104,71 @@
         .request-location a{
          color: graytext;
         }
+        .containt{
+            display: flex;
+        }
+        .containt label{
+            width: 130px;
+        }
+        #fname:disabled{
+            background-color: white;
+        }
     </style>
 </head>
 
 <body>
 
-    <form id="signup" method="post" action="<%=request.getContextPath()+"/signup/Customer"%>">
+    <form id="signup" method="post" action="<%=request.getContextPath()+"/Customer/UpdateProfile"%>">
 
-        <h4 class="text-center">Sign Up</h4>
+        <h4 class="text-center">Update your Profile</h4>
 
-        <div class="form-group">
+        <div class="form-group containt">
+            <label for="fname">User Id</label>
+            <input type="text" class="form-control" value="<%=c.getCid()%>" disabled name="userid" id="fname">
+        </div>
+
+        <div class="form-group containt">
             <label for="fname">First Name</label>
-            <input type="text" class="form-control" name="firstName" id="fname">
+            <input type="text" class="form-control" value="<%=c.getFirstName() %>" name="firstName" id="fname">
         </div>
 
-        <div class="form-group">
+        <div class="form-group containt">
             <label for="lname">Last Name</label>
-            <input type="text" class="form-control" name="lastName" id="lname">
+            <input type="text" class="form-control" value="<%=c.getLastName() %>" name="lastName" id="lname">
         </div>
 
-        <div class="form-group">
+        <div class="form-group containt">
             <label for="email">Email</label>
-            <input type="email" class="form-control" name="email" id="email">
+            <input type="email" class="form-control" value="<%=c.getEmail()%>" disabled name="email" id="email">
         </div>
 
-        <div class="form-group">
-            <label for="password">Password</label>
-            <input type="password" class="form-control" name="password" id="password">
-        </div>
 
-        <div class="form-group">
-            <label for="confirmPassword">Confirm Password</label>
-            <input type="password" class="form-control" name="confirmPassword" id="confirmPassword">
-        </div>
-
-        <div class="form-group">
+        <div class="form-group containt">
             <label for="mobile">Mobile</label>
-            <input type="text" class="form-control" name="phone" id="mobile">
+            <input type="text" class="form-control" value="<%=c.getPhone() %>" name="phone" id="mobile">
         </div>
 
-        <div class="form-group">
+        <div class="form-group containt">
             <label for="inputState">Location</label>
-            <select name="location" id="inputState" class="form-control">
-                <option value="">Choose</option>
+            <select name="location" id="inputState"  class="form-control">
+            	
                 <%
                  for(Location location : locations)
                  {
                 	 %>
-                	  <option value="<%=location.getLid() %>" >
-                	  <%=location.getLocation()+" , "+location.getCity()+" , "+location.getState() %></option>
+                	  <option selected="<%=location.getLid() == c.getLid()  %>" value="<%=location.getLid()%>" ><%=location.getLocation()+" , "+location.getCity()+" , "+location.getState() %></option>
                 	 <%
                  }
                 %>
             </select>
-            <p class="text-end request-location"><a href="<%=request.getContextPath()+"/Customer/RequestLocation.jsp" %>" >Request Location</a></p>
+          
         </div>
+        
 
         <div class="form-footer">
-            <button type="submit" class="btn btn-primary mb-3">Sign Up</button>
-            <p>
-                Already have an account? <a href="<%=request.getContextPath()+"/Customer/Login.jsp"%>">Sign In</a>
-            </p>
+            <button class="btn btn-primary mb-3"><a id="cancel" href="">Cancel</a></button>
+            <button type="submit" class="btn btn-primary mb-3">Save</button>
+           
         </div>
     </form>
 
@@ -182,19 +197,7 @@
                         required: true,
                         minlength: 2
                     },
-                    email: {
-                        required: true,
-                        email: true
-                    },
-                    password: {
-                        required: true,
-                        minlength: 6
-                    },
-                    confirmPassword: {
-                        required: true,
-                        minlength: 6,
-                        equalTo: "#password"
-                    },
+                   
                     phone: {
                         required: true,
                         digits: true,
@@ -208,12 +211,6 @@
                 messages: {
                     firstName: "Please enter a valid first name",
                     lastName: "Please enter a valid last name",
-                    email: "Please enter a valid email address",
-                    password: "Password must be at least 6 characters long",
-                    confirmPassword: {
-                        required: "Please confirm your password",
-                        equalTo: "Passwords do not match"
-                    },
                     phone: "Please enter a valid 10-digit mobile number",
                     location: "Please select a location"
                 },
