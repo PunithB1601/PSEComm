@@ -37,6 +37,14 @@
 <body>
     <div class="container" style="box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px; padding: 40px; background-color: whiresmoke; border-radius: 15px;">
         <h1 class="text-center">Employee List</h1>
+        <% String success = (String) request.getAttribute("success"); %>
+            <% if (success != null) { %>
+                <p class="text-success text-center mb-3"><%= success %></p>
+            <% } %>
+            <% String failure = (String) request.getAttribute("failure"); %>
+            <% if (failure != null) { %>
+                <p class="text-danger text-center mb-3"><%= failure %></p>
+            <% } %>
         <table class="table ">
             <thead class="thead-dark">
                 <tr>
@@ -59,10 +67,10 @@
                     <td><%= emp.getLname() %></td>
                     <td><%= emp.getJob() %></td>
                     <td class="table-actions">
-                        <form action="DeleteEmployeeServlet" method="post" style="display:inline;">
-                            <input type="hidden" name="eid" value="<%= emp.getEid() %>">
-                            <button type="submit" class="btn btn-danger">Delete</button>
-                        </form>
+                        <form action="deleteEmployee" method="post">
+           					 <input type="hidden" name="eid" value="<%= emp.getEid() %>">
+            				 <input type="submit" name="delete" value="Delete" class="btn btn-danger btn-lg">
+        				</form>
                         <form action="ViewEmployeeServlet" method="get" style="display:inline;">
                             <input type="hidden" name="eid" value="<%= emp.getEid() %>">
                             <button type="submit" class="btn btn-primary">View</button>

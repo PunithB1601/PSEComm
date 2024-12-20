@@ -191,7 +191,7 @@ tr:hover {
         <a href="#">My Profile</a>
     </div>
     
-  <%Employee hr=(Employee)session.getAttribute("Hr"); %>
+  <%Employee hr=(Employee)session.getAttribute("employee"); %>
     <div class="main">
         <div class="topbar">
             <h1>Welcome <%=hr.getFname() %></h1>
