@@ -27,8 +27,9 @@ public class UpdateProfile extends HttpServlet {
 		String phoneno=req.getParameter("phone");
 		long phone=Long.parseLong(phoneno);
 		String location=req.getParameter("location");
-		int loc=Integer.parseInt(location);
 		
+		int loc=Integer.parseInt(location);
+		System.out.println(loc);
 		CustomerDAO cdao=new CustomerDAOImpl();
 		Customer c=(Customer)session.getAttribute("customer");
 		if(c!=null)

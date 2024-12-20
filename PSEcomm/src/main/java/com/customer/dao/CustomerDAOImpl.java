@@ -39,7 +39,7 @@ public class CustomerDAOImpl implements CustomerDAO {
 		}
 		
 		if (res > 0) {
-			System.out.println("Here");
+			
 			try {
 				ResultSet rs = ps.getGeneratedKeys();
 				if (rs.next()) { 
@@ -136,7 +136,7 @@ public class CustomerDAOImpl implements CustomerDAO {
 
 	@Override
 	public Customer updateCustomer(Customer c) {
-		String query = "UPDATE CUSTOMER SET FIRST_NAME = ?,LAST_NAME=?,EMAIL=?,PASSWORD=?,PHONE=? WHERE CID = ?";
+		String query = "UPDATE CUSTOMER SET FIRST_NAME = ?,LAST_NAME=?,EMAIL=?,PASSWORD=?,PHONE=?,lid=? WHERE CID = ?";
 		int count = 0;
 		
 		try(PreparedStatement ps = con.prepareStatement(query);){
@@ -145,7 +145,8 @@ public class CustomerDAOImpl implements CustomerDAO {
 			ps.setString(3, c.getEmail());
 			ps.setString(4, c.getPassword());
 			ps.setLong(5, c.getPhone());
-			ps.setInt(6, c.getCid());
+			ps.setInt(6, c.getLid());
+			ps.setInt(7, c.getCid());
 			count = ps.executeUpdate();
 		} catch (SQLException e) {
 			e.getMessage();

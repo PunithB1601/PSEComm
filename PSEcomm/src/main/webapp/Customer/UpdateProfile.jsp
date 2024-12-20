@@ -1,3 +1,4 @@
+<%@page import="com.customer.dto.Customer"%>
 <%@page import="com.emp.DTO.Location"%>
 <%@page import="java.util.List"%>
 <%@page import="com.emp.DAO.locationDAOimp"%>
@@ -10,6 +11,8 @@
   locationDAO locationDAO = new locationDAOimp();
    List<Location> locations = locationDAO.getlocation();
 %> 
+<%Customer c=(Customer)session.getAttribute("customer");%>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -115,45 +118,45 @@
 
 <body>
 
-    <form id="signup" method="post" action="updateProfile">
+    <form id="signup" method="post" action="<%=request.getContextPath()+"/Customer/UpdateProfile"%>">
 
         <h4 class="text-center">Update your Profile</h4>
 
         <div class="form-group containt">
             <label for="fname">User Id</label>
-            <input type="text" class="form-control" value="" disabled name="userid" id="fname">
+            <input type="text" class="form-control" value="<%=c.getCid()%>" disabled name="userid" id="fname">
         </div>
 
         <div class="form-group containt">
             <label for="fname">First Name</label>
-            <input type="text" class="form-control" value="" name="firstName" id="fname">
+            <input type="text" class="form-control" value="<%=c.getFirstName() %>" name="firstName" id="fname">
         </div>
 
         <div class="form-group containt">
             <label for="lname">Last Name</label>
-            <input type="text" class="form-control" value="" name="lastName" id="lname">
+            <input type="text" class="form-control" value="<%=c.getLastName() %>" name="lastName" id="lname">
         </div>
 
         <div class="form-group containt">
             <label for="email">Email</label>
-            <input type="email" class="form-control" value="" disabled name="email" id="email">
+            <input type="email" class="form-control" value="<%=c.getEmail()%>" disabled name="email" id="email">
         </div>
 
 
         <div class="form-group containt">
             <label for="mobile">Mobile</label>
-            <input type="text" class="form-control" value="" name="phone" id="mobile">
+            <input type="text" class="form-control" value="<%=c.getPhone() %>" name="phone" id="mobile">
         </div>
 
         <div class="form-group containt">
             <label for="inputState">Location</label>
-            <select name="location" id="inputState" value="" class="form-control">
-                <option value="">Choose</option>
+            <select name="location" id="inputState"  class="form-control">
+            	
                 <%
                  for(Location location : locations)
                  {
                 	 %>
-                	  <option value="<%=location.getLid() %>" ><%=location.getLocation()+" , "+location.getCity()+" , "+location.getState() %></option>
+                	  <option selected="<%=location.getLid() == c.getLid()  %>" value="<%=location.getLid()%>" ><%=location.getLocation()+" , "+location.getCity()+" , "+location.getState() %></option>
                 	 <%
                  }
                 %>

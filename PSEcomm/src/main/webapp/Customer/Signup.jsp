@@ -140,7 +140,8 @@
                  for(Location location : locations)
                  {
                 	 %>
-                	  <option value="<%=location.getLid() %>" ><%=location.getLocation()+" , "+location.getCity()+" , "+location.getState() %></option>
+                	  <option value="<%=location.getLid() %>" >
+                	  <%=location.getLocation()+" , "+location.getCity()+" , "+location.getState() %></option>
                 	 <%
                  }
                 %>
