@@ -144,7 +144,7 @@
         </div>
 
         <div class="content">
-            <div class="section">
+           <!--  <div class="section">
                 <h3 style="font-size : 20px;">Locations We Deliver To</h3>
                 <select id="locationDropdown" class="form-control" style = "padding : 5px;">
                     <option value="Bangalore">Bangalore</option>
@@ -153,7 +153,7 @@
                     <option value="Chennai">Chennai</option>
                     <option value="Delhi">Delhi</option>
                 </select>
-            </div>
+            </div> -->
 
             <div class="section">
                 <h3 style="font-size : 20px;">Add Location</h3>

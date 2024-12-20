@@ -221,7 +221,7 @@
                     </tbody>
                 </table>
                 <div style = "text-align : right; margin-top : 15px;">
-                      <a href="viewLocations.jsp" class="btn-secondary" style="font-size : 15px;">Back to Dashboard</a>
+                      <a href="EmployeeAdminDashboard.jsp" class="btn-secondary" style="font-size : 15px;">Back to Dashboard</a>
                   </div>
             </div>
         </div>
