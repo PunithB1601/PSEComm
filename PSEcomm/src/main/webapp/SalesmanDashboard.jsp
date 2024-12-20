@@ -153,7 +153,7 @@
                                         <td><%= product.getProduct_Id()%></td>
                                         <td><%= product.getProducr_Name() %></td>
                                         <td><%= product.getPrice() %></td>
-                                        <td><%= product.getCategory_Id() %></td>
+                                        <td><%= product.getCategory_Id()%></td>
                                     </tr>
                                     <% } %>
                                 </tbody>

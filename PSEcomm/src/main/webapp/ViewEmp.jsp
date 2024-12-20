@@ -124,7 +124,7 @@ padding-bottom: 20px;
     
  
     
-     <%Employee hr=(Employee)session.getAttribute("Hr"); %>
+     <%Employee hr=(Employee)session.getAttribute("employee"); %>
      <%Employee e=(Employee)session.getAttribute("employee"); %>
         <div>
      <% if(e.getJob().equalsIgnoreCase("ceo")){ %>
