@@ -47,7 +47,7 @@
                 <div class="card-body">
                     <h5 class="card-title">Active Products</h5>
                     <p class="card-text fs-4 text-primary">5</p>
-                    <button class="btn btn-secondary">View Products</button>
+                    <a href="ViewProduct.jsp"><button class="btn btn-secondary">View Products</button></a>
                 </div>
             </div>
             <div class="card text-center" style="width: 18rem;">
