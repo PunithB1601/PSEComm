@@ -58,11 +58,7 @@
 	
 		<%String failure=(String)request.getAttribute("failure");
 		if(failure!=null) {%>
-<<<<<<< HEAD
 		<h4 class="fail"><%=failure %></h4>
-=======
-		<h5 class="fail"><%=failure %></h5>
->>>>>>> branch 'Emp1' of https://github.com/PunithB1601/PSEComm.git
 		<%}%>
 		</div>
 		

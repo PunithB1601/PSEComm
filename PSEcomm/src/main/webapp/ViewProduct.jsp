@@ -74,31 +74,29 @@
                 <th class="bg-primary">Category</th>
             </tr>
         </thead>
+        <% ProductDAO productDAO = new ProductDAOImp();
+           List<Product> products = productDAO.getproducts();
+           productCategoryDAO pdao= new productCategoryDDAOImpl(); %>
         <tbody>
-        <%ProductDAO products=new ProductDAOImp();
-        productCategoryDAO pdao=new productCategoryDDAOImpl();
-        ArrayList<Product> list=(ArrayList<Product>)products.getproducts();
-        for(Product p:products){
-        List<ProductCategory> pc=pdao.getProductCategoryById(p.getCategory_Id());%>
-       
-            <tr>
-                <td><%=count++ %></td>
-                <td><%=p.getProduct_Id() %></td>
-                <td><%=p.getProducr_Name() %></td>
-                <td><%=p.getPrice() %></td>
-                <td>
-                 <%if (pc != null && !pc.isEmpty()) {
-					for (ProductCategory procat : pc) { %>
-					<%= procat.getName() %>
-					<% }
-					  } else { %>
+        
+       <% for (Product p : products) { 
+    	   List<ProductCategory> pc = pdao.getProductCategoryById(p.getCategory_Id());%>
+			<tr>
+			<td><%=count++ %></td>
+			<td><%= p.getProduct_Id() %></td>
+			<td><%= p.getProducr_Name() %></td>
+			<td><%= p.getPrice() %></td>
+			<td>
+			<% if (pc != null && !pc.isEmpty()) {
+				for (ProductCategory procat : pc) { %>
+				<%= procat.getName() %>
+				<% }
+					} else { %>
 						N/A
 					<% } %>
-                
-                </td>
-                
-            </tr>
-            <%} %>
+			</td>
+			</tr>
+			<%} %>
         </tbody>
       </table>
     </div>

@@ -19,12 +19,12 @@ public class forgotPassword extends HttpServlet
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException 
 	{
-		HttpSession session=req.getSession(false);
+		
 		String mail=req.getParameter("mail");
 		String setpass=req.getParameter("password");
 		String conpass=req.getParameter("confirm_password");
 		
-		
+		HttpSession session=req.getSession(false);
 		EmployeeDAO edao=new EmployeeDAOImp();
 		
 		Employee e=edao.getEmployee(mail);
