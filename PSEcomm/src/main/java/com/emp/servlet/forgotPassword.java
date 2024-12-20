@@ -35,13 +35,13 @@ public class forgotPassword extends HttpServlet
 			if(res1)
 			{
 				req.setAttribute("success", "Pin updated Successful");
-				RequestDispatcher rd=req.getRequestDispatcher("forgotpassword.jsp");
+				RequestDispatcher rd=req.getRequestDispatcher("forgotPassword.jsp");
 				rd.forward(req, resp);
 			}
 			else
 			{
 				req.setAttribute("failure", "Pin update Failed");
-				RequestDispatcher rd=req.getRequestDispatcher("forgotpassword.jsp");
+				RequestDispatcher rd=req.getRequestDispatcher("forgotPassword.jsp");
 				rd.forward(req, resp);
 			}
 		}
