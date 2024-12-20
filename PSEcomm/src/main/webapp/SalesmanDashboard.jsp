@@ -1,3 +1,4 @@
+<%@page import="java.util.ArrayList"%>
 <%@page import="com.productCategory.DAO.productCategoryDDAOImpl"%>
 <%@page import="com.productCategory.DAO.productCategoryDAO"%>
 <%@page import="com.productCategory.DTO.ProductCategory"%>
@@ -113,7 +114,6 @@ a:hover {
 				<% ProductDAO productDAO = new ProductDAOImp();
                    List<Product> products = productDAO.getproducts();
                    productCategoryDAO pdao= new productCategoryDDAOImpl();
-                   ProductCategory pc=new ProductCategory();
                 %>
 				<div class="col-md-4">
 					<div class="card text-center">
@@ -161,19 +161,31 @@ a:hover {
 									</tr>
 								</thead>
 								<tbody>
-									<% 
-                            int count = 0; 
-                            for (Product product : products) { 
-                                if (count == 5) break; 
-                                 //pc=pdao.getProductCategoryById(product.getCategory_Id());
-                       				 %>
-									<tr>
-										<td><%= product.getProduct_Id() %></td>
-										<td><%= product.getProducr_Name() %></td>
-										<td><%= product.getPrice() %></td>
-										<td><%= product.getCategory_Id() %></td>
-									</tr>
-									<% count++; } %>
+								    <% 
+								        int count = 0; 
+								        for (Product p : products) { 
+								            if (count == 5) break; // Limit to 5 products for the table
+								            List<ProductCategory> pc = pdao.getProductCategoryById(p.getCategory_Id());
+								    %>
+								    <tr>
+								        <td><%= p.getProduct_Id() %></td>
+								        <td><%= p.getProducr_Name() %></td>
+								        <td><%= p.getPrice() %></td>
+								        <td>
+								            <% 
+								                if (pc != null && !pc.isEmpty()) {
+								                    for (ProductCategory procat : pc) { 
+								            %>
+								            <%= procat.getName() %>
+								            <% 
+								                    }
+								                } else { 
+								            %>
+								            N/A
+								            <% } %>
+								        </td>
+								    </tr>
+								    <% count++; } %>
 								</tbody>
 							</table>
 						</div>
