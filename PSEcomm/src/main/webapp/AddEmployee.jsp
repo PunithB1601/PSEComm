@@ -1,3 +1,9 @@
+<%@page import="com.emp.DTO.Employee"%>
+<%@page import="java.util.Iterator"%>
+<%@page import="com.emp.DTO.Employee"%>
+<%@page import="java.util.List"%>
+<%@page import="com.emp.DAO.EmployeeDAOImp"%>
+<%@page import="com.emp.DAO.EmployeeDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -71,9 +77,9 @@
                     <li class="nav-item">
                        <!--  <a class="nav-link" href="#">Welcome</a> -->
                     </li>
-                    <li class="nav-item">
+                    <!-- <li class="nav-item">
                         <a class="nav-link text-danger" href="#logout">Logout</a>
-                    </li>
+                    </li> -->
                 </ul>
             </div>
         </div>
@@ -134,11 +140,17 @@
                                     <input type="Password" class="form-control" id="Confirm Password" placeholder="Enter Confirm Password">
                                 </div>
 
-
+ <%Employee hr=(Employee)session.getAttribute("employee"); %>
+     <%Employee e=(Employee)session.getAttribute("employee"); %>
+        
 
                                 <div class="form-actions">
                                     <button type="submit" class="btn btn-success">Submit</button>
+                                     <% if(e.getJob().equalsIgnoreCase("ceo")){ %>
                                     <a href="EmployeeAdminDashboard.jsp" class="btn btn-secondary">Back to Dashboard</a>
+                                    <%} else if(hr.getJob().equalsIgnoreCase("hr")){ %>
+                                    <a href="HrDashboard.jsp" class="btn btn-secondary">Back to Dashboard</a>
+                                    <%} %>
                                 </div>
 
                             </form>
