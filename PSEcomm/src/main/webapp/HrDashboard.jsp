@@ -30,7 +30,7 @@
         <div class="d-flex justify-content-between align-items-center p-3 bg-white shadow-sm">
             <h1>Welcome <%= hr.getFname() %></h1>
             <form action="logout" method="post">
-                <button class="btn btn-primary" type="submit" value="logout" name="logout">Logout</button>
+                <input type="submit" name="logout" value="Logout" class="btn btn-outline-light btn-sm ms-3">
             </form>
         </div>
 

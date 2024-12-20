@@ -104,9 +104,8 @@ a:hover {
 			 <a href="EmployeeProfile.jsp">Profile</a>
 			 <a href="forgotPassword.jsp">ResetPin</a>
 			<form action="logout" method="post">
-				<a href="employeelogin.jsp">Logout</a>
-			</form>
-
+                <input type="submit" name="logout" value="Logout" class="btn btn-outline-light btn-sm ms-3">
+            </form>
 		</div>
 
 		<!-- Main Content -->

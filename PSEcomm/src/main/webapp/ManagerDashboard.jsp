@@ -55,8 +55,8 @@
         <a href="ViewEmp.jsp">View Employees</a>
         <a href="EmployeeProfile.jsp">My Profile</a>
         <form action="logout" method="post">
-            <button class="btn btn-danger w-100 mt-3">Logout</button>
-        </form>
+                <input type="submit" name="logout" value="Logout" class="btn btn-outline-light btn-sm ms-3">
+            </form>
     </div>
 
     <!-- Main Content -->
