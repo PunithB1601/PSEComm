@@ -35,6 +35,8 @@
                     </div>
                     <% Employee e = (Employee) session.getAttribute("employee"); %>
                     <div class="card-body">
+                     
+                    
                         <form action="UpdateProfileServlet" method="post" onsubmit="return validatePassword()">
                             <div class="form-group">
                                 <label for="eid">Employee ID:</label>
@@ -60,18 +62,20 @@
                                     <option value="o" <%= e.getGender().equalsIgnoreCase("o") ? "selected" : "" %>>Other</option>
                                 </select>
                             </div>
-                             <div class="form-group">
-                                <label for="lname">MailId:</label>
-                                <input type="email" id="email" name="email" class="form-control" required value="<%= e.getMail() %>">
-                            </div>
-                             <div class="form-group">
-                                <label for="lname">Phone:</label>
-                                <input type="tel" id="phone" name="phone" class="form-control" required value="<%= e.getPhone() %>">
-                            </div>
-                            <div class="form-actions">
-                                <button type="submit" class="btn btn-success">Update Profile</button>
-                                <a href="SalesmanDashboard.jsp" class="btn btn-secondary">Back to Dashboard</a>
-                            </div>
+    <div class="form-group">
+        <label for="mailid">Email:</label>
+        <input type="email" id="mailid" name="mailid" class="form-control" required value="<%= e.getMail() %>">
+    </div>
+    <div class="form-group">
+        <label for="phone">Phone:</label>
+        <input type="tel" id="phone" name="phone" class="form-control" required value="<%= e.getPhone() %>">
+    </div>
+    <div class="form-actions">
+        <button type="submit" class="btn btn-success">Update Profile</button>
+        <a href="SalesmanDashboard.jsp" class="btn btn-secondary">Back to Dashboard</a>
+    </div>
+
+                            
                         </form>
                     </div>
                 </div>

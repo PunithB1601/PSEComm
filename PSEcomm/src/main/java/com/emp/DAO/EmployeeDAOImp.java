@@ -13,7 +13,7 @@ import java.util.List;
 
 public class EmployeeDAOImp implements EmployeeDAO
 {
-    private Connection con=null;
+   private Connection con=null;
 
    public EmployeeDAOImp()
     {
@@ -416,6 +416,35 @@ public class EmployeeDAOImp implements EmployeeDAO
 	}
 
 	@Override
+
+	public boolean UpdateProfile(Employee emp) {
+	    String query = "UPDATE emp SET fname = ?, lname = ?, dob = ?, gender = ?, mailid = ?, phone = ? WHERE eid = ?";
+	    try (PreparedStatement ps = con.prepareStatement(query)) {
+	        ps.setString(1, emp.getFname());
+	        ps.setString(2, emp.getLname());
+	        ps.setString(3, emp.getDOB());
+	        ps.setString(4, emp.getGender());
+	        ps.setString(5, emp.getMail());
+	        ps.setLong(6, emp.getPhone());
+	        ps.setInt(7, emp.getEid());
+
+	        int rowsUpdated = ps.executeUpdate();
+	        if (rowsUpdated > 0) {
+	            con.commit();
+	            return true;
+	        }
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	        try {
+	            con.rollback();
+	        } catch (SQLException ex) {
+	            ex.printStackTrace();
+	        }
+	    }
+	    return false;
+	}
+
+
 	public Employee getEmployee(String mail) {
 		String query="SELECT * FROM EMP WHERE MAILID=?";
         Employee e=null;
@@ -563,6 +592,8 @@ public class EmployeeDAOImp implements EmployeeDAO
         }
         return emp;
 	}
+}
+	
 
 	
-}
+
