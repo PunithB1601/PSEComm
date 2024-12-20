@@ -13,7 +13,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-@WebServlet("/resetPassword")
+@WebServlet("/changePassword")
 public class forgotPassword extends HttpServlet
 {
 	@Override
@@ -24,11 +24,12 @@ public class forgotPassword extends HttpServlet
 		String setpass=req.getParameter("password");
 		String conpass=req.getParameter("confirm_password");
 		
-		Employee e=new Employee();
+		
 		EmployeeDAO edao=new EmployeeDAOImp();
 		
-		e=(Employee)session.getAttribute("employee");
-		if(e!=null&&mail.equals(e.getMail())&&setpass.equals(conpass))
+		Employee e=edao.getEmployee(mail);
+		
+		if(e!=null && mail.equals(e.getMail()) && setpass.equals(conpass))
 		{
 			e.setPassword(setpass);
 			boolean res1=edao.updateemployee(e);
@@ -44,6 +45,11 @@ public class forgotPassword extends HttpServlet
 				RequestDispatcher rd=req.getRequestDispatcher("forgotPassword.jsp");
 				rd.forward(req, resp);
 			}
+		}
+		else {
+		req.setAttribute("failure", "Invalid Credentials");
+		RequestDispatcher rd=req.getRequestDispatcher("forgotPassword.jsp");
+		rd.forward(req, resp);
 		}
 	}
 }

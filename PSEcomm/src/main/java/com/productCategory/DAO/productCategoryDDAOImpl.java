@@ -43,7 +43,7 @@ private Connection con;
 	}
 
 	@Override
-	public List getProductCategoryName() {
+	public List getProductCategoryById(int categoryId) {
 		String query = "SELECT NAME FROM PRODUCT_CATEGORY";
 		List<String> categoryName = new ArrayList<String>();
 		ResultSet rs = null;
