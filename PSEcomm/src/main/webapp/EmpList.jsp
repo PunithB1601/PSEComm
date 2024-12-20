@@ -71,9 +71,9 @@
            					 <input type="hidden" name="eid" value="<%= emp.getEid() %>">
             				 <input type="submit" name="delete" value="Delete" class="btn btn-danger btn-lg">
         				</form>
-                        <form action="ViewEmployeeServlet" method="get" style="display:inline;">
+                        <form action="ModifyEmp.jsp" method="get" style="display:inline;">
                             <input type="hidden" name="eid" value="<%= emp.getEid() %>">
-                            <button type="submit" class="btn btn-primary">View</button>
+                           <!--  <button type="submit" class="btn btn-primary">View</button> -->
                         </form>
                     </td>
                 </tr>
@@ -82,8 +82,16 @@
                 %>
             </tbody>
         </table>
+        
+        <%Employee hr=(Employee)session.getAttribute("employee"); %>
+     <%Employee e=(Employee)session.getAttribute("employee"); %>
+
         <div>
+          <% if(e.getJob().equalsIgnoreCase("ceo")){ %>
        <a href="EmployeeAdminDashboard.jsp"><button type="button" class="btn btn-primary" style="font-size: 1.2rem; color: black;">Back</button></a>
+        <%} else if(hr.getJob().equalsIgnoreCase("hr")){ %>
+          <a href="HrDashboard.jsp"><button type="button" class="btn btn-primary" style="font-size: 1.2rem; color: black;">Back</button></a>
+           <%} %>
         </div>
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>

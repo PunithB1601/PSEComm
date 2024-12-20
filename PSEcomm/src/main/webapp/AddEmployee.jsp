@@ -1,3 +1,9 @@
+<%@page import="com.emp.DTO.Employee"%>
+<%@page import="java.util.Iterator"%>
+<%@page import="com.emp.DTO.Employee"%>
+<%@page import="java.util.List"%>
+<%@page import="com.emp.DAO.EmployeeDAOImp"%>
+<%@page import="com.emp.DAO.EmployeeDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -71,9 +77,9 @@
                     <li class="nav-item">
                        <!--  <a class="nav-link" href="#">Welcome</a> -->
                     </li>
-                    <li class="nav-item">
+                    <!-- <li class="nav-item">
                         <a class="nav-link text-danger" href="#logout">Logout</a>
-                    </li>
+                    </li> -->
                 </ul>
             </div>
         </div>
@@ -97,12 +103,12 @@
                         <div class="card-body">
                             <form>
                                 <div class="mb-3">
-                                    <label for="EmpID" class="form-label">Employees ID</label>
-                                    <input type="text" class="form-control" id="EmployeeID" placeholder="Enter  ID">
+                                    <label for="Fname" class="form-label">Fname</label>
+                                    <input type="text" class="form-control" id="Fname" placeholder="Enter First name">
                                 </div>
                                 <div class="mb-3">
-                                    <label for="Name" class="form-label">Name</label>
-                                    <input type="text" class="form-control" id="Name" placeholder="Enter Name">
+                                    <label for="Lname" class="form-label">Lname</label>
+                                    <input type="text" class="form-control" id="Lname" placeholder="Enter Last name">
                                 </div>
                                 <div class="mb-3">
                                     <label for="Email ID" class="form-label">Email ID</label>
@@ -122,6 +128,10 @@
                                     <input type="number" class="form-control" id="Salary" placeholder="Enter Salary">
                                 </div>
                                 <div class="mb-3">
+                                    <label for="com" class="form-label">Commission</label>
+                                    <input type="number" class="form-control" id="comm" placeholder="Enter Commission">
+                                </div>
+                                <div class="mb-3">
                                     <label for="Password" class="form-label">Password</label>
                                     <input type="Password" class="form-control" id="Password" placeholder="Enter Password">
                                 </div>
@@ -130,11 +140,17 @@
                                     <input type="Password" class="form-control" id="Confirm Password" placeholder="Enter Confirm Password">
                                 </div>
 
-
+ <%Employee hr=(Employee)session.getAttribute("employee"); %>
+     <%Employee e=(Employee)session.getAttribute("employee"); %>
+        
 
                                 <div class="form-actions">
                                     <button type="submit" class="btn btn-success">Submit</button>
+                                     <% if(e.getJob().equalsIgnoreCase("ceo")){ %>
                                     <a href="EmployeeAdminDashboard.jsp" class="btn btn-secondary">Back to Dashboard</a>
+                                    <%} else if(hr.getJob().equalsIgnoreCase("hr")){ %>
+                                    <a href="HrDashboard.jsp" class="btn btn-secondary">Back to Dashboard</a>
+                                    <%} %>
                                 </div>
 
                             </form>

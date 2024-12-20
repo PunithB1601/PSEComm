@@ -4,4 +4,7 @@ import java.util.List;
 
 public interface productCategoryDAO {
  public List getProductCategory();
+ public List getProductCategoryById(int categoryId);
+ 
+ 
 }
