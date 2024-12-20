@@ -1,8 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <style>
-   
-
+  
    li {
 
             list-style: none;
@@ -110,7 +109,7 @@
             <li><a class="menu-list-item <%= request.getAttribute("menu").toString().equalsIgnoreCase("Shop") ? "menu-list-item-active" :"" %>" href="<%= request.getContextPath()+"/Customer/Shop.jsp"%>">Shop</a></li>
             <li><a class="menu-list-item <%= request.getAttribute("menu").toString().equalsIgnoreCase("Cart") ? "menu-list-item-active" :"" %>" href="">Cart</a></li>
             <li><a class="menu-list-item <%= request.getAttribute("menu").toString().equalsIgnoreCase("Orders") ? "menu-list-item-active" :"" %>" href="">Orders</a></li>
-            <li><a class="menu-list-item <%= request.getAttribute("menu").toString().equalsIgnoreCase("Profile") ? "menu-list-item-active" :"" %>" href="">Profile</a></li>
+            <li><a class="menu-list-item <%= request.getAttribute("menu").toString().equalsIgnoreCase("Profile") ? "menu-list-item-active" :"" %>" href="<%= request.getContextPath()+"/Customer/UpdateProfile.jsp"%>">Profile</a></li>
             <li><a class="menu-list-item" href="">Logout</a></li>
         </ul>
 
@@ -122,7 +121,7 @@
             <li><a class="menu-list-item <%= request.getAttribute("menu").toString().equalsIgnoreCase("Shop") ? "menu-list-item-active" :"" %>" href="">Shop</a></li>
             <li><a class="menu-list-item <%= request.getAttribute("menu").toString().equalsIgnoreCase("Cart") ? "menu-list-item-active" :"" %>" href="">Cart</a></li>
             <li><a class="menu-list-item <%= request.getAttribute("menu").toString().equalsIgnoreCase("Orders") ? "menu-list-item-active" :"" %>" href="">Orders</a></li>
-            <li><a class="menu-list-item <%= request.getAttribute("menu").toString().equalsIgnoreCase("Profile") ? "menu-list-item-active" :"" %>" href="">Profile</a></li>
+            <li><a class="menu-list-item <%= request.getAttribute("menu").toString().equalsIgnoreCase("Profile") ? "menu-list-item-active" :"" %>" href="<%= request.getContextPath()+"/Customer/UpdateProfile.jsp"%>">Profile</a></li>
             <li><a class="menu-list-item" href="">Logout</a></li>
             </ul>
         </div>

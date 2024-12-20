@@ -6,8 +6,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
-    
+  
 <%
+  request.setAttribute("menu", "Profile");
   locationDAO locationDAO = new locationDAOimp();
    List<Location> locations = locationDAO.getlocation();
 %> 
@@ -20,6 +21,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Update Profile</title>
+    <%@include file="/Customer/utils/CommonUtils.jsp" %>
     <script type="text/javascript"
         src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <script
@@ -40,11 +42,6 @@
 
         body {
             min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-family: "Outfit", sans-serif;
-            padding: 40px 0px;
         }
 
         #signup {
@@ -117,6 +114,7 @@
 </head>
 
 <body>
+  <%@include file="/Customer/Navbar.jsp" %>
 
     <form id="signup" method="post" action="<%=request.getContextPath()+"/Customer/UpdateProfile"%>">
 
