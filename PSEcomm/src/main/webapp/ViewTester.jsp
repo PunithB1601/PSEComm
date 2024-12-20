@@ -1,16 +1,16 @@
-<!DOCTYPE html>
 <%@page import="java.util.Iterator"%>
+<%@page import="com.emp.DTO.Employee"%>
 <%@page import="java.util.List"%>
 <%@page import="com.emp.DAO.EmployeeDAOImp"%>
 <%@page import="com.emp.DAO.EmployeeDAO"%>
-<%@page import="com.emp.DTO.Employee"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Employee Page</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
-
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         /* General Reset */
         body, h1, h2, p {
@@ -28,7 +28,27 @@
             background-color: #34495e;
             color: white;
             padding: 20px;
-            text-align: center;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 1.8rem;
+        }
+
+        .header a button {
+            font-size: 1rem;
+            padding: 8px 16px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+            border: 1px solid #ddd;
+        }
+
+        .header a button:hover {
+            background-color: #2c3e50;
+            color: white;
         }
 
         .employee-container {
@@ -63,7 +83,9 @@
         .profile-pic {
             width: 100px;
             height: 100px; 
-            margin: 0 auto 15px auto;
+            margin-bottom: 15px;
+            margin-left: auto;
+            margin-right: auto;
             background-color: gray; 
             color: white;
             display: flex;
@@ -75,42 +97,35 @@
             text-transform: uppercase; 
             font-family: Arial, sans-serif; 
         }
-       
     </style>
 </head>
 <body>
-    <div  class="d-flex justify-content-between align-items-center p-3 bg-light">
-        <h1 class="m-0">Employee Directory</h1>
-        <div>
-            <% Employee hr = (Employee) session.getAttribute("employee"); %>
-            <% Employee e = (Employee) session.getAttribute("employee"); %>
-            <% if (e.getJob().equalsIgnoreCase("ceo")) { %>
-                <a href="EmployeeAdminDashboard.jsp" class="btn btn-primary">Back to Dashboard</a>
-            <% } else if (hr.getJob().equalsIgnoreCase("hr")) { %>
-                <a href="HrDashboard.jsp" class="btn btn-primary">Back to Dashboard</a>
-            <% } %>
-        </div>
-    </div>
-
-    <% EmployeeDAO edao = new EmployeeDAOImp();
-    List<Employee> employees = edao.getEmployee();
-    Employee emp = null;
-    Iterator<Employee> it = employees.iterator(); %>
+    <header class="header">  
+        <h1>Developers Directory</h1>
+        <a href="ManagerDashboard.jsp">
+            <button class="btn btn-light text-dark border">Back</button>
+        </a>
+    </header>
+    
+    <% 
+        EmployeeDAO edao = new EmployeeDAOImp();
+        List<Employee> employees = edao.getTesters();
+        Employee emp = null;
+        Iterator<Employee> it = employees.iterator();
+    %>
+    
     <main class="employee-container">
         <% while (it.hasNext()) {
             emp = it.next();
         %>
-            <div class="employee-card">
-                <div class="profile-pic"><%= emp.getFname().charAt(0) %></div>
-                <h2><%= emp.getFname() %></h2>
-                <p><%= emp.getJob() %></p>
-                <p>Department: <%= emp.getDno() %></p>
-            </div>
+        <div class="employee-card">
+            <div class="profile-pic"><%= emp.getFname().charAt(0) %></div>
+            <h2><%= emp.getFname() %></h2>
+            <p><%= emp.getJob() %></p>
+            <p>Department: <%= emp.getDno() %></p>
+        </div>
         <% } %>
     </main>
-
-    <!-- Bootstrap JS Bundle -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
-     

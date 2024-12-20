@@ -94,9 +94,9 @@
             <a href="EmpList.jsp">Manage Users</a>
 
             <a href="AdminProfile.jsp">Profile</a>
-         
-
-            <a href="employeelogin.jsp">Logout</a>
+         	<form action="logout" method="post">
+                <input type="submit" name="logout" value="Logout" class="btn btn-outline-light btn-sm ms-3">
+            </form> 
         </div>
 <%
 EmployeeDAO e1= new EmployeeDAOImp();
