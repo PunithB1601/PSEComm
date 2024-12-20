@@ -72,27 +72,24 @@
             <div class="col-md-4">
                 <div class="card text-center">
                     <div class="card-body">
-                        <h5 class="card-title">Total Employees</h5>
-                        <p class="card-text fs-4 text-primary">120</p>
-                        <a href="ViewEmp.jsp" class="btn btn-secondary">View Employees</a>
+                        <h5 class="card-title">Salesman</h5>
+                        <a href="ViewSalesmen.jsp" class="btn btn-secondary">View Salesman</a>
                     </div>
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="card text-center">
                     <div class="card-body">
-                        <h5 class="card-title">Active Projects</h5>
-                        <p class="card-text fs-4 text-primary">8</p>
-                        <a href="ViewProjects.jsp" class="btn btn-secondary">View Projects</a>
+                        <h5 class="card-title">Testers</h5>
+                        <a href="ViewTester.jsp" class="btn btn-secondary">view Testers</a>
                     </div>
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="card text-center">
                     <div class="card-body">
-                        <h5 class="card-title">Pending Tasks</h5>
-                        <p class="card-text fs-4 text-primary">15</p>
-                        <a href="ViewTasks.jsp" class="btn btn-secondary">View Tasks</a>
+                        <h5 class="card-title">Developers</h5>
+                        <a href="ViewDevelopers.jsp" class="btn btn-secondary">View Developer</a>
                     </div>
                 </div>
             </div>

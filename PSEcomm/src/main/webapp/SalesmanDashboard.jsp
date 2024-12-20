@@ -100,6 +100,7 @@ a:hover {
 			<a href="#dashboard">Dashboard</a>
 			 <a href="ViewProduct.jsp">View Products</a>
 			 <a href="AddOrder.jsp">Add Orders</a> 
+			 <a href="ViewDispatcher.jsp">view Dispatcher</a> 
 			 <a href="EmployeeProfile.jsp">Profile</a>
 			 <a href="forgotPassword.jsp">ResetPin</a>
 			<form action="logout" method="post">
