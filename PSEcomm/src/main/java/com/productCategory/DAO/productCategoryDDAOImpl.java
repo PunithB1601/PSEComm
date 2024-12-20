@@ -43,15 +43,15 @@ private Connection con;
 	}
 
 	@Override
-	public List getProductCategoryById(int id) {
-		String query = "SELECT NAME FROM PRODUCT_CATEGORY WHERE ID=?";
+	public List getProductCategoryById(int categoryId) {
+		String query = "SELECT NAME FROM PRODUCT_CATEGORY WHERE CATEGORYID=?";
 		List<String> categoryName = new ArrayList<String>();
 		ResultSet rs = null;
 		
 		try {
 			PreparedStatement ps = con.prepareStatement(query);
 			
-			ps.setInt(1,id);
+			ps.setInt(1,categoryId);
 			
 			rs = ps.executeQuery();
 			while(rs.next()){
