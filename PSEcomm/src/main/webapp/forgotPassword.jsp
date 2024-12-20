@@ -10,20 +10,14 @@
 
     <style>
     body{
-    	background-color:silver;
+    	background-color:#f4f6f9;
+    }
+    .container{
+    	margin:80px;
+    	border-radius: 20px;
     }
         .forgot{
-            position: absolute;
-            top: 15%;
-            left: 35%;
-            background-color: white;
-            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-            width: 30%;
-            border-radius: 10px;
-        }
-        .forgot h2{
-            text-align: center;
-            margin: 10px;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3), 0 6px 20px 0 rgba(0, 0, 0, 0.19);   
         }
         .forgot div{
             margin: 20px;
@@ -40,29 +34,41 @@
         .success{
         	margin-top:20px;
         	text-align:center;
+        	color:green;
         }
         .fail{
         	text-align:center;
         	margin-top:20px;
+        	color:red;
         }
     </style>
 </head>
 <body>
 
-    <form action="resetPassword" method="post" class="forgot">
-        <h2>Reset Password</h2>
-        
-        <%String success=(String)request.getAttribute("success"); 
+<div class="container">
+     <div class="row justify-content-center">
+     <div class="col-md-5">
+	 <div class="card" style="box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;">
+	 <div class="card-header text-center" style="box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;">
+	 <h2 class="mb-3 mt-3">Reset Password</h2>
+	 <%String success=(String)request.getAttribute("success"); 
 		if(success!=null) {%>
-		<h5 class="success"><%=success %></h5>
+		<h4 class="success"><%=success %></h4>
 		<%}%>
 	
 		<%String failure=(String)request.getAttribute("failure");
 		if(failure!=null) {%>
+<<<<<<< HEAD
+		<h4 class="fail"><%=failure %></h4>
+=======
 		<h5 class="fail"><%=failure %></h5>
+>>>>>>> branch 'Emp1' of https://github.com/PunithB1601/PSEComm.git
 		<%}%>
-        <div class="mb-2">
+		</div>
+		
+    <form action="changePassword" method="post" class="forgot">
         
+        <div class="mb-2">
           <label for="exampleInputEmail1" class="form-label">Email address</label>
           <input type="email" name="mail" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Your Mail id">
         </div>
@@ -79,9 +85,13 @@
           <label class="form-check-label" for="exampleCheck1">Check me out</label>
         </div>
         
-       <center><input type="submit" value="Reset Password" class="btn btn-primary">
+       <center><button type="submit" class="btn btn-primary">Reset Password</button>
        <a href="employeelogin.jsp" class="back btn btn-primary">Back</a></center>
       </form>
+    </div>
+    </div>
+    </div>
+    </div>
     
 </body>
 </html>

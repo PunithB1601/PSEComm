@@ -16,5 +16,6 @@ public interface EmployeeDAO
     public List getManager();
     public List getSalesman();
     public List getDetails();
+    public Employee getEmployee(String mail);
 
 }
