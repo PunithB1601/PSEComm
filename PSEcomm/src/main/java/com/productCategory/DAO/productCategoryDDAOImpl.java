@@ -44,22 +44,26 @@ private Connection con;
 
 	@Override
 	public List getProductCategoryById(int categoryId) {
-		String query = "SELECT NAME FROM PRODUCT_CATEGORY";
-		List<String> categoryName = new ArrayList<String>();
-		ResultSet rs = null;
+		List<ProductCategory> categories = new ArrayList<>();
+	    String sql = "SELECT name FROM product_category WHERE CATEGORYID = ?";
+	    PreparedStatement ps;
 		try {
-			PreparedStatement ps = con.prepareStatement(query);
-			
-			rs = ps.executeQuery();
-			while(rs.next()){
-				categoryName.add(rs.getString(2));
-			}
+			ps = con.prepareStatement(sql);
+			 ps.setInt(1, categoryId);
+			    ResultSet rs = ps.executeQuery();
+
+			    while (rs.next()) {
+			        ProductCategory category = new ProductCategory();
+			        category.setName(rs.getString("name"));
+			        categories.add(category);
+			    }
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		return categoryName;
+	   
+	    return categories;
 	}
 
+	
 }
