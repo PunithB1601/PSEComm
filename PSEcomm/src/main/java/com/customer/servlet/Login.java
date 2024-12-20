@@ -29,7 +29,7 @@ public class Login extends HttpServlet{
 			if(password.equals(c.getPassword()))
 			{
 				session.setAttribute("customer", c);
-				RequestDispatcher rd=req.getRequestDispatcher("Profile.jsp"); // dashboard
+				RequestDispatcher rd=req.getRequestDispatcher("UpdateProfile.jsp"); // dashboard
 				rd.forward(req, resp);			
 			}else {
 				req.setAttribute("failure", "Invalid Password");

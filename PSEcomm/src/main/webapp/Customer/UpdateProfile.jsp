@@ -115,7 +115,7 @@
 
 <body>
 
-    <form id="signup" method="" action="">
+    <form id="signup" method="post" action="updateProfile">
 
         <h4 class="text-center">Update your Profile</h4>
 
