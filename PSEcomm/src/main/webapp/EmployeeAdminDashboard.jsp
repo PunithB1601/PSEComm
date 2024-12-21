@@ -94,6 +94,7 @@
             <a href="EmpList.jsp">Manage Users</a>
 			<a href="ViewProduct.jsp">View Products</a>
             <a href="AdminProfile.jsp">Profile</a>
+            <a href="forgotPassword.jsp">ResetPin</a>
          	<form action="logout" method="post">
                 <input type="submit" name="logout" value="Logout" class="btn btn-outline-light btn-sm ms-3">
             </form> 
