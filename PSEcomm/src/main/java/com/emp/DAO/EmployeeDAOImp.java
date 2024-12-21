@@ -596,7 +596,7 @@ public class EmployeeDAOImp implements EmployeeDAO
 	  @Override
 	    public boolean updatePassword(Employee e) {
 
-	        String query="UPDATE EMP SET FNAME=?,LNAME=?,DOB=?,GENDER=?,JOB=?,MGR=?,DOJ=?,SAL=?,COMM=?,DNO=?,CID=?,MAILID=?,PASSWORD=? where PHONE=?";
+	        String query="UPDATE EMP SET FNAME=?,LNAME=?,DOB=?,GENDER=?,JOB=?,MGR=?,DOJ=?,SAL=?,COMM=?,DNO=?,CID=?,MAILID=?,PASSWORD=?, PHONE=? WHERE EID=?";
 	        PreparedStatement ps=null;
 	        int res=0;
 
@@ -618,6 +618,7 @@ public class EmployeeDAOImp implements EmployeeDAO
 	            ps.setLong(14,e.getPhone());
 	            ps.setString(12,e.getMail());
 	            ps.setString(13,e.getPassword());
+	            ps.setInt(15, e.getEid());
 	            res=ps.executeUpdate();
 	        } catch (SQLException ex) {
 	            throw new RuntimeException(ex);
