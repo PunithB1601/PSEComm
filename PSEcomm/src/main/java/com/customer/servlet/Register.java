@@ -43,8 +43,8 @@ public class Register extends HttpServlet{
 			Customer res=cdao.addCustomer(c);
 			if(res!=null)
 			{
-				req.setAttribute("success", "Signup Successfully");
-				RequestDispatcher rd=req.getRequestDispatcher("/Customer/Signup.jsp");
+				req.getSession().setAttribute("user", c);
+				RequestDispatcher rd=req.getRequestDispatcher("/Customer/Home.jsp");
 				rd.forward(req, resp);
 				
 			}else {

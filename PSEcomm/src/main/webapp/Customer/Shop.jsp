@@ -97,6 +97,7 @@ int totalData = productDAO.getAllProductsCount(selectedCategory);
  .product-card .product-title{
   font-size: 1.2rem;
   font-weight: 400;
+  margin-top: 10px;
  }
  
  .product-price{
@@ -104,6 +105,7 @@ int totalData = productDAO.getAllProductsCount(selectedCategory);
   justify-content: flex-start;
   align-items: center;
   gap:2px;
+  font-size: 1.2rem;
   
  }
  .product-category{

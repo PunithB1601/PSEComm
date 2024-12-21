@@ -60,7 +60,7 @@ public class CustomerDAOImpl implements CustomerDAO {
 
 	@Override
 	public Customer getCustomer(int id) {
-		String query = "SELECT * FROM CUSTOMER WHERE ID = ?";
+		String query = "SELECT * FROM CUSTOMER WHERE CID = ?";
 		ResultSet rs = null;
 		try (PreparedStatement ps = con.prepareStatement(query)) {
 			ps.setInt(1, id);

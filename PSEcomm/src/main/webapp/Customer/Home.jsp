@@ -9,16 +9,16 @@
   productCategoryDAO productCategoryDAO = new productCategoryDDAOImpl();
   
   List<ProductCategory> categories = productCategoryDAO.getProductCategory();
-
-
 %>
+<%@include file="/Customer/CustomerSession.jsp" %>
 <!DOCTYPE html>
 <html>
-<head>
+<head> 
 <meta charset="UTF-8">
  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Home</title>
 <%@include file="/Customer/utils/CommonUtils.jsp" %>
+
 
 <style type="text/css">
 

@@ -31,7 +31,7 @@ public class UpdateProfile extends HttpServlet {
 		int loc=Integer.parseInt(location);
 		System.out.println(loc);
 		CustomerDAO cdao=new CustomerDAOImpl();
-		Customer c=(Customer)session.getAttribute("customer");
+		Customer c=(Customer)session.getAttribute("user");
 		if(c!=null)
 		{
 
@@ -43,7 +43,8 @@ public class UpdateProfile extends HttpServlet {
 		  if(c!=null)
 		  {
 			  req.setAttribute("success", "Profile updated successfully");
-			  RequestDispatcher rd=req.getRequestDispatcher("UpdateProfile.jsp");
+			  req.getSession().setAttribute("user", cdao.getCustomer(c.getCid()));
+			  RequestDispatcher rd=req.getRequestDispatcher("/Customer/Profile.jsp");
 			  rd.forward(req, resp);
 		  }else {
 			  req.setAttribute("failure", "Profile failed to updated");

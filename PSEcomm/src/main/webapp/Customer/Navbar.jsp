@@ -1,7 +1,11 @@
+<%@page import="com.customer.dto.Customer"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<style>
-  
+	
+<%
+  Customer user = (Customer) session.getAttribute("user");
+%>
+<style type="text/css">
    li {
 
             list-style: none;
@@ -32,6 +36,7 @@
             justify-content: flex-end;
             align-items: center;
             gap: 10px;
+            margin-bottom: 0;
         }
 
         .desktop-menu .menu-list-item,
@@ -107,22 +112,44 @@
 
            <li><a class="menu-list-item <%= request.getAttribute("menu").toString().equalsIgnoreCase("Home") ? "menu-list-item-active" :"" %>" href="<%= request.getContextPath()+"/Customer/Home.jsp"%>">Home</a></li>
             <li><a class="menu-list-item <%= request.getAttribute("menu").toString().equalsIgnoreCase("Shop") ? "menu-list-item-active" :"" %>" href="<%= request.getContextPath()+"/Customer/Shop.jsp"%>">Shop</a></li>
-            <li><a class="menu-list-item <%= request.getAttribute("menu").toString().equalsIgnoreCase("Cart") ? "menu-list-item-active" :"" %>" href="">Cart</a></li>
+            <%
+             if(user!=null)
+             {
+            	 %>
+            	  
+             <li><a class="menu-list-item <%= request.getAttribute("menu").toString().equalsIgnoreCase("Cart") ? "menu-list-item-active" :"" %>" href="<%= request.getContextPath()+"/Customer/Cart.jsp"%>">Cart</a></li>
             <li><a class="menu-list-item <%= request.getAttribute("menu").toString().equalsIgnoreCase("Orders") ? "menu-list-item-active" :"" %>" href="">Orders</a></li>
-            <li><a class="menu-list-item <%= request.getAttribute("menu").toString().equalsIgnoreCase("Profile") ? "menu-list-item-active" :"" %>" href="<%= request.getContextPath()+"/Customer/UpdateProfile.jsp"%>">Profile</a></li>
+            <li><a class="menu-list-item <%= request.getAttribute("menu").toString().equalsIgnoreCase("Profile") ? "menu-list-item-active" :"" %>" href="<%= request.getContextPath()+"/Customer/Profile.jsp"%>">Profile</a></li>
             <li><a class="menu-list-item" href="">Logout</a></li>
+            	  
+            	 <%
+             }else{
+            	 %>
+            	  <li><a class="menu-list-item menu-list-item-active " href="<%= request.getContextPath()+"/Customer/Login.jsp"%>">Login</a></li>
+            	 <%
+             }
+            %>
         </ul>
 
         <div class="mobile-menu">
             <i class="fa-solid fa-bars" id="menu-bar"></i>
             <ul class="mobile-menu-list hide-mobile-menu">
                 <i class="fa-solid fa-arrow-right" id="menu-close-btn"></i>
-                <li><a class="menu-list-item <%= request.getAttribute("menu").toString().equalsIgnoreCase("Home") ? "menu-list-item-active" :"" %>" href="">Home</a></li>
+               <li><a class="menu-list-item <%= request.getAttribute("menu").toString().equalsIgnoreCase("Home") ? "menu-list-item-active" :"" %>" href="">Home</a></li>
             <li><a class="menu-list-item <%= request.getAttribute("menu").toString().equalsIgnoreCase("Shop") ? "menu-list-item-active" :"" %>" href="">Shop</a></li>
-            <li><a class="menu-list-item <%= request.getAttribute("menu").toString().equalsIgnoreCase("Cart") ? "menu-list-item-active" :"" %>" href="">Cart</a></li>
+            <%
+             if(user!=null)
+             {
+            	 %>
+            	  
+            	  <li><a class="menu-list-item <%= request.getAttribute("menu").toString().equalsIgnoreCase("Cart") ? "menu-list-item-active" :"" %>" href="<%= request.getContextPath()+"/Customer/Cart.jsp"%>">Cart</a></li>
             <li><a class="menu-list-item <%= request.getAttribute("menu").toString().equalsIgnoreCase("Orders") ? "menu-list-item-active" :"" %>" href="">Orders</a></li>
-            <li><a class="menu-list-item <%= request.getAttribute("menu").toString().equalsIgnoreCase("Profile") ? "menu-list-item-active" :"" %>" href="<%= request.getContextPath()+"/Customer/UpdateProfile.jsp"%>">Profile</a></li>
+            <li><a class="menu-list-item <%= request.getAttribute("menu").toString().equalsIgnoreCase("Profile") ? "menu-list-item-active" :"" %>" href="<%= request.getContextPath()+"/Customer/Profile.jsp"%>">Profile</a></li>
             <li><a class="menu-list-item" href="">Logout</a></li>
+            	  
+            	 <%
+             }
+            %>
             </ul>
         </div>
 
