@@ -67,13 +67,15 @@
     </nav>
 
     <div class="d-flex">
-        <div class="sidebar p-3">
-           <!-- <h4 class="text-white">Menu</h4>-->
+        <div class="sidebar p-3" style="background-color:#3C3D37;">
             <a href="#dashboard">Dashboard</a>
-            <a href="#users">Manage Users</a>
-            <a href="#settings">Settings</a>
-            <a href="#reports">Reports</a>
-            <a href="#logout">Logout</a>
+            <a href="EmpList.jsp">Manage Users</a>
+			<a href="ViewProduct.jsp">View Products</a>
+            <a href="AdminProfile.jsp">Profile</a>
+            <a href="forgotPassword.jsp">ResetPin</a>
+         	<form action="logout" method="post">
+                <input type="submit" name="logout" value="Logout" class="btn btn-outline-light btn-sm ms-3">
+            </form> 
         </div>
 
         <div class="content flex-grow-1">
