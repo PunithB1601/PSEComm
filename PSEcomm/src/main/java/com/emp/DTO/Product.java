@@ -7,6 +7,8 @@ public class Product
 	private double price;
 	private String img;
 	private int category_Id;
+	private String category_Name;
+	
 	public Product(int product_Id, String producr_Name, double price, String img, int category_Id) {
 		super();
 		this.product_Id = product_Id;
@@ -50,6 +52,12 @@ public class Product
 	public void setCategory_Id(int category_Id) {
 		this.category_Id = category_Id;
 	}
+	public String getCategory_Name() {
+        return category_Name; 
+    }
+    public void setCategory_Name(String category_Name) {
+        this.category_Name = category_Name; 
+    }
 
 	@Override
 	public String toString() {

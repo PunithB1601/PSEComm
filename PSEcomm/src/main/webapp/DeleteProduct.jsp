@@ -1,3 +1,4 @@
+<%@page import="com.emp.DTO.Employee"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -12,7 +13,7 @@
         .sidebar {
             height: 100vh;
             overflow-y: auto;
-            background-color: #1abc9c;
+            background-color: #3c3d37;
         }
         .sidebar a {
             color: #ffffff;
@@ -57,10 +58,8 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Welcome, Admin</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-danger" href="#logout">Logout</a>
+                        <%Employee e=(Employee)session.getAttribute("employee"); %>
+                        <a class="nav-link" href="#">Welcome, <%=e.getFname() %></a>
                     </li>
                 </ul>
             </div>
@@ -69,7 +68,7 @@
 
     <div class="d-flex">
         <div class="sidebar p-3">
-            <h4 class="text-white">Menu</h4>
+           <!-- <h4 class="text-white">Menu</h4>-->
             <a href="#dashboard">Dashboard</a>
             <a href="#users">Manage Users</a>
             <a href="#settings">Settings</a>

@@ -42,28 +42,28 @@ private Connection con;
 		return pList;
 	}
 
-	@Override
-	public List getProductCategoryById(int categoryId) {
-		List<ProductCategory> categories = new ArrayList<>();
-	    String sql = "SELECT name FROM product_category WHERE CATEGORYID = ?";
-	    PreparedStatement ps;
-		try {
-			ps = con.prepareStatement(sql);
-			 ps.setInt(1, categoryId);
-			    ResultSet rs = ps.executeQuery();
-
-			    while (rs.next()) {
-			        ProductCategory category = new ProductCategory();
-			        category.setName(rs.getString("name"));
-			        categories.add(category);
-			    }
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	   
-	    return categories;
-	}
+//	@Override
+//	public List getProductCategoryById(int categoryId) {
+//		List<ProductCategory> categories = new ArrayList<>();
+//	    String sql = "SELECT name FROM product_category WHERE CATEGORYID = ?";
+//	    PreparedStatement ps;
+//		try {
+//			ps = con.prepareStatement(sql);
+//			 ps.setInt(1, categoryId);
+//			    ResultSet rs = ps.executeQuery();
+//
+//			    while (rs.next()) {
+//			        ProductCategory category = new ProductCategory();
+//			        category.setName(rs.getString("name"));
+//			        categories.add(category);
+//			    }
+//		} catch (SQLException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//	   
+//	    return categories;
+//	}
 
 	
 }

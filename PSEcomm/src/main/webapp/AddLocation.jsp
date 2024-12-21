@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <%@page import="com.emp.DTO.Employee"%>
 <%@page import="com.emp.DTO.Location"%>
 <html lang="en">
@@ -40,16 +39,12 @@
         }
 
         .sidebar {
-            width: 250px;
+            overflow-y: auto;
             height: 100vh;
-            background-color: #1abc9c;
+            background-color: #3c3d37;
             color: white;
             padding: 15px;
             box-sizing: border-box;
-        }
-
-        .sidebar h4 {
-            margin-top: 0;
         }
 
         .sidebar a {
@@ -72,10 +67,27 @@
             background-color: #f8f9fa;
         }
 
-        .section {
-            margin-bottom: 30px;
+        /* Form Container Style */
+        .form-container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-top: 0; /* No space above the form */
         }
 
+        /* Heading Style */
+        .heading {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 15px;
+            font-size: 18px;
+            font-weight: bold;
+            border-radius: 10px 10px 0 0; /* Rounded top corners */
+            margin: 0; /* No margin to attach it to the form */
+        }
+
+        /* Label and Form Field Styles */
         .form-label {
             display: block;
             margin-bottom: 5px;
@@ -84,7 +96,7 @@
 
         .form-control {
             width: 100%;
-            padding: 10px;
+            padding: 5px;
             margin-bottom: 10px;
             border: 1px solid #ccc;
             border-radius: 4px;
@@ -97,6 +109,7 @@
             margin-top: 20px;
         }
 
+        /* Button Styles */
         .button {
             background-color: #007bff;
             color: white;
@@ -129,10 +142,10 @@
 
 <body>
     <div class="navbar">
-        <div class="navbar-brand" style="color : blue; font-weight : bold;">Admin Dashboard</div>
+        <div class="navbar-brand" style="color: blue; font-weight: bold;">Admin Dashboard</div>
         <div>
-            <%Employee e=(Employee)session.getAttribute("employee"); %>
-            <a style="color : #000000A6">Welcome, <%=e.getFname() %></a>
+            <% Employee e = (Employee) session.getAttribute("employee"); %>
+            <a style="color: #000000A6; font-weight: 400;">Welcome, <%= e.getFname() %></a>
         </div>
     </div>
 
@@ -144,45 +157,39 @@
         </div>
 
         <div class="content">
-           <!--  <div class="section">
-                <h3 style="font-size : 20px;">Locations We Deliver To</h3>
-                <select id="locationDropdown" class="form-control" style = "padding : 5px;">
-                    <option value="Bangalore">Bangalore</option>
-                    <option value="Mumbai">Mumbai</option>
-                    <option value="Hyderabad">Hyderabad</option>
-                    <option value="Chennai">Chennai</option>
-                    <option value="Delhi">Delhi</option>
-                </select>
-            </div> -->
+            <div class="form-container">
+                <!-- Heading directly attached to the form without space -->
+                <div class="heading">
+                    Add Location
+                </div>
 
-            <div class="section">
-                <h3 style="font-size : 20px;">Add Location</h3>
-                
-                <%String success = (String)request.getAttribute("success");
-                  if(success!=null){%>
-                  <h4 style="color : green; font-size : 17px; font-weight : bold;"><%=success%></h4>
-                  <%} %>
-                  
-                <%String failure = (String)request.getAttribute("failure");
-                  if(failure!=null){%>
-                  <h4 style="color : red; font-size : 17px; font-weight : bold;"><%=failure%></h4>
-                  <%} %>
-                  
-                <form action="AddLocation" method="post">
-                   <label for="Location" class="form-label" style="font-size : 15px;">Location</label>
-                   <input type="text" id="Location" name = "location" class="form-control" placeholder="Enter Location" style = "padding : 5px;">
+                <div class="section">
+                    <% String success = (String) request.getAttribute("success");
+                    if (success != null) { %>
+                    <h4 class="text-success" style="font-size: 17px; font-weight: bold;"><%= success %></h4>
+                    <% } %>
 
-                   <label for="City" class="form-label" style="font-size : 15px;">City</label>
-                   <input type="text" id="City" name = "city" class="form-control" placeholder="Enter City" style = "padding : 5px;">
+                    <% String failure = (String) request.getAttribute("failure");
+                    if (failure != null) { %>
+                    <h4 class="text-danger" style="font-size: 17px; font-weight: bold;"><%= failure %></h4>
+                    <% } %>
 
-                   <label for="State" class="form-label" style="font-size : 15px;">State</label>
-                   <input type="text" id="State" name = "state"  class="form-control" placeholder="Enter State" style = "padding : 5px;">
+                    <form action="AddLocation" method="post">
+                        <label for="Location" class="form-label" style="font-size: 15px; margin-top : 15px;">Location</label>
+                        <input type="text" id="Location" name="location" class="form-control" placeholder="Enter Location">
 
-                   <div class="form-actions">
-                       <input type="submit" class="button" value="Add Location" style="font-size : 15px;">
-                       <a href="EmployeeAdminDashboard.jsp" class="btn-secondary" style="font-size : 15px;">Back to Dashboard</a>
-                  </div>
-               </form>
+                        <label for="City" class="form-label" style="font-size: 15px;">City</label>
+                        <input type="text" id="City" name="city" class="form-control" placeholder="Enter City">
+
+                        <label for="State" class="form-label" style="font-size: 15px;">State</label>
+                        <input type="text" id="State" name="state" class="form-control" placeholder="Enter State">
+
+                        <div class="form-actions">
+                            <input type="submit" class="button" value="Add Location" style="font-size: 15px;">
+                            <a href="EmployeeAdminDashboard.jsp" class="btn-secondary" style="font-size: 15px;">Back to Dashboard</a>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     </div>

@@ -1,3 +1,7 @@
+<%@page import="com.productCategory.DTO.ProductCategory"%>
+<%@page import="com.productCategory.DAO.productCategoryDDAOImpl"%>
+<%@page import="com.productCategory.DAO.productCategoryDAO"%>
+<%@page import="java.util.Iterator"%>
 <%@page import="com.emp.DTO.Location"%>
 <%@page import="com.emp.DAO.locationDAOimp"%>
 <%@page import="com.emp.DAO.locationDAO"%>
@@ -103,6 +107,8 @@ EmployeeDAO e1= new EmployeeDAOImp();
 List<Employee> employees =e1.getEmployee();
 ProductDAO dao = new ProductDAOImp();
 List<Product> products = dao.getproducts();
+
+
 //locationDAO dao2 = new locationDAOimp();
 //List<Location> locations =dao2.getlocation();
 %>
@@ -255,25 +261,20 @@ List<Product> products = dao.getproducts();
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>101</td>
-                                        <td>Product A</td>
-                                        <td>$25</td>
-                                        <td>Electronics</td>
-                                    </tr>
-                                    <tr>
-                                        <td>102</td>
-                                        <td>Product B</td>
-                                        <td>$15</td>
-                                        <td>Grocery</td>
-                                    </tr>
-                                    <tr>
-                                        <td>103</td>
-                                        <td>Product C</td>
-                                        <td>$50</td>
-                                        <td>Clothing</td>
-                                    </tr>
-                                </tbody>
+                                  <% 
+                                     List<Product> data = dao.getProductAndCategorys();
+                                     Iterator<Product> itr = data.iterator();
+                                     while(itr.hasNext()) {
+                                     Product p = itr.next();
+                                   %>
+                                 <tr>
+                                 <td><%= p.getProduct_Id() %></td>
+                                 <td><%= p.getProducr_Name() %></td>
+                                 <td><%= p.getPrice() %></td>
+                                 <td><%= p.getCategory_Name() %></td> 
+                                 </tr>
+                                 <% } %>
+                               </tbody>
                             </table>
                         </div>
                     </div>

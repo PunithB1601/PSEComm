@@ -17,12 +17,11 @@
         body {
             margin: 0;
             padding: 0;
-            display: flex;
-            flex-direction: column;
             font-family: Arial, sans-serif;
+            overflow: hidden; /* Disable body scroll */
         }
 
-        .navbar {
+       .navbar {
             background-color: #f8f9fa;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             padding: 10px 20px;
@@ -38,6 +37,7 @@
             margin-left: 15px;
         }
 
+
         .navbar-brand {
             color: blue;
             font-weight: bold;
@@ -46,32 +46,29 @@
 
         .d-flex {
             display: flex;
-            align-items: stretch;
-            height: 100%;
+            height: 100vh;
+            overflow: hidden; /* Prevent scroll on the main container */
         }
 
         .sidebar {
-            width: 250px;
-            background-color: #1abc9c;
+            overflow-y: auto;
+            background-color: #3c3d37;
             color: white;
-            padding: 15px;
-            box-sizing: border-box;
+            padding: 20px;
             display: flex;
             flex-direction: column;
-        }
-
-        .sidebar h4 {
-            margin-top: 0;
+            overflow: auto; /* Allow sidebar content to scroll */
         }
 
         .sidebar a {
             color: #ffffff;
-            padding: 10px 15px;
+            padding: 12px 20px;
             display: block;
             text-decoration: none;
             font-weight: bold;
+            margin-bottom: 15px;
             border-radius: 4px;
-            margin-bottom: 10px;
+            transition: background-color 0.3s ease;
         }
 
         .sidebar a:hover {
@@ -82,38 +79,62 @@
             flex: 1;
             padding: 20px;
             background-color: #f8f9fa;
+            overflow-y: auto; /* Allow content section to scroll if necessary */
         }
 
         .table-container {
             margin-top: 20px;
+            width: 100%; /* Make sure the table container takes full width */
+            overflow: visible; /* Ensure no scroll bar on the table container */
         }
 
         table {
             width: 100%;
-            border-collapse: collapse;
+            border-collapse: separate;
+            border-spacing: 0;
             margin-bottom: 20px;
+            border-radius: 10px;
+            overflow: hidden;
         }
 
         table th, table td {
-            padding: 10px;
+            padding: 12px;
             text-align: left;
-            border: 1px solid #ccc;
+            border: 1px solid #ddd;
+            transition: background-color 0.2s ease;
         }
 
         table th {
             background-color: #007bff;
             color: white;
+            font-weight: bold;
         }
 
-        .button {
-            background-color: #007bff;
-            color: white;
-            padding: 5px 10px;
+        table tbody tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        table tbody tr:nth-child(odd) {
+            background-color: #ffffff;
+        }
+
+        table tbody tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        .button, .btn-danger, .btn-secondary {
+            padding: 8px 15px;
             border: none;
             border-radius: 4px;
             cursor: pointer;
             text-decoration: none;
             font-size: 14px;
+            transition: background-color 0.3s ease;
+        }
+
+        .button {
+            background-color: #007bff;
+            color: white;
         }
 
         .button:hover {
@@ -122,6 +143,7 @@
 
         .btn-danger {
             background-color: #dc3545;
+            color: white;
         }
 
         .btn-danger:hover {
@@ -129,17 +151,49 @@
         }
 
         .btn-secondary {
-            padding: 10px 15px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            text-decoration: none;
-            background-color: #6c757d;
-            color: white;
+    background-color: #6c757d;
+    color: white;
+    padding: 10px 20px; /* Increase padding to make it more prominent */
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-bottom : 20px;
+    text-decoration: none; /* Ensures link looks like a button */
+    transition: background-color 0.3s ease;
+    display: inline-block; /* Ensures the button is not hidden by flexbox or block-level properties */
+}
+
+.btn-secondary:hover {
+    background-color: #5a6268;
+}
+
+.table-container {
+    margin-top: 20px;
+    width: 100%;
+    overflow: visible;
+    margin-bottom: 20px; /* Adds space below the table */
+}
+
+.table-container div {
+    display: block;
+    width: 100%;
+    text-align: right;
+    margin-top: 20px; /* Adds space above the button */
+}
+
+        h3 {
+            text-align: center;
+            margin-top: 30px;
         }
 
-        .btn-secondary:hover {
-            background-color: #5a6268;
+        .action-btns {
+            text-align: center;
+        }
+
+        .navbar-brand, .content h3 {
+            font-size: 24px;
+            font-weight: 600;
         }
     </style>
 </head>
@@ -147,10 +201,10 @@
 <body>
     <!-- Navbar -->
     <div class="navbar">
-        <div class="navbar-brand" style="color : blue; font-weight : bold; padding : 8px;">Admin Dashboard</div>
+        <div class="navbar-brand">Admin Dashboard</div>
         <div>
             <% Employee e = (Employee) session.getAttribute("employee"); %>
-            <a style="color : #000000A6">Welcome, <%= e.getFname() %></a>
+            <a style="color: #000000A6; font-weight: 400;">Welcome, <%= e.getFname() %></a>
         </div>
     </div>
 
@@ -166,16 +220,16 @@
 
         <!-- Content -->
         <div class="content">
-            <h3 style="text-align : center;">Location Details</h3>
+            <h3 style="font-size : 20px;">Location Details</h3>
 
             <% String delsuccess = (String) request.getAttribute("Delsuccess");
             if (delsuccess != null) { %>
-                <h4 style="color : green;"><%= delsuccess %></h4>
+                <h4 style="color : green; text-align:center;"><%= delsuccess %></h4>
             <% } %>
 
             <% String delfailure = (String) request.getAttribute("Delfailure");
             if (delfailure != null) { %>
-                <h4 style="color : red;"><%= delfailure %></h4>
+                <h4 style="color : red; text-align:center;"><%= delfailure %></h4>
             <% } %>
 
             <!-- Table to display locations -->
@@ -192,25 +246,26 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <% locationDAO ldao = new locationDAOimp();
+                        <%
+                            locationDAO ldao = new locationDAOimp();
                             List<Location> locations = ldao.getlocation();
                             Iterator<Location> itr = locations.iterator();
                             while (itr.hasNext()) {
                                 Location l = itr.next();
-                            %>
+                        %>
+                        <tr>
                             <td><%= l.getLid() %></td>
                             <td><%= l.getLocation() %></td>
                             <td><%= l.getCity() %></td>
                             <td><%= l.getState() %></td>
 
-                            <td style="text-align: center;">
+                            <td class="action-btns">
                                 <form action="updateLocation.jsp" method="post">
                                     <input type="hidden" name="lid" value="<%= l.getLid() %>">
                                     <button type="submit" class="button">Update</button>
                                 </form>
                             </td>
-                            <td style="text-align: center;">
+                            <td class="action-btns">
                                 <form action="DeleteLocation" method="post">
                                     <input type="hidden" name="lid" value="<%= l.getLid() %>">
                                     <button type="submit" class="button btn-danger">Delete</button>
@@ -220,9 +275,9 @@
                         <% } %>
                     </tbody>
                 </table>
-                <div style = "text-align : right; margin-top : 15px;">
-                      <a href="EmployeeAdminDashboard.jsp" class="btn-secondary" style="font-size : 15px;">Back to Dashboard</a>
-                  </div>
+                <div style="text-align:right; margin-top: 15px;">
+                    <a href="EmployeeAdminDashboard.jsp" class="btn-secondary">Back to Dashboard</a>
+                </div>
             </div>
         </div>
     </div>

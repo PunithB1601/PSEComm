@@ -9,6 +9,10 @@ import java.util.List;
 
 import com.database.DBConnection;
 import com.emp.DTO.Product;
+import com.productCategory.DAO.productCategoryDAO;
+import com.productCategory.DAO.productCategoryDDAOImpl;
+import com.productCategory.DAO.productCategoryDDAOImpl;
+import com.productCategory.DTO.ProductCategory;
 
 public class ProductDAOImp implements ProductDAO
 {
@@ -154,5 +158,36 @@ public class ProductDAOImp implements ProductDAO
 		}
 		return products;
 	}
+	
+	
+	@Override
+	public List<Product> getProductAndCategorys() {
+	    ArrayList<Product> products = new ArrayList<Product>();
+	    PreparedStatement ps = null;
+	    ResultSet rs = null;
+	    Product p = null;
+	    // Modify the query to join PRODUCT table with product_category table
+	    String query = "SELECT p.PRODUCT_ID, p.PNAME, p.PRICE, p.IMG, p.categoryId, c.name AS category_name FROM PRODUCT p JOIN product_category c ON p.categoryId = c.categoryId";
+;
+	    try {
+	        ps = con.prepareStatement(query);
+	        rs = ps.executeQuery();
+	        while (rs.next()) {
+	            p = new Product();
+	            p.setProduct_Id(rs.getInt("PRODUCT_ID"));
+	            p.setProducr_Name(rs.getString("PNAME"));
+	            p.setPrice(rs.getDouble("PRICE"));
+	            p.setImg(rs.getString("IMG"));
+	            p.setCategory_Id(rs.getInt("categoryId"));
+	            p.setCategory_Name(rs.getString("category_name")); // Directly get the category name from the query
 
+	            products.add(p);
+	        }
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+	    return products;
+	}
+
+	
 }
