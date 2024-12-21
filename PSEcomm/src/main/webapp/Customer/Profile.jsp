@@ -108,9 +108,7 @@
         .containt label{
             width: 130px;
         }
-        #fname:disabled{
-            background-color: white;
-        }
+        
     </style>
 
 
