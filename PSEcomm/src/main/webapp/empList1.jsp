@@ -17,9 +17,8 @@
         body {
             background-color: #f8f9fa;
         }
-        .container {
-            margin-top: 50px;
-        }
+        
+        
         .card {
             margin-bottom: 20px;
         }
@@ -37,17 +36,26 @@
             display: flex;
             gap: 10px;
         }
+        .nav{
+        padding: 15px 0px;
+       
+        }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1 class="text-center">Employee List</h1>
-        <div class="search-bar mb-4">
+        
+        <div class="search-bar nav " style="display: flex; flex-direction:column; justify-content: space-between; flex-direction: row;  " >
+         <div class="form-actions "  >
+                                   
+                                    <a href="EmployeeAdminDashboard.jsp" class="btn btn-secondary" >Back to Dashboard</a>
+                                </div>
             <form method="get" action="empList1.jsp" class="form-inline">
                 <input type="text" name="search" class="form-control mr-sm-2" placeholder="Search" value="<%= request.getParameter("search") != null ? request.getParameter("search") : "" %>">
                 <button type="submit" class="btn btn-primary">Search</button>
             </form>
         </div>
+        <h1 class="text-center " style="margin-bottom: 20px ">Employee List</h1>
           <% String success = (String) request.getAttribute("success"); %>
             <% if (success != null) { %>
                 <p class="text-success text-center mb-3"><%= success %></p>
@@ -86,10 +94,7 @@
             %>
              
         </div>
-         <div class="form-actions" style="display: flex; flex-direction:column; align-items: flex-end; margin-top: 20px" >
-                                   
-                                    <a href="EmployeeAdminDashboard.jsp" class="btn btn-secondary" >Back to Dashboard</a>
-                                </div>
+        
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
