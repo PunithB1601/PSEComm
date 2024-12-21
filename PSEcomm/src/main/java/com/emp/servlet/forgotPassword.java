@@ -32,7 +32,7 @@ public class forgotPassword extends HttpServlet
 		if(e!=null && mail.equals(e.getMail()) && setpass.equals(conpass))
 		{
 			e.setPassword(setpass);
-			boolean res1=edao.updateemployee(e);
+			boolean res1=edao.updatePassword(e);
 			if(res1)
 			{
 				req.setAttribute("success", "Pin updated Successful");

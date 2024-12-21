@@ -592,6 +592,56 @@ public class EmployeeDAOImp implements EmployeeDAO
         }
         return emp;
 	}
+	
+	  @Override
+	    public boolean updatePassword(Employee e) {
+
+	        String query="UPDATE EMP SET FNAME=?,LNAME=?,DOB=?,GENDER=?,JOB=?,MGR=?,DOJ=?,SAL=?,COMM=?,DNO=?,CID=?,MAILID=?,PASSWORD=? where PHONE=?";
+	        PreparedStatement ps=null;
+	        int res=0;
+
+	        try
+	        {
+	            con.setAutoCommit(false);
+	            ps=con.prepareStatement(query);
+	            ps.setString(1, e.getFname());
+	            ps.setString(2,e.getLname());
+	            ps.setString(3,e.getDOB());
+	            ps.setString(4,e.getGender());
+	            ps.setString(5,e.getJob());
+	            ps.setInt(6,e.getMgr());
+	            ps.setString(7,e.getDoj());
+	            ps.setDouble(8,e.getSalary());
+	            ps.setDouble(9,e.getCommition());
+	            ps.setInt(10,e.getDno());
+	            ps.setInt(11,e.getCid());
+	            ps.setLong(14,e.getPhone());
+	            ps.setString(12,e.getMail());
+	            ps.setString(13,e.getPassword());
+	            res=ps.executeUpdate();
+	        } catch (SQLException ex) {
+	            throw new RuntimeException(ex);
+	        }
+	        if(res>0)
+	        {
+	            try {
+	                con.commit();
+	            } catch (SQLException ex) {
+	                throw new RuntimeException(ex);
+	            }
+	            return true;
+	        }
+	        else
+	        {
+	            try {
+	                con.rollback();
+	            } catch (SQLException ex) {
+	                throw new RuntimeException(ex);
+	            }
+	            return false;
+	        }
+	    }
+	
 }
 	
 
