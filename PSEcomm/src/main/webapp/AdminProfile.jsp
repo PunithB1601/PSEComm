@@ -31,7 +31,7 @@
                         <form action="UpdateProfileServlet" method="post" onsubmit="return validatePassword()">
                             <div class="form-group">
                                 <label for="eid">Employee ID:</label>
-                                <input type="text" id="eid" name="eid" class="form-control" readonly value="<%= e.getCid()%>">
+                                <input type="text" id="eid" name="eid" class="form-control" readonly value="<%= e.getEid()%>">
                             </div>
                             <div class="form-group">
                                 <label for="fname">First Name:</label>

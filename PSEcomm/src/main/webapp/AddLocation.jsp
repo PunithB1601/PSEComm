@@ -51,6 +51,7 @@
             color: #ffffff;
             padding: 10px 15px;
             display: block;
+            text-align : center;
             text-decoration: none;
             font-weight: bold;
             border-radius: 4px;
@@ -111,7 +112,7 @@
 
         /* Button Styles */
         .button {
-            background-color: #007bff;
+            background-color: #198754;
             color: white;
             padding: 10px 15px;
             border: none;

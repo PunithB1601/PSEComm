@@ -21,6 +21,7 @@ public interface EmployeeDAO
     public List getTesters();
     public List getDeveloper();
     public List getDispatcher();
+    public List getAccountant();
 	boolean updatePassword(Employee e);
 	 public List getEmployee1(String search);
 

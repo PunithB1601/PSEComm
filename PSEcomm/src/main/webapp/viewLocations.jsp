@@ -64,6 +64,7 @@
             color: #ffffff;
             padding: 12px 20px;
             display: block;
+            text-align : center;
             text-decoration: none;
             font-weight: bold;
             margin-bottom: 15px;
@@ -133,7 +134,7 @@
         }
 
         .button {
-            background-color: #007bff;
+             background-color: #198754;
             color: white;
         }
 
