@@ -12,14 +12,18 @@
         .card {
             margin-top: 50px;
         }
+        label {
+	font-size:1.2rem;
+	font-weight: bold;
+}
     </style>
 </head>
 <body>
     <div class="container"  style="width: 60%">
-        <div class="row justify-content-center">
+        <div class="row justify-content-center" >
             <div class="col-md-6">
                 <div class="card" style="box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;">
-                    <div class="card-header text-center" >
+                    <div class="card-header text-center" style="background-color: white; border: none;" >
                         <h3>Login</h3>
                         <%String success=(String)request.getAttribute("success");
                         if(success!= null){
