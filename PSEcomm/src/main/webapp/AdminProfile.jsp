@@ -73,15 +73,6 @@
                                 <label for="phone">Phone Number:</label>
                                 <input type="tel" id="phone" name="phone" class="form-control" required value="<%= e.getPhone()%>">
                             </div>
-                            <div class="form-group">
-                                <label for="password">Password:</label>
-                                <input type="password" id="password" name="password" class="form-control"  value="<%= e.getPassword()%>">
-                            </div>
-                            <div class="form-group">
-                                <label for="confirmPassword">Confirm Password:</label>
-                                <input type="password" id="confirmPassword" name="confirmPassword" class="form-control" value="<%= e.getPassword()%>">
-                                <div class="invalid-feedback">Passwords do not match.</div>
-                            </div>
                             <div class="form-actions">
                                     <button type="submit" class="btn btn-success">Update profile</button>
                                     <a href="EmployeeAdminDashboard.jsp" class="btn btn-secondary" style="margin-left: 200px">Back to Dashboard</a>

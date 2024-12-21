@@ -22,7 +22,8 @@
         <a href="AddEmployee.jsp" class="text-white text-decoration-none p-2 rounded bg-secondary">Add Employee</a>
         <a href="EmpList.jsp" class="text-white text-decoration-none p-2 rounded bg-secondary">Delete Employee</a>
         <a href="ModifyEmp.jsp" class="text-white text-decoration-none p-2 rounded bg-secondary">Hike User</a>
-        <a href="#" class="text-white text-decoration-none p-2 rounded bg-secondary">My Profile</a>
+        <a href="EmployeeProfile.jsp" class="text-white text-decoration-none p-2 rounded bg-secondary">My Profile</a>
+        <a href="forgotPassword.jsp" class="text-white text-decoration-none p-2 rounded bg-secondary">ResetPin</a>
     </div>
 
     <% Employee hr = (Employee) session.getAttribute("employee"); %>
