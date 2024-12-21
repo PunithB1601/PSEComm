@@ -24,14 +24,14 @@ public class deleteEmp extends HttpServlet {
 
         if (session == null || session.getAttribute("employee") == null) {
             req.setAttribute("failure", "Unauthorized access. Please log in.");
-            RequestDispatcher rd=req.getRequestDispatcher("EmpList.jsp");
+            RequestDispatcher rd=req.getRequestDispatcher("empList1.jsp");
             rd.forward(req, resp);
             return;
         }
 
         if (eid == null || eid.isEmpty()) {
             req.setAttribute("failure", "EID number is missing.");
-            RequestDispatcher rd=req.getRequestDispatcher("EmpList.jsp");
+            RequestDispatcher rd=req.getRequestDispatcher("empList1.jsp");
             rd.forward(req, resp);
             return;
         }
@@ -44,7 +44,7 @@ public class deleteEmp extends HttpServlet {
             Employee targetEmployee = edao.getEmployee(empId);
             if (targetEmployee == null) {
                 req.setAttribute("failure", "Employee not found.");
-                RequestDispatcher rd=req.getRequestDispatcher("EmpList.jsp");
+                RequestDispatcher rd=req.getRequestDispatcher("empList1.jsp");
                 rd.forward(req, resp);
                 return;
             }
@@ -72,7 +72,7 @@ public class deleteEmp extends HttpServlet {
             req.setAttribute("failure", "Invalid Employee ID format.");
         }
 
-       RequestDispatcher rd=req.getRequestDispatcher("EmpList.jsp");
+       RequestDispatcher rd=req.getRequestDispatcher("empList1.jsp");
        rd.forward(req, resp);
     }
 }

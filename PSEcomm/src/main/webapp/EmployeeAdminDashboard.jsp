@@ -95,7 +95,7 @@
     <div class="d-flex" >
         <div class="sidebar p-3" style="background-color:#3C3D37;">
             <a href="#dashboard">Dashboard</a>
-            <a href="EmpList.jsp">Manage Users</a>
+            <a href="empList1.jsp">Manage Users</a>
 			<a href="ViewProduct.jsp">View Products</a>
             <a href="AdminProfile.jsp">Profile</a>
             <a href="forgotPassword.jsp">ResetPin</a>
