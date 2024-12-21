@@ -79,11 +79,17 @@
                         </form>
                     </div>
                 </div>
+                
             </div>
             <%
                 }
             %>
+             
         </div>
+         <div class="form-actions" style="display: flex; flex-direction:column; align-items: flex-end; margin-top: 20px" >
+                                   
+                                    <a href="EmployeeAdminDashboard.jsp" class="btn btn-secondary" >Back to Dashboard</a>
+                                </div>
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>

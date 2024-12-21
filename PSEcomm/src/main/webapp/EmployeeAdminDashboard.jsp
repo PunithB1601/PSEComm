@@ -155,18 +155,7 @@ List<Product> products = dao.getproducts();
             </div>
 
             <div class="row">
-                <!-- <div class="col-md-6">
-                    <div class="card">
-                        <div class="card-header bg-primary text-white">Recent Activities</div>
-                        <div class="card-body">
-                            <ul class="list-group">
-                                <li class="list-group-item">User John updated profile</li>
-                                <li class="list-group-item">System backup completed</li>
-                                <li class="list-group-item">New user registration approved</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div> -->
+               
                 <div class="col-md-6">
                     <div class="card">
                         <div class="card-header bg-primary text-white">Employees</div>
@@ -188,14 +177,7 @@ List<Product> products = dao.getproducts();
                                                 View Employees
                                             </button>
                                         </a>
-                                            <!-- <div class="collapse" id="employeeList">
-                                                <ul class="list-group mt-3">
-                                                    <li class="list-group-item">Employee 1</li>
-                                                    <li class="list-group-item">Employee 2</li>
-                                                    <li class="list-group-item">Employee 3</li>
-                                                    
-                                                </ul>
-                                            </div> -->
+                                            
                                         </td>
                                     </tr>
                                     <tr>
@@ -206,13 +188,7 @@ List<Product> products = dao.getproducts();
                                                 View Managers
                                             </button>
                                         </a>
-                                            <!-- <div class="collapse" id="managerList">
-                                                <ul class="list-group mt-3">
-                                                    <li class="list-group-item">Manager 1</li>
-                                                    <li class="list-group-item">Manager 2</li>
-                                                    
-                                                </ul>
-                                            </div> -->
+                                            
                                         </td>
                                     </tr>
                                     <tr>
@@ -223,13 +199,7 @@ List<Product> products = dao.getproducts();
                                                 View Salesmen
                                             </button>
                                         </a>
-                                            <!-- <div class="collapse" id="salesmanList">
-                                                <ul class="list-group mt-3">
-                                                    <li class="list-group-item">Salesman 1</li>
-                                                    <li class="list-group-item">Salesman 2</li>
-                                                    
-                                                </ul>
-                                            </div> -->
+                                            
                                         </td>
                                     </tr>
                                 </tbody>
@@ -239,16 +209,7 @@ List<Product> products = dao.getproducts();
                 </div>
 
                 <div class="col-md-6">
-                    <!-- <div class="card">
-                        <div class="card-header bg-success text-white">System Notifications</div>
-                        <div class="card-body">
-                            <ul class="list-group">
-                                <li class="list-group-item">No critical errors detected</li>
-                                <li class="list-group-item">Scheduled maintenance at 12:00 AM</li>
-                                <li class="list-group-item">All services running smoothly</li>
-                            </ul>
-                        </div>
-                    </div> -->
+                   
                     <div class="card">
                         <div class="card-header bg-success text-white">Product List</div>
                         <div class="card-body">
