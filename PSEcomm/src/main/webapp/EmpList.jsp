@@ -36,7 +36,7 @@
 </head>
 <body>
     <div class="container" style="box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px; padding: 40px; background-color: whiresmoke; border-radius: 15px;">
-        <h1 class="text-center">Employee List</h1>
+        <h1 class="text-center" style="font-size : 28px; margin-bottom : 30px;">Employee List</h1>
         <% String success = (String) request.getAttribute("success"); %>
             <% if (success != null) { %>
                 <p class="text-success text-center mb-3"><%= success %></p>
@@ -69,7 +69,7 @@
                     <td class="table-actions">
                         <form action="deleteEmployee" method="post">
            					 <input type="hidden" name="eid" value="<%= emp.getEid() %>">
-            				 <input type="submit" name="delete" value="Delete" class="btn btn-danger btn-lg">
+            				 <input type="submit" name="delete" value="Delete" class="btn btn-danger">
         				</form>
                         <form action="ModifyEmp.jsp" method="get" style="display:inline;">
                             <input type="hidden" name="eid" value="<%= emp.getEid() %>">
@@ -88,7 +88,7 @@
 
         <div>
           <% if(e.getJob().equalsIgnoreCase("ceo")){ %>
-       <a href="EmployeeAdminDashboard.jsp"><button type="button" class="btn btn-primary" style="font-size: 1.2rem; color: black;">Back</button></a>
+       <a href="EmployeeAdminDashboard.jsp"><button type="button" class="btn btn-primary" style="font-size: 1.2rem; color: black;">Back to Dashboard</button></a>
         <%} else if(hr.getJob().equalsIgnoreCase("hr")){ %>
           <a href="HrDashboard.jsp"><button type="button" class="btn btn-primary" style="font-size: 1.2rem; color: black;">Back</button></a>
            <%} %>

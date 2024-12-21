@@ -17,8 +17,9 @@
         }
         .sidebar a {
             color: #ffffff;
-            padding: 15px;
+            padding: 12px;
             display: block;
+            text-align : center;
             text-decoration: none;
             font-weight: bold;
             margin: 5px 0;

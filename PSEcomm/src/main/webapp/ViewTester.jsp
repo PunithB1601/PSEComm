@@ -102,7 +102,7 @@
 </head>
 <body>
     <header class="header">  
-        <h1>Developers Directory</h1>
+        <h1>Tester Directory</h1>
         <div>
             <% Employee e = (Employee) session.getAttribute("employee"); %>
             <% 

@@ -26,8 +26,9 @@
         }
         .sidebar a {
             color: #ffffff;
-            padding: 15px;
+            padding: 12px;
             display: block;
+            text-align : center;
             text-decoration: none;
             font-weight: bold;
             margin: 5px 0;
@@ -125,7 +126,7 @@
                                
                                 <div class="form-actions">
                                     <button type="submit" class="btn btn-success">Add Product</button>
-                                    <a href="EmployeeAdminDashboard.jsp" class="btn btn-secondary" style="margin-top: 30px">Back to Dashboard</a>
+                                    <a href="EmployeeAdminDashboard.jsp" class="btn btn-secondary" style="margin-top: 10px">Back to Dashboard</a>
                                 </div>
 
                             </form>
