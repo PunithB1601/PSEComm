@@ -102,7 +102,7 @@
 </head>
 <body>
     <header class="header">  
-        <h1>Dispatcher Directory</h1>
+        <h1>Accountant Directory</h1>
         <div>
             <% Employee e = (Employee) session.getAttribute("employee"); %>
             <% 
@@ -131,7 +131,7 @@
     
     <% 
         EmployeeDAO edao = new EmployeeDAOImp();
-        List<Employee> employees = edao.getDispatcher();
+        List<Employee> employees = edao.getAccountant();
         Employee emp = null;
         Iterator<Employee> it = employees.iterator();
     %>
