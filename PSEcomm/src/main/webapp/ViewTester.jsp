@@ -38,16 +38,19 @@
             font-size: 1.8rem;
         }
 
-        .header a button {
+        .btn-back {
             font-size: 1rem;
             padding: 8px 16px;
             border-radius: 5px;
+            border: 1px solid white;
+            background-color: #2c3e50;
+            color: white;
             transition: background-color 0.3s ease;
-            border: 1px solid #ddd;
+            text-decoration: none;
         }
 
-        .header a button:hover {
-            background-color: #2c3e50;
+        .btn-back:hover {
+            background-color: #1a242f;
             color: white;
         }
 
@@ -83,9 +86,7 @@
         .profile-pic {
             width: 100px;
             height: 100px; 
-            margin-bottom: 15px;
-            margin-left: auto;
-            margin-right: auto;
+            margin: 0 auto 15px auto;
             background-color: gray; 
             color: white;
             display: flex;
@@ -102,9 +103,26 @@
 <body>
     <header class="header">  
         <h1>Developers Directory</h1>
-        <a href="ManagerDashboard.jsp">
-            <button class="btn btn-light text-dark border">Back</button>
-        </a>
+        <div>
+            <% Employee e = (Employee) session.getAttribute("employee"); %>
+            <% 
+                if (e != null) {
+                    if (e.getJob().equalsIgnoreCase("ceo")) { 
+            %>
+                <a href="EmployeeAdminDashboard.jsp" class="btn-back">Back to Dashboard</a>
+            <% 
+                    } else if (e.getJob().equalsIgnoreCase("hr")) { 
+            %>
+                <a href="HrDashboard.jsp" class="btn-back">Back to Dashboard</a>
+            <% 
+                    } else if (e.getJob().equalsIgnoreCase("manager")) { 
+            %>
+                <a href="ManagerDashboard.jsp" class="btn-back">Back to Dashboard</a>
+            <% 
+                    }
+                }
+            %>
+        </div>
     </header>
     
     <% 
