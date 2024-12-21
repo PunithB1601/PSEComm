@@ -1,11 +1,10 @@
-<%@page import="com.customer.dto.Customer"%>
 <%@page import="com.emp.DTO.Location"%>
 <%@page import="java.util.List"%>
 <%@page import="com.emp.DAO.locationDAOimp"%>
 <%@page import="com.emp.DAO.locationDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
+<%request.setAttribute("menu", "Profile");%>
 <%@include file="/Customer/CustomerSession.jsp" %>
 <%
   if(customer==null)
@@ -17,37 +16,28 @@
   }
 %>
 <%
-  request.setAttribute("menu", "Profile");
   locationDAO locationDAO = new locationDAOimp();
    List<Location> locations = locationDAO.getlocation();
 %> 
-
-<%Customer c=(Customer)session.getAttribute("user");%>
-
-
 <!DOCTYPE html>
-<html lang="en">
-
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Update Profile</title>
-    <%@include file="/Customer/utils/CommonUtils.jsp" %>
-    <script type="text/javascript"
-        src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-    <script
-        src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
-    <link rel="stylesheet"
-        href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    <link rel="stylesheet"
-        href="https://unpkg.com/bootstrap@5.3.3/dist/css/bootstrap.min.css">
-    <link
-        href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap"
-        rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Profile</title>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<%@include file="/Customer/utils/CommonUtils.jsp" %>
 
-    <style type="text/css">
+<style type="text/css">
        
+       .profile-section{
+        width: 100%;
+        min-height: 80vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+       }
+      
 
         body {
             width: 100%;
@@ -118,41 +108,45 @@
         .containt label{
             width: 130px;
         }
-        
+        #fname:disabled{
+            background-color: white;
+        }
     </style>
-</head>
 
+
+</head>
 <body>
-  <%@include file="/Customer/Navbar.jsp" %>
-   
-   <form id="signup" method="post" action="<%=request.getContextPath()+"/Customer/UpdateProfile"%>">
+<%@include file="/Customer/Navbar.jsp" %>
+ 
+ <section class="profile-section">
+      <form id="signup" method="post" action="<%=request.getContextPath()+"/Customer/UpdateProfile"%>">
 
         <h4 class="text-center">Update your Profile</h4>
 
         <div class="form-group containt">
             <label for="fname">User Id</label>
-            <input type="text" class="form-control" value="<%=c.getCid()%>" disabled name="userid" id="fname">
+            <input type="text" class="form-control" value="<%=customer.getCid()%>" disabled name="userid" id="fname">
         </div>
 
         <div class="form-group containt">
             <label for="fname">First Name</label>
-            <input type="text" class="form-control" value="<%=c.getFirstName() %>" name="firstName" id="fname">
+            <input type="text" class="form-control" value="<%=customer.getFirstName() %>" name="firstName" id="fname">
         </div>
 
         <div class="form-group containt">
             <label for="lname">Last Name</label>
-            <input type="text" class="form-control" value="<%=c.getLastName() %>" name="lastName" id="lname">
+            <input type="text" class="form-control" value="<%=customer.getLastName() %>" name="lastName" id="lname">
         </div>
 
         <div class="form-group containt">
             <label for="email">Email</label>
-            <input type="email" class="form-control" value="<%=c.getEmail()%>" disabled name="email" id="email">
+            <input type="email" class="form-control" value="<%=customer.getEmail()%>" disabled name="email" id="email">
         </div>
 
 
         <div class="form-group containt">
             <label for="mobile">Mobile</label>
-            <input type="text" class="form-control" value="<%=c.getPhone() %>" name="phone" id="mobile">
+            <input type="text" class="form-control" value="<%=customer.getPhone() %>" name="phone" id="mobile">
         </div>
 
         <div class="form-group containt">
@@ -163,25 +157,25 @@
                  for(Location location : locations)
                  {
                 	 %>
-                	
-                	  <option  value="<%=location.getLid()%>" ><%=location.getLocation()+" , "+location.getCity()+" , "+location.getState() %></option>
+                	  <option <%=location.getLid() == customer.getLid() ? "selected='selected'":""  %> value="<%=location.getLid()%>" ><%=location.getLocation()+" , "+location.getCity()+" , "+location.getState() %></option>
                 	 <%
                  }
                 %>
             </select>
           
         </div>
-        
-
+             
+ 
         <div class="form-footer">
             <button class="btn btn-primary mb-3"><a id="cancel" href="">Cancel</a></button>
             <button type="submit" class="btn btn-primary mb-3">Save</button>
            
         </div>
     </form>
-    
+ 
+ </section>
 
-    <script>
+<script>
         // Backend Error Display
         <% if (request.getAttribute("failure") != null) { 
             String message = (String) request.getAttribute("failure");
@@ -237,6 +231,6 @@
             });
         });
     </script>
-</body>
 
+</body>
 </html>

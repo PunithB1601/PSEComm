@@ -28,7 +28,7 @@ public class Login extends HttpServlet{
 		{
 			if(password.equals(c.getPassword()))
 			{
-				session.setAttribute("customer", c);
+				session.setAttribute("user", c);
 				RequestDispatcher rd=req.getRequestDispatcher("/Customer/Home.jsp"); // dashboard
 				rd.forward(req, resp);			
 			}else {

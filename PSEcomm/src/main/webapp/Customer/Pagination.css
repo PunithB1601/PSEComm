@@ -14,7 +14,7 @@
  border: 0.1rem solid #efefef;
  background: #efefef;
  border-radius: 8px;
- color: black;
+ color: black;;
  cursor: pointer;
   display: flex;
   justify-content: center;
@@ -23,5 +23,5 @@
 
 .pagination .active{
  background: black;
- color: white;
+ color: white !important;
 }
