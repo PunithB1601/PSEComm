@@ -43,18 +43,19 @@
     </style>
 </head>
 <body>
-    <div class="container">
-        
-        <div class="search-bar nav " style="display: flex; flex-direction:column; justify-content: space-between; flex-direction: row;  " >
-         <div class="form-actions "  >
+  <div class="search-bar nav " style="display: flex; flex-direction:column; justify-content: space-between; flex-direction: row;  background-color: white;" >
+         <div class="form-actions " style="margin-left:15px "  >
                                    
                                     <a href="EmployeeAdminDashboard.jsp" class="btn btn-secondary" >Back to Dashboard</a>
                                 </div>
             <form method="get" action="empList1.jsp" class="form-inline">
-                <input type="text" name="search" class="form-control mr-sm-2" placeholder="Search" value="<%= request.getParameter("search") != null ? request.getParameter("search") : "" %>">
+                <input type="text"  style="background-color: whitesmoke;" name="search" class="form-control mr-sm-2" placeholder="Search" value="<%= request.getParameter("search") != null ? request.getParameter("search") : "" %>">
                 <button type="submit" class="btn btn-primary">Search</button>
             </form>
         </div>
+    <div class="container">
+        
+      
         <h1 class="text-center " style="margin-bottom: 20px ">Employee List</h1>
           <% String success = (String) request.getAttribute("success"); %>
             <% if (success != null) { %>
