@@ -92,7 +92,7 @@
         <div class="sidebar p-3" style="background-color:#3C3D37;">
             <a href="#dashboard">Dashboard</a>
             <a href="EmpList.jsp">Manage Users</a>
-
+			<a href="ViewProduct.jsp">View Products</a>
             <a href="AdminProfile.jsp">Profile</a>
          	<form action="logout" method="post">
                 <input type="submit" name="logout" value="Logout" class="btn btn-outline-light btn-sm ms-3">
