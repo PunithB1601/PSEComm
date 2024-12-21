@@ -82,14 +82,15 @@
     <div  class="d-flex justify-content-between align-items-center p-3 bg-light">
         <h1 class="m-0">Employee Directory</h1>
         <div>
-            <% Employee hr = (Employee) session.getAttribute("employee"); %>
             <% Employee e = (Employee) session.getAttribute("employee"); %>
            
             <% if (e.getJob().equalsIgnoreCase("ceo")) { %>
                 <a href="EmployeeAdminDashboard.jsp" class="btn btn-primary">Back to Dashboard</a>
-            <% } else if (hr.getJob().equalsIgnoreCase("hr")) { %>
+            <% } else if (e.getJob().equalsIgnoreCase("hr")) { %>
                 <a href="HrDashboard.jsp" class="btn btn-primary">Back to Dashboard</a>
-            <%} %>
+            <%} else if (e.getJob().equalsIgnoreCase("manager")) { %>
+            <a href="HrDashboard.jsp" class="btn btn-primary">Back to Dashboard</a>
+        <%} %>
         </div>
     </div>
 
