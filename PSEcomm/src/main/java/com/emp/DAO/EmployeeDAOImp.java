@@ -678,6 +678,48 @@ public class EmployeeDAOImp implements EmployeeDAO
 	            return false;
 	        }
 	    }
+
+	@Override
+	public List getEmployee1(String search) {
+		ArrayList<Employee>emp=new ArrayList<Employee>();
+        Employee e=null;
+        PreparedStatement ps=null;
+        ResultSet rs=null;
+        String searchQuery="%"+search+"%";
+        String query="SELECT * FROM EMP WHERE FNAME like ?";
+        try {
+			ps=con.prepareStatement(query);
+            ps.setString(1, searchQuery);
+            rs=ps.executeQuery();
+
+            while (rs.next())
+            {
+                e=new Employee();
+                e.setEid(rs.getInt("eid"));
+                e.setFname(rs.getString("fname"));
+                e.setLname(rs.getString("lname"));
+                e.setDOB(rs.getString("dob"));
+                e.setGender(rs.getString("gender"));
+                e.setJob(rs.getString("job"));
+                e.setMgr(rs.getInt("mgr"));
+                e.setDoj(rs.getString("doj"));
+                e.setSalary(rs.getLong("sal"));
+                e.setCommition(rs.getLong("comm"));
+                e.setDno(rs.getInt("dno"));
+                e.setCid(rs.getInt("cid"));
+                e.setPhone(rs.getLong("phone"));
+                e.setMail(rs.getString("mailid"));
+                e.setPassword(rs.getString("password"));
+                emp.add(e);
+            }
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		return emp;
+	}
+
+
 	
 }
 	
