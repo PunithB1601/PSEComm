@@ -7,10 +7,14 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
         body {
-            background-color: #f8f9fa;
+            background-color: #f0f3f9;
         }
         .card {
-            margin-top: 50px;
+            margin-top: 150px;
+           
+        }
+        h3{
+        font-family: serif;
         }
         label {
 	font-size:1.2rem;
