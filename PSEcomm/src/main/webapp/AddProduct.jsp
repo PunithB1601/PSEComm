@@ -120,6 +120,11 @@
                                     </select>
                                 </div>
                                 <div class="mb-3">
+                                    <label for="productDesc" class="form-label">Product Description</label>
+                                    <input type="text" class="form-control" placeholder="Enter product Description" name="productDesc" id="productDesc">
+                                </div>
+                                
+                                <div class="mb-3">
                                     <label for="productImage" class="form-label">Product Image</label>
                                     <input type="file" class="form-control" name="productImg" id="productImage">
                                 </div>

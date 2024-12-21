@@ -146,7 +146,7 @@ int totalData = productDAO.getAllProductsCount(selectedCategory);
          for(ProductCategory pc : productCategories)
          {
         	 %>
-        	  <a class="category-tag <%=selectedCategory == pc.getCategoryId() ? "category-tag-acive" :"" %>" href="<%= request.getContextPath()+"/Customer/Shop.jsp?category="+pc.getCategoryId()+"&page=1&limit=10"%>"><%=pc.getName() %></a>
+        	  <a class="category-tag <%=selectedCategory == pc.getCategoryId() ? "category-tag-acive" :"" %>" href="<%= request.getContextPath()+"/Customer/Shop.jsp?category="+pc.getCategoryId()+"&page=1&limit=10"%>"><%=pc.getName()%></a>
         	 <% 
          }
       

@@ -80,20 +80,21 @@ public   class locationDAOimp implements locationDAO {
     }
 
 	@Override
-	public boolean setlocation(int id) {
+	public Location getlocation(int id) {
 		// TODO Auto-generated method stub
 		PreparedStatement ps=null;
 		ResultSet rs=null;
 		Location l=null;
-		String query="SELECT * FROM location WHERE id=?  ";
+		String query="SELECT * FROM location WHERE lid=?  ";
 		try {
 			ps=con.prepareStatement(query);
 			ps.setInt(1, id);
 			rs=ps.executeQuery();
 			if(rs.next()) {
 			l=new Location();
+			l.setLid(id);
 			l.setLocation( rs.getString("Location"));
-			l.setCity ( rs.getString("City"));
+			l.setCity( rs.getString("City"));
 			l.setState(rs.getString("State"));
 			}
 		} catch (SQLException e) {
@@ -101,7 +102,7 @@ public   class locationDAOimp implements locationDAO {
 			e.printStackTrace();
 		}
 		
-		return false;
+	return l;
 	}
 
 	@Override

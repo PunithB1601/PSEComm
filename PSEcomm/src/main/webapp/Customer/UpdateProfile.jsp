@@ -12,7 +12,9 @@
   locationDAO locationDAO = new locationDAOimp();
    List<Location> locations = locationDAO.getlocation();
 %> 
-<%Customer c=(Customer)session.getAttribute("customer");%>
+<%Customer c=(Customer)session.getAttribute("customer");
+Location l=locationDAO.getlocation(c.getLid());
+%>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -107,9 +109,7 @@
         .containt label{
             width: 130px;
         }
-        #fname:disabled{
-            background-color: white;
-        }
+        
     </style>
 </head>
 
@@ -149,12 +149,14 @@
         <div class="form-group containt">
             <label for="inputState">Location</label>
             <select name="location" id="inputState"  class="form-control">
-            	
+            	<option selected="<%=c.getLid()==l.getLid()%>" value="<%=l.getLid()%>" ><%=l.getLocation()+" , "+l.getCity()+" , "+l.getState() %></option>
+                	 
                 <%
                  for(Location location : locations)
                  {
                 	 %>
-                	  <option selected="<%=location.getLid() == c.getLid()  %>" value="<%=location.getLid()%>" ><%=location.getLocation()+" , "+location.getCity()+" , "+location.getState() %></option>
+                	
+                	  <option  value="<%=location.getLid()%>" ><%=location.getLocation()+" , "+location.getCity()+" , "+location.getState() %></option>
                 	 <%
                  }
                 %>

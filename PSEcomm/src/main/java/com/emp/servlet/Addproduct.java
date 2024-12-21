@@ -1,6 +1,7 @@
 
 package com.emp.servlet;
 
+import java.awt.Point;
 import java.io.File;
 import java.io.IOException;
 
@@ -31,6 +32,8 @@ public class Addproduct extends HttpServlet {
 		double productPrie = req.getParameter("productPrice") !=null ? Double.parseDouble(req.getParameter("productPrice"))  :-1;
 	    int categoryId = req.getParameter("productCategory") !=null ? Integer.parseInt(req.getParameter("productCategory"))  :-1;
 	    Part imgPart  = req.getPart("productImg");
+	    String desc=req.getParameter("productDesc");
+	    
 		
 	    String filename = imgPart.getSubmittedFileName();
 		String uploadPath = getServletContext().getRealPath("/imgs");
@@ -52,6 +55,7 @@ public class Addproduct extends HttpServlet {
 		product.setPrice(productPrie);
 		product.setCategory_Id(categoryId);
 		product.setImg(imgUrl);
+		product.setDescription(desc);
 		
 		ProductDAO productDAO = new ProductDAOImp();
 		product = productDAO.addProduct(product);
