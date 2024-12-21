@@ -72,7 +72,16 @@
     </div>
     <div class="form-actions">
         <button type="submit" class="btn btn-success">Update Profile</button>
-        <a href="SalesmanDashboard.jsp" class="btn btn-secondary">Back to Dashboard</a>
+        
+            <% if (e.getJob().equalsIgnoreCase("ceo")) { %>
+                <a href="EmployeeAdminDashboard.jsp" class="btn btn-secondary">Back to Dashboard</a>
+            <% } else if (e.getJob().equalsIgnoreCase("hr")) { %>
+                <a href="HrDashboard.jsp" class="btn btn-secondary">Back to Dashboard</a>
+            <% } else if(e.getJob().equalsIgnoreCase("salesman")) {%>
+            <a href="SalesmanDashboard.jsp" class="btn btn-secondary">Back to Dashboard</a>
+            <%}  else if(e.getJob().equalsIgnoreCase("manager")) {%>
+            <a href="ManagerDashboard.jsp" class="btn btn-secondary">Back to Dashboard</a>
+            <%} %>
     </div>
 
                             

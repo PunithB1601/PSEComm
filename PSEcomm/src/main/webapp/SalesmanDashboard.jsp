@@ -152,7 +152,7 @@ a:hover {
 					<div class="card">
 						<div
 							class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
-							<span>Products</span> <a href="ViewProducts.jsp"
+							<span>Products</span> <a href="ViewProduct.jsp"
 								class="text-white">View All Products</a>
 						</div>
 						<div class="card-body">

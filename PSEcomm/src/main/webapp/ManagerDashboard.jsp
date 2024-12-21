@@ -53,7 +53,9 @@
     <div class="sidebar">
         <h2>Manager Dashboard</h2>
         <a href="ViewEmp.jsp">View Employees</a>
+        <a href="ViewProduct.jsp">View Products</a>
         <a href="EmployeeProfile.jsp">My Profile</a>
+         <a href="forgotPassword.jsp">ResetPin</a>
         <form action="logout" method="post">
                 <input type="submit" name="logout" value="Logout" class="btn btn-outline-light btn-sm ms-3">
             </form>

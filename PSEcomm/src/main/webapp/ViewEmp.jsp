@@ -28,7 +28,31 @@
             background-color: #34495e;
             color: white;
             padding: 20px;
-            text-align: center;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header h1 {
+            font-size: 1.8rem;
+        }
+
+        .back-button {
+            text-decoration: none;
+        }
+
+        .btn-back {
+            font-size: 1rem;
+            padding: 8px 16px;
+            border-radius: 5px;
+            border: 1px solid white;
+            color: white;
+            background-color: #2c3e50;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-back:hover {
+            background-color: #1a242f;
         }
 
         .employee-container {
@@ -75,28 +99,45 @@
             text-transform: uppercase; 
             font-family: Arial, sans-serif; 
         }
-       
     </style>
 </head>
 <body>
-    <div  class="d-flex justify-content-between align-items-center p-3 bg-light">
-        <h1 class="m-0">Employee Directory</h1>
+    <div class="header">
+        <h1>Employee Directory</h1>
         <div>
-            <% Employee hr = (Employee) session.getAttribute("employee"); %>
             <% Employee e = (Employee) session.getAttribute("employee"); %>
-           
-            <% if (e.getJob().equalsIgnoreCase("ceo")) { %>
-                <a href="EmployeeAdminDashboard.jsp" class="btn btn-primary">Back to Dashboard</a>
-            <% } else if (hr.getJob().equalsIgnoreCase("hr")) { %>
-                <a href="HrDashboard.jsp" class="btn btn-primary">Back to Dashboard</a>
-            <%} %>
+            <% 
+                if (e != null) {
+                    if (e.getJob().equalsIgnoreCase("ceo")) { 
+            %>
+                <a href="EmployeeAdminDashboard.jsp" class="back-button">
+                    <button class="btn btn-back">Back to Dashboard</button>
+                </a>
+            <% 
+                    } else if (e.getJob().equalsIgnoreCase("hr")) { 
+            %>
+                <a href="HrDashboard.jsp" class="back-button">
+                    <button class="btn btn-back">Back to Dashboard</button>
+                </a>
+            <% 
+                    } else if (e.getJob().equalsIgnoreCase("manager")) { 
+            %>
+                <a href="ManagerDashboard.jsp" class="back-button">
+                    <button class="btn btn-back">Back to Dashboard</button>
+                </a>
+            <% 
+                    }
+                } 
+            %>
         </div>
     </div>
 
-    <% EmployeeDAO edao = new EmployeeDAOImp();
-    List<Employee> employees = edao.getEmployee();
-    Employee emp = null;
-    Iterator<Employee> it = employees.iterator(); %>
+    <% 
+        EmployeeDAO edao = new EmployeeDAOImp();
+        List<Employee> employees = edao.getEmployee();
+        Employee emp = null;
+        Iterator<Employee> it = employees.iterator(); 
+    %>
     <main class="employee-container">
         <% while (it.hasNext()) {
             emp = it.next();
@@ -114,4 +155,3 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
-     
