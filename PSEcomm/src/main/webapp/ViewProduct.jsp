@@ -1,3 +1,4 @@
+<%@page import="com.emp.DTO.Employee"%>
 <%@page import="com.productCategory.DAO.productCategoryDAO"%>
 <%@page import="com.productCategory.DAO.productCategoryDDAOImpl"%>
 <%@page import="com.productCategory.DTO.ProductCategory"%>
@@ -34,11 +35,10 @@
     	text-align: center;
     }
     .btnn{
-    	margin:20px;
-    	margin-bottom:30px;
     	position:absolute;
-    	right:10px;
+    	right:30px;
     }
+    
     .view-product{
         margin: 100px;
         margin-top:80px;
@@ -61,7 +61,22 @@
 <header class="product">
 	<h3>All Product Details</h3>
 </header>
-<a href="HrDashboard.jsp"><button type="submit" class="btnn btn btn-secondary">Back to Dashboard</button></a>
+	<div class="btnn ms-3 mt-3">
+            <% Employee hr = (Employee) session.getAttribute("employee"); %>
+            <% Employee e = (Employee) session.getAttribute("employee"); %>
+             <% Employee sales = (Employee) session.getAttribute("employee"); %>
+             <% Employee manager = (Employee) session.getAttribute("employee"); %>
+            <% if (e.getJob().equalsIgnoreCase("ceo")) { %>
+                <a href="EmployeeAdminDashboard.jsp" class="btn btn-secondary">Back to Dashboard</a>
+            <% } else if (hr.getJob().equalsIgnoreCase("hr")) { %>
+                <a href="HrDashboard.jsp" class="btn btn-secondary">Back to Dashboard</a>
+            <% } else if(sales.getJob().equalsIgnoreCase("salesman")) {%>
+            <a href="SalesmanDashboard.jsp" class="btn btn-secondary">Back to Dashboard</a>
+            <%}  else if(manager.getJob().equalsIgnoreCase("manager")) {%>
+            <a href="ManagerDashboard.jsp" class="btn btn-secondary">Back to Dashboard</a>
+            <%} %>
+        </div>	
+
     <div class="view-product">
         
     <table class="table table-bordered border-info shadow p-3 mb-5 bg-body-tertiary rounded rounded">
