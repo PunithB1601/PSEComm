@@ -126,7 +126,7 @@
             <a href="#dashboard">Dashboard</a>
             <a href="empList1.jsp">Manage Users</a>
 			<a href="ViewProduct.jsp">View Products</a>
-            <a href="AdminProfile.jsp">Profile</a>
+            <a href="EmployeeProfile.jsp">Profile</a>
             <a href="forgotPassword.jsp">ResetPin</a>
          	<form action="logout" method="post">
                 <input type="submit" name="logout" value="Logout" class="btn btn-sm ms-3" style="color : white; font-weight : bold; font-size : 16px; left : 0px; padding: 12px; ">

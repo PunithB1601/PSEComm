@@ -41,14 +41,17 @@ public class UpdateProfile extends HttpServlet {
         boolean res = edao.UpdateProfile(emp);
 
         
-        if (res) {
-            req.setAttribute("success", "Profile updated successfully!");
-        } else {
+        if(res)
+        {
+        	req.setAttribute("success", "Profile updated successfully!");
+        	RequestDispatcher rd = req.getRequestDispatcher("EmployeeProfile.jsp");
+            rd.forward(req, resp);
+        }
+        else {
             req.setAttribute("failure", "Failed to update profile. Please try again.");
         }
 
         
-        RequestDispatcher rd = req.getRequestDispatcher("EmployeeProfile.jsp");
-        rd.forward(req, resp);
+        
     }
 }
