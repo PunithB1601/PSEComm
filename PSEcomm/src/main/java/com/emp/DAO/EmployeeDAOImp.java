@@ -420,7 +420,8 @@ public class EmployeeDAOImp implements EmployeeDAO
 	public boolean UpdateProfile(Employee emp) {
 	    String query = "UPDATE emp SET fname = ?, lname = ?, dob = ?, gender = ?, mailid = ?, phone = ? WHERE eid = ?";
 	    try (PreparedStatement ps = con.prepareStatement(query)) {
-	        ps.setString(1, emp.getFname());
+	        con.setAutoCommit(false);
+	    	ps.setString(1, emp.getFname());
 	        ps.setString(2, emp.getLname());
 	        ps.setString(3, emp.getDOB());
 	        ps.setString(4, emp.getGender());
@@ -724,7 +725,7 @@ public class EmployeeDAOImp implements EmployeeDAO
 		String query = "UPDATE emp SET  sal = ?, comm = ? WHERE eid = ?";
 		int res=0;
 	    try (PreparedStatement ps = con.prepareStatement(query)) {
-	     
+	    	con.setAutoCommit(false);
 	        ps.setDouble(1, e.getSalary());
 	        ps.setDouble(2, e.getCommition());
 	        ps.setInt(3,e.getEid());
@@ -734,10 +735,22 @@ public class EmployeeDAOImp implements EmployeeDAO
 	        es.printStackTrace();}
 	        if(res>0)
 	        {
+	        	try {
+				con.commit();
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 	            return true;
 	        }
 	        else
 	        {
+	        	try {
+					con.rollback();
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 	            return false;	    
 }	    
 	}	

@@ -12,6 +12,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 
 @WebServlet("/UpdateProfileServlet")
@@ -26,8 +27,8 @@ public class UpdateProfile extends HttpServlet {
         String mailid = req.getParameter("mailid");
         long phone = Long.parseLong(req.getParameter("phone"));
 
-
-        Employee emp = new Employee();
+        HttpSession session=req.getSession(false);
+        Employee emp =(Employee)session.getAttribute("employee");
         emp.setEid(eid);
         emp.setFname(fname);
         emp.setLname(lname);
@@ -41,13 +42,13 @@ public class UpdateProfile extends HttpServlet {
 
         
         if (res) {
-            req.setAttribute("updateMessage", "Profile updated successfully!");
+            req.setAttribute("success", "Profile updated successfully!");
         } else {
-            req.setAttribute("updateMessage", "Failed to update profile. Please try again.");
+            req.setAttribute("failure", "Failed to update profile. Please try again.");
         }
 
         
-        RequestDispatcher rd = req.getRequestDispatcher("SalesmanDashboard.jsp");
+        RequestDispatcher rd = req.getRequestDispatcher("EmployeeProfile.jsp");
         rd.forward(req, resp);
     }
 }

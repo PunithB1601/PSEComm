@@ -32,6 +32,16 @@
                 <div class="card">
                     <div class="card-header text-center">
                         <h3>Update Profile</h3>
+                        <%String success=(String)request.getAttribute("success");
+                        if(success!= null){
+                        %>
+                        <p style="color: green; font-size: 0.8rem;"><%=success %></p>
+                        <%} %>
+                        <%String failure=(String)request.getAttribute("failure");
+                        if(failure!= null){
+                        %>
+                        <p style="color: red; font-size: 0.8rem;"><%=failure %></p>
+                        <%} %>
                     </div>
                     <% Employee e = (Employee) session.getAttribute("employee"); %>
                     <div class="card-body">
