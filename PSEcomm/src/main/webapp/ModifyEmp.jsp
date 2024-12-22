@@ -66,7 +66,7 @@
                     <%  while(it.hasNext()){
                      	emp=it.next();  %>
                         <tr><form action="Hike" method="post">
-                            <td><input style="border: none;" type="tel" name="eid" class="form-control" value=<%=emp.getEid() %>></td>
+                            <td><input style="border: none;" type="tel" name="eid" class="form-control" value=<%=emp.getEid() %> readonly="readonly"></td>
                             <td><%=emp.getFname() +" "+emp.getLname() %></td>
                             <td><input style="border: none;" type="tel" name="sal" class="form-control" value=<%=emp.getSalary() %>></td>
                             <td><input style="border: none;" type="tel" name="com" class="form-control" value=<%=emp.getCommition() %>></td>
