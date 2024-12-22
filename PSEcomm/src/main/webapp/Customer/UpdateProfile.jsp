@@ -21,7 +21,9 @@
   locationDAO locationDAO = new locationDAOimp();
    List<Location> locations = locationDAO.getlocation();
 %> 
+
 <%Customer c=(Customer)session.getAttribute("user");%>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -116,9 +118,7 @@
         .containt label{
             width: 130px;
         }
-        #fname:disabled{
-            background-color: white;
-        }
+        
     </style>
 </head>
 
@@ -163,7 +163,8 @@
                  for(Location location : locations)
                  {
                 	 %>
-                	  <option selected="<%=location.getLid() == c.getLid()  %>" value="<%=location.getLid()%>" ><%=location.getLocation()+" , "+location.getCity()+" , "+location.getState() %></option>
+                	
+                	  <option  value="<%=location.getLid()%>" ><%=location.getLocation()+" , "+location.getCity()+" , "+location.getState() %></option>
                 	 <%
                  }
                 %>

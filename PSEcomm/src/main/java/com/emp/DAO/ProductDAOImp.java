@@ -23,7 +23,7 @@ public class ProductDAOImp implements ProductDAO
 	{
 		PreparedStatement ps=null;
 		int res=0;
-		String query="INSERT INTO PRODUCT (PNAME,PRICE,IMG,CATEGORYID) VALUES(?,?,?,?)";
+		String query="INSERT INTO PRODUCT (PNAME,PRICE,IMG,CATEGORYID,description) VALUES(?,?,?,?,?)";
 		try {
 			con.setAutoCommit(false);
 			ps=con.prepareStatement(query);
@@ -31,6 +31,8 @@ public class ProductDAOImp implements ProductDAO
 			ps.setDouble(2, p.getPrice());
 			ps.setString(3, p.getImg());
 			ps.setInt(4, p.getCategory_Id());
+			ps.setString(5, p.getDescription());
+		
 			res=ps.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -115,6 +117,8 @@ public class ProductDAOImp implements ProductDAO
 				p.setPrice(rs.getDouble(3));
 				p.setImg(rs.getString(4));
 				p.setCategory_Id(rs.getInt(5));
+				p.setDescription(rs.getString(6));
+			
 			}
 		}
 		catch (SQLException e) {
@@ -144,6 +148,7 @@ public class ProductDAOImp implements ProductDAO
 				p.setPrice(rs.getDouble(3));
 				p.setImg(rs.getString(4));
 				p.setCategory_Id(rs.getInt(5));
+				p.setDescription(rs.getString(6));
 				products.add(p);
 			}
 			
@@ -192,6 +197,7 @@ public class ProductDAOImp implements ProductDAO
 				p.setPrice(rs.getDouble(3));
 				p.setImg(rs.getString(4));
 				p.setCategory_Id(rs.getInt(5));
+				p.setDescription(rs.getString(6));
 				products.add(p);
 			}
 			
