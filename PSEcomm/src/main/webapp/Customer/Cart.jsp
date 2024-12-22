@@ -48,9 +48,40 @@ body {
 	align-items: center;
 }
 
+.img-wrapper {
+	width: 400px;
+	height: 600px;
+	position: relative;
+}
+
+.img-wrapper img {
+	width: 100%;
+	height: 100%;
+}
+
+.img-wrapper p {
+	position: absolute;
+	bottom: 35%;
+	left: 50%;
+	transform: translateX(-50%);
+}
+
 @media ( max-width :500px) {
 	.cart-section {
 		padding: 5px;
+	}
+	.img-wrapper {
+		width: 280px;
+		height: 600px;
+		position: relative;
+	}
+	.img-wrapper p {
+		position: absolute;
+		bottom: 30%;
+		left: 50%;
+		transform: translateX(-50%);
+		white-space: nowrap;
+		font-size: 0.9rem;
 	}
 }
 </style>
@@ -65,7 +96,11 @@ body {
 
 	<div class="empty-cart">
 
-		<p>Your cart is Empty</p>
+		<div class="img-wrapper">
+			<img alt=""
+				src="https://images.rawpixel.com/image_800/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDI0LTAyL3Jhd3BpeGVsX29mZmljZV8yM19jaHViYnlfY3V0ZV8zZF9taW5pbWFsX3JlbmRlcl9jaGFyYWN0ZXJfb2Zfc19lNGFhZGY1NS0yYTRmLTQ3YWUtODRiNi0yN2YzN2ZkMjdhNTlfMS5qcGc.jpg">
+			<p>Your cart is Empty</p>
+		</div>
 
 	</div>
 
@@ -74,14 +109,7 @@ body {
 	} else {
 	%>
 
-	<section class="cart-section">
-	
-	 
-	
-	
-	
-	
-	</section>
+	<section class="cart-section"></section>
 	<%
 	}
 	%>

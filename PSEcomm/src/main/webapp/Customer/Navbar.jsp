@@ -88,7 +88,7 @@
             top: 20px;
             left: 20px;
         }
-        @media (max-width:500px) {
+        @media (max-width:680px) {
 
             .desktop-menu {
                 display: none;

@@ -78,20 +78,29 @@ int totalData = productDAO.getAllProductsCount(selectedCategory);
   background: white;
   font-size: 0.8rem;
   cursor: pointer;
-  color: black;
+  color: black !important;
   white-space: nowrap;
+  box-shadow: 0px 1px 4px gray !important;
  }
  
  .category-tag-acive{
   background: black;
-  color: white;
+  color: white !important;
  }
+ 
+ 
  
  .not-found{
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
+  height: 70vh;
+ }
+ .not-found  img{
+  width: 200px;
+  height: 200px;
  }
  
  .product-card .product-title{
@@ -166,7 +175,7 @@ int totalData = productDAO.getAllProductsCount(selectedCategory);
     {
      %>
         <div class="not-found">
-        
+           <img alt="not-found" src="https://img.freepik.com/free-photo/cute-puppy-cartoon-ai-generated-image_268835-6476.jpg">
           <p>No product Found</p>
         </div>
      <%    

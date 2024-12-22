@@ -9,9 +9,7 @@
 <%
   if(customer==null)
   {
-	  request.setAttribute("failure", "Please Login");
-	  RequestDispatcher requestDispatcher = request.getRequestDispatcher("/Customer/Login.jsp");
-	  requestDispatcher.forward(request, response);
+	  response.sendRedirect(request.getContextPath()+"/Customer/Login.jsp");
 	  return;
   }
 %>
@@ -184,6 +182,17 @@
         Swal.fire({
             icon: "error",
             title: "Oops...",
+            text: "<%= message %>"
+        });
+        <% } %>
+        
+        <% if (request.getAttribute("success") != null) { 
+            String message = (String) request.getAttribute("success");
+            request.removeAttribute("success");
+        %>
+        Swal.fire({
+            icon: "success",
+            title: "Success",
             text: "<%= message %>"
         });
         <% } %>
