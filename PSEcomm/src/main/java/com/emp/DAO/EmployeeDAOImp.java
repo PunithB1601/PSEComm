@@ -719,8 +719,28 @@ public class EmployeeDAOImp implements EmployeeDAO
 		return emp;
 	}
 
+	@Override
+	public boolean HikeUser(Employee e) {
+		String query = "UPDATE emp SET  sal = ?, comm = ? WHERE eid = ?";
+		int res=0;
+	    try (PreparedStatement ps = con.prepareStatement(query)) {
+	     
+	        ps.setDouble(1, e.getSalary());
+	        ps.setDouble(2, e.getCommition());
+	        ps.setInt(3,e.getEid());
 
-	
+	         res = ps.executeUpdate();
+	    } catch (SQLException es) {
+	        es.printStackTrace();}
+	        if(res>0)
+	        {
+	            return true;
+	        }
+	        else
+	        {
+	            return false;	    
+}	    
+	}	
 }
 	
 

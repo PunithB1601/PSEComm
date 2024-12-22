@@ -24,5 +24,6 @@ public interface EmployeeDAO
     public List getAccountant();
 	boolean updatePassword(Employee e);
 	 public List getEmployee1(String search);
+	public boolean HikeUser(Employee e);
 
 }
