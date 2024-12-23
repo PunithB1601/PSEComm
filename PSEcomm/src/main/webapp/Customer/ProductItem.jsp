@@ -199,7 +199,7 @@ img {
 	<%
 	return;
 	} else {
-	List<Product> similarproduts = productDAO.getSimilarProducts(product);
+	List<Product> similarproduts = productDAO.getSimilarProducts(product);  
 	%>
 
 	<div class="container">

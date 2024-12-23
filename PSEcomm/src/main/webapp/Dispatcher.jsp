@@ -18,10 +18,9 @@
 <body class="d-flex vh-100 bg-light">
     <div class="bg-dark text-white p-3 d-flex flex-column gap-3" style="width: 250px;">
         <h2 class="text-center"> Dashboard</h2>
-        <a href="#" class="text-white text-decoration-none p-2 rounded bg-secondary">My Profile</a>
+        <a href="EmployeeProfile.jsp" class="text-white text-decoration-none p-2 rounded bg-secondary">My Profile</a>
         <a href="forgotPassword.jsp" class="text-white text-decoration-none p-2 rounded bg-secondary">ResetPin</a>
     </div>
-
 
     <div class="flex-grow-1 d-flex flex-column">
         <div class="d-flex justify-content-between align-items-center p-3 bg-white shadow-sm">
@@ -31,45 +30,52 @@
             </form>
         </div>
 
-        
+        <div class="container my-4">
+            <div class="row g-4">
+                <!-- Assigned Orders -->
+                <div class="col-md-6">
+                    <div class="bg-primary text-white p-3 rounded-top">
+                        <h4>Assigned Orders</h4>
+                    </div>
+                    <table class="table table-bordered table-striped">
+                        <thead class="table-primary">
+                            <tr>
+                                <th>Product ID</th>
+                                <th>Product Name</th>
+                                <th>Category</th>
+                                <th>Order Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                          
+                          
+                          </tr>
+                        </tbody>
+                    </table>
+                </div>
 
-        <div class="container my-4">
-            <div class="bg-primary text-white p-3 rounded-top">
-                <h4>Assigned  Orders</h4>
+                <!-- Unassigned Orders -->
+                <div class="col-md-6">
+                    <div class="bg-primary text-white p-3 rounded-top">
+                        <h4>Unassigned Orders</h4>
+                    </div>
+                    <table class="table table-bordered table-striped">
+                        <thead class="table-primary">
+                            <tr>
+                                <th>Product ID</th>
+                                <th>Product Name</th>
+                                <th>Category</th>
+                                <th>Order Status</th>
+                                <th>Assign</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                          
+                        </tbody>
+                    </table>
+                </div>
             </div>
-            <table class="table table-bordered table-striped">
-                <thead class="table-primary">
-                    <tr>
-                        <th>product id</th>
-                        <th>product name </th>
-                        <th>Category</th>
-                        <th>Order Status</th>
-                    </tr>
-                </thead>
-                <tbody>
-                  
-                </tbody>
-            </table>
-        </div>
-        
-        <div class="container my-4">
-            <div class="bg-primary text-white p-3 rounded-top">
-                <h4>Unassigned  Orders</h4>
-            </div>
-            <table class="table table-bordered table-striped">
-                <thead class="table-primary">
-                    <tr>
-                        <th>product id</th>
-                        <th>product name </th>
-                        <th>Category</th>
-                        <th>Order Status</th>
-                        <th>Assign</th>
-                    </tr>
-                </thead>
-                <tbody>
-                  
-                </tbody>
-            </table>
         </div>
     </div>
 
