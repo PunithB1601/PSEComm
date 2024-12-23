@@ -31,7 +31,7 @@
                         <form action="UpdateProfileServlet" method="post" onsubmit="return validatePassword()">
                             <div class="form-group">
                                 <label for="eid">Employee ID:</label>
-                                <input type="text" id="eid" name="eid" class="form-control" readonly value="<%= e.getCid()%>">
+                                <input type="text" id="eid" name="eid" class="form-control" readonly value="<%= e.getEid()%>">
                             </div>
                             <div class="form-group">
                                 <label for="fname">First Name:</label>
@@ -72,15 +72,6 @@
                             <div class="form-group">
                                 <label for="phone">Phone Number:</label>
                                 <input type="tel" id="phone" name="phone" class="form-control" required value="<%= e.getPhone()%>">
-                            </div>
-                            <div class="form-group">
-                                <label for="password">Password:</label>
-                                <input type="password" id="password" name="password" class="form-control"  value="<%= e.getPassword()%>">
-                            </div>
-                            <div class="form-group">
-                                <label for="confirmPassword">Confirm Password:</label>
-                                <input type="password" id="confirmPassword" name="confirmPassword" class="form-control" value="<%= e.getPassword()%>">
-                                <div class="invalid-feedback">Passwords do not match.</div>
                             </div>
                             <div class="form-actions">
                                     <button type="submit" class="btn btn-success">Update profile</button>

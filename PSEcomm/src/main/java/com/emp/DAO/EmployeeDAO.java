@@ -16,5 +16,14 @@ public interface EmployeeDAO
     public List getManager();
     public List getSalesman();
     public List getDetails();
+	public boolean UpdateProfile(Employee emp);
+    public Employee getEmployee(String mail);
+    public List getTesters();
+    public List getDeveloper();
+    public List getDispatcher();
+    public List getAccountant();
+	boolean updatePassword(Employee e);
+	 public List getEmployee1(String search);
+	public boolean HikeUser(Employee e);
 
 }

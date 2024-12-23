@@ -1,16 +1,16 @@
-<!DOCTYPE html>
 <%@page import="java.util.Iterator"%>
+<%@page import="com.emp.DTO.Employee"%>
 <%@page import="java.util.List"%>
 <%@page import="com.emp.DAO.EmployeeDAOImp"%>
 <%@page import="com.emp.DAO.EmployeeDAO"%>
-<%@page import="com.emp.DTO.Employee"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Employee Page</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
-
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         /* General Reset */
         body, h1, h2, p {
@@ -34,11 +34,8 @@
         }
 
         .header h1 {
+            margin: 0;
             font-size: 1.8rem;
-        }
-
-        .back-button {
-            text-decoration: none;
         }
 
         .btn-back {
@@ -46,13 +43,15 @@
             padding: 8px 16px;
             border-radius: 5px;
             border: 1px solid white;
-            color: white;
             background-color: #2c3e50;
+            color: white;
             transition: background-color 0.3s ease;
+            text-decoration: none;
         }
 
         .btn-back:hover {
             background-color: #1a242f;
+            color: white;
         }
 
         .employee-container {
@@ -102,56 +101,53 @@
     </style>
 </head>
 <body>
-    <div class="header">
-        <h1>Employee Directory</h1>
+    <header class="header">  
+        <h1>Accountant Directory</h1>
         <div>
             <% Employee e = (Employee) session.getAttribute("employee"); %>
             <% 
                 if (e != null) {
                     if (e.getJob().equalsIgnoreCase("ceo")) { 
             %>
-                <a href="EmployeeAdminDashboard.jsp" class="back-button">
-                    <button class="btn btn-back">Back to Dashboard</button>
-                </a>
+                <a href="EmployeeAdminDashboard.jsp" class="btn-back">Back to Dashboard</a>
             <% 
                     } else if (e.getJob().equalsIgnoreCase("hr")) { 
             %>
-                <a href="HrDashboard.jsp" class="back-button">
-                    <button class="btn btn-back">Back to Dashboard</button>
-                </a>
+                <a href="HrDashboard.jsp" class="btn-back">Back to Dashboard</a>
             <% 
                     } else if (e.getJob().equalsIgnoreCase("manager")) { 
             %>
-                <a href="ManagerDashboard.jsp" class="back-button">
-                    <button class="btn btn-back">Back to Dashboard</button>
-                </a>
+                <a href="ManagerDashboard.jsp" class="btn-back">Back to Dashboard</a>
+            <% 
+                    } else if (e.getJob().equalsIgnoreCase("salesman")) { 
+            %>
+                <a href="SalesmanDashboard.jsp" class="btn-back">Back to Dashboard</a>
             <% 
                     }
-                } 
+                }
             %>
         </div>
-    </div>
-
+    </header>
+    
     <% 
         EmployeeDAO edao = new EmployeeDAOImp();
-        List<Employee> employees = edao.getEmployee();
+        List<Employee> employees = edao.getAccountant();
         Employee emp = null;
-        Iterator<Employee> it = employees.iterator(); 
+        Iterator<Employee> it = employees.iterator();
     %>
+    
     <main class="employee-container">
         <% while (it.hasNext()) {
             emp = it.next();
         %>
-            <div class="employee-card">
-                <div class="profile-pic"><%= emp.getFname().charAt(0) %></div>
-                <h2><%= emp.getFname() %></h2>
-                <p><%= emp.getJob() %></p>
-                <p>Department: <%= emp.getDno() %></p>
-            </div>
+        <div class="employee-card">
+            <div class="profile-pic"><%= emp.getFname().charAt(0) %></div>
+            <h2><%= emp.getFname() %></h2>
+            <p><%= emp.getJob() %></p>
+            <p>Department: <%= emp.getDno() %></p>
+        </div>
         <% } %>
     </main>
-
-    <!-- Bootstrap JS Bundle -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

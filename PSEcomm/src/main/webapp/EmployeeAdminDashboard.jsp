@@ -1,3 +1,7 @@
+<%@page import="com.productCategory.DTO.ProductCategory"%>
+<%@page import="com.productCategory.DAO.productCategoryDDAOImpl"%>
+<%@page import="com.productCategory.DAO.productCategoryDAO"%>
+<%@page import="java.util.Iterator"%>
 <%@page import="com.emp.DTO.Location"%>
 <%@page import="com.emp.DAO.locationDAOimp"%>
 <%@page import="com.emp.DAO.locationDAO"%>
@@ -9,7 +13,7 @@
 <%@page import="java.util.List"%>
 <%@page import="com.emp.DTO.Employee"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+   pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -22,14 +26,20 @@
     body{
     background-color: #F1F0E8;
     }
+    
+    .d-flex{
+    background-color: #3c3d37;
+    }
         .sidebar {
             height: 100vh;
             overflow-y: auto;
             background-color: #1abc9c;
+            overflow: auto;
         }
         .sidebar a {
             color: #ffffff;
-            padding: 15px;
+            padding: 12px;
+            text-align : center;
             display: block;
             text-decoration: none;
             font-weight: bold;
@@ -55,11 +65,35 @@
         }
         a{
             text-decoration: none;
+            color: black;
         }
         a:hover{
             opacity: 0.8;
             
         }
+        
+        .sidebar input:hover {
+            background-color: #16a085;
+        }
+        
+        input:hover{
+            opacity: 0.8;
+            
+        }
+       
+       .view:hover{
+         color : red;
+       }
+       
+       .big{
+          transition: transform 0.3s ease-in-out;
+       }
+       
+       .big:hover{
+          transform: scale(1.07);
+         }
+       
+   
     </style>
     <% 
     response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate"); // HTTP 1.1.
@@ -88,27 +122,30 @@
         </div>
     </nav>
 
-    <div class="d-flex" >
-        <div class="sidebar p-3" style="background-color:#3C3D37;">
+    <div class="d-flex"  >
+        <div class="sidebar p-3" style="background-color: #213555;">
             <a href="#dashboard">Dashboard</a>
-            <a href="EmpList.jsp">Manage Users</a>
-
-            <a href="AdminProfile.jsp">Profile</a>
-         
-
-            <a href="employeelogin.jsp">Logout</a>
+            <a href="empList1.jsp">Manage Users</a>
+			<a href="ViewProduct.jsp">View Products</a>
+            <a href="EmployeeProfile.jsp">Profile</a>
+            <a href="forgotPassword.jsp">ResetPin</a>
+         	<form action="logout" method="post">
+                <input type="submit" name="logout" value="Logout" class="btn btn-sm ms-3" style="color : white; font-weight : bold; font-size : 16px; left : 0px; padding: 12px; ">
+            </form> 
         </div>
 <%
 EmployeeDAO e1= new EmployeeDAOImp();
 List<Employee> employees =e1.getEmployee();
 ProductDAO dao = new ProductDAOImp();
 List<Product> products = dao.getproducts();
+
+
 //locationDAO dao2 = new locationDAOimp();
 //List<Location> locations =dao2.getlocation();
 %>
-        <div class="content flex-grow-1" >
+        <div class="content flex-grow-1">
             <div class="row mb-4" >
-               <a href="AddProduct.jsp" > <div class="col-md-3" >
+               <a href="AddProduct.jsp" > <div class="col-md-3 big" >
                 <div class="card text-center text-bg-primary" >
                     <div class="card-body" style="background-color:white; color: black;border-radius: 10px ">
                         <h5 class="card-title">Add Product</h5>
@@ -116,29 +153,34 @@ List<Product> products = dao.getproducts();
                     </div>
                 </div></a>
             </div>
+            
                 <div class="col-md-3">
                     <a href="DeleteProduct.jsp">
-                        <div class="card text-center text-bg-success">
+                        <div class="card text-center text-bg-success big">
                             <div class="card-body" style="background-color:white; color: black; border-radius: 10px">
                                 <h5 class="card-title">Delete Product</h5>
                                 <p class="card-text fs-4">0</p>
                             </div>
                         </div></a>
                 </div>
+                
                 <div class="col-md-3">
-                    <a href="AddEmployee.jsp"><div class="card text-center text-bg-warning">
+                    <a href="AddEmployee.jsp"><div class="card text-center text-bg-warning big">
                         <div class="card-body" style="background-color:white; color: black;border-radius: 10px ">
                             <h5 class="card-title">Add Employees</h5>
                             <p class="card-text fs-4"><%=employees.size() %></p>
                         </div>
                     </div></a>
                 </div>
+                
                 <div class="col-md-3">
                    <a href="AddLocation.jsp">
-                    <div class="card text-center text-bg-danger">
+                    <div class="card text-center text-bg-danger big">
                         <div class="card-body" style="background-color:white; color: black; border-radius: 10px">
                             <h5 class="card-title">Add Locations</h5>
-                            <p class="card-text fs-4">0</p>
+                            <%locationDAO ldao = new locationDAOimp();
+                               int count = ldao.getCount();%>
+                            <p class="card-text fs-4"><%=count%></p>
                         </div>
                     </div>
                    </a>
@@ -158,7 +200,9 @@ List<Product> products = dao.getproducts();
                         </div>
                     </div>
                 </div> -->
-                <div class="col-md-6">
+                
+                
+          <!--     <div class="col-md-6">
                     <div class="card">
                         <div class="card-header bg-primary text-white">Employees</div>
                         <div class="card-body">
@@ -175,61 +219,40 @@ List<Product> products = dao.getproducts();
                                         <td>Total Employees</td>
                                         <td>150</td>
                                         <td>
-                                            <a href="ViewEmp.jsp"><button class="btn btn-info" type="button" data-bs-toggle="collapse" data-bs-target="#employeeList" aria-expanded="false" aria-controls="employeeList">
-                                                View Employees
-                                            </button>
+                                            <a href="ViewEmp.jsp" style = "font-weight : bold;" class="view">View Employees
                                         </a>
-                                            <!-- <div class="collapse" id="employeeList">
-                                                <ul class="list-group mt-3">
-                                                    <li class="list-group-item">Employee 1</li>
-                                                    <li class="list-group-item">Employee 2</li>
-                                                    <li class="list-group-item">Employee 3</li>
-                                                    
-                                                </ul>
-                                            </div> -->
+                                            
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>Managers</td>
                                         <td>10</td>
                                         <td>
-                                            <a href="ViewManager.jsp"><button class="btn btn-info" type="button" data-bs-toggle="collapse" data-bs-target="#managerList" aria-expanded="false" aria-controls="managerList">
-                                                View Managers
-                                            </button>
+                                            <a href="ViewManager.jsp" style = "font-weight : bold;" class="view">View Managers
                                         </a>
-                                            <!-- <div class="collapse" id="managerList">
-                                                <ul class="list-group mt-3">
-                                                    <li class="list-group-item">Manager 1</li>
-                                                    <li class="list-group-item">Manager 2</li>
-                                                    
-                                                </ul>
-                                            </div> -->
+                                        </a>
+                                          
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>Salesmen</td>
                                         <td>50</td>
                                         <td>
-                                            <a href="ViewSalesmen.jsp"><button class="btn btn-info" type="button" data-bs-toggle="collapse" data-bs-target="#salesmanList" aria-expanded="false" aria-controls="salesmanList">
-                                                View Salesmen
+                                            <a href="ViewSalesmen.jsp" style = "font-weight : bold;" class="view">View Salesman
+                                        </a>
                                             </button>
                                         </a>
-                                            <!-- <div class="collapse" id="salesmanList">
-                                                <ul class="list-group mt-3">
-                                                    <li class="list-group-item">Salesman 1</li>
-                                                    <li class="list-group-item">Salesman 2</li>
-                                                    
-                                                </ul>
-                                            </div> -->
+                                            
                                         </td>
                                     </tr>
                                 </tbody>
                             </table>
                         </div>
                     </div>
-                </div>
+                </div> -->
 
-                <div class="col-md-6">
+<!-- PRODUCT LIST TABLE -->
+              <div class="col-md-6">
                     <!-- <div class="card">
                         <div class="card-header bg-success text-white">System Notifications</div>
                         <div class="card-body">
@@ -240,11 +263,11 @@ List<Product> products = dao.getproducts();
                             </ul>
                         </div>
                     </div> -->
-                    <div class="card">
-                        <div class="card-header bg-success text-white">Product List</div>
+                  <div class="card">
+                        <div class="card-header  " style="background-color: #3E5879 ; color: black; font-size: 1.2rem;">Product List</div>
                         <div class="card-body">
-                            <table class="table table-striped">
-                                <thead class="table-dark">
+                            <table class="table">
+                                <thead>
                                     <tr>
                                         <th scope="col">PID</th>
                                         <th scope="col">Product Name</th>
@@ -253,32 +276,113 @@ List<Product> products = dao.getproducts();
                                     </tr>
                                 </thead>
                                 <tbody>
+                                  <%
+                                    List<Product> data = dao.getProductAndCategorys();
+								    Iterator<Product> itr = data.iterator();
+								    int counter = 0; // Initialize a counter
+								    while(itr.hasNext() && counter < 7) { // Limit the loop to 7 products
+								        Product p = itr.next();
+								        counter++; // Increment the counter
+								  %>
+								        <tr>
+								            <td><%= p.getProduct_Id() %></td>
+								            <td><%=p.getProducr_Name() %></td>
+								            <td><%= p.getPrice() %></td>
+								            <td><%= p.getCategory_Name() %></td> 
+								        </tr>
+								  <% }%>
+                               </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+               
+               
+  <!-- EMPLOYEE TABLE --> 
+               <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-header  " style="background-color: #3E5879; color: black; font-size: 1.2rem;">Employees</div>
+                        <div class="card-body">
+                            <table class="table">
+                                <thead>
                                     <tr>
-                                        <td>101</td>
-                                        <td>Product A</td>
-                                        <td>$25</td>
-                                        <td>Electronics</td>
+                                        <th scope="col">Employee Type</th>
+                                        <th scope="col">Count</th>
+                                        <th scope="col">Details</th>
                                     </tr>
+                                </thead>
+                                <tbody>
                                     <tr>
-                                        <td>102</td>
-                                        <td>Product B</td>
-                                        <td>$15</td>
-                                        <td>Grocery</td>
+                                        <td>Total Employees</td>
+                                        <td>150</td>
+                                        <td>
+                                            <a href="ViewEmp.jsp" style = "font-weight : bold;" class="view">View Employees
+                                        </a>             
+                                        </td>
                                     </tr>
+                                                              
                                     <tr>
-                                        <td>103</td>
-                                        <td>Product C</td>
-                                        <td>$50</td>
-                                        <td>Clothing</td>
+                                        <td>Managers</td>
+                                        <td>10</td>
+                                        <td>
+                                            <a href="ViewManager.jsp" style = "font-weight : bold;" class="view">View Managers
+                                        </a>             
+                                        </td>
+                                    </tr>
+                                    
+                                    <tr>
+                                        <td>Salesman</td>
+                                        <td>20</td>
+                                        <td>
+                                            <a href="ViewSalesmen.jsp" style = "font-weight : bold;" class="view">View Salesmen
+                                        </a>             
+                                        </td>
+                                    </tr>
+                                    
+                                    <tr>
+                                        <td>Developer</td>
+                                        <td>20</td>
+                                        <td>
+                                            <a href="ViewDevelopers.jsp" style = "font-weight : bold;" class="view">View Developers
+                                        </a>             
+                                        </td>
+                                    </tr>
+                                    
+                                    <tr>
+                                        <td>Accountant</td>
+                                        <td>20</td>
+                                        <td>
+                                            <a href="viewAccountant.jsp" style = "font-weight : bold;" class="view">View Accountants
+                                        </a>             
+                                        </td>
+                                    </tr>
+                                    
+                                    <tr>
+                                        <td>Dispatcher</td>
+                                        <td>15</td>
+                                        <td>
+                                            <a href="ViewDispatcher.jsp" style = "font-weight : bold;" class="view">View Dispatcher
+                                        </a>             
+                                        </td>
+                                    </tr>
+                                    
+                                    <tr>
+                                        <td>Tester</td>
+                                        <td>10</td>
+                                        <td>
+                                            <a href="ViewTester.jsp" style = "font-weight : bold;" class="view">View Testers
+                                        </a>             
+                                        </td>
                                     </tr>
                                 </tbody>
                             </table>
                         </div>
                     </div>
-                </div>
+                </div> 
+               
+                 
             </div>
         </div>
     </div>
 </body>
 </html>
-    
