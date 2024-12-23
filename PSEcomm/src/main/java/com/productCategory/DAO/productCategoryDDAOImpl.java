@@ -65,5 +65,69 @@ private Connection con;
 	    return categories;
 	}
 
+	@Override
+	public boolean insertCategory(ProductCategory p) {
+		String query = "INSERT INTO product_category(name,product_image) VALUES(?,?)";
+		int res = 0;
+		PreparedStatement ps;
+		
+		
+        try {
+        	con.setAutoCommit(false);
+			ps=con.prepareStatement(query);
+			ps.setString(1,p.getName());
+			ps.setString(2, p.getImg());
+			
+			res=ps.executeUpdate();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+        if(res>0) {
+        	try {
+				con.commit();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+        	return true;
+        }
+        else {
+        	try {
+				con.rollback();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+        	return false;
+        }
+	}
+
+	@Override
+	public List getImage(int categoryId) {
+		List<ProductCategory> images = new ArrayList<>();
+		String sql = "SELECT product_image FROM product_category WHERE CATEGORYID = ?";
+	    PreparedStatement ps = null;
+	    
+	    
+	    try {
+			ps = con.prepareStatement(sql);
+			ps.setInt(1, categoryId);
+		    ResultSet rs = ps.executeQuery();
+		    
+		    while(rs.next()) {
+		    	ProductCategory p = new ProductCategory();
+		    	p.setImg(rs.getString("product_image"));
+		    	images.add(p); 	
+		    }
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return images;
+	}
+	
 	
 }
