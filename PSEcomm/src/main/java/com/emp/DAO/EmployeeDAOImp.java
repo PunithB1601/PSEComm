@@ -29,7 +29,7 @@ public class EmployeeDAOImp implements EmployeeDAO
         try
         {
             con.setAutoCommit(false);
-            ps=con.prepareStatement("query");
+            ps=con.prepareStatement(query);
             ps.setString(1, e.getFname());
             ps.setString(2,e.getLname());
             ps.setString(3,e.getDOB());
