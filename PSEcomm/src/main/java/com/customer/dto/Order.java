@@ -17,4 +17,6 @@ public class Order
   private Timestamp deliveryDate;
   private int eid;
   private int cid;
+  private int qunatity;
+  private double totalPrice;
 }

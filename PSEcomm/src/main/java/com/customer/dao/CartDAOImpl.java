@@ -22,7 +22,7 @@ public class CartDAOImpl implements CartDAO{
 	public Cart insertCart(Cart c) {
 		PreparedStatement ps=null;
 
-		String query="insert into cart(cid,productid)values(?,?)";
+		String query="insert into cart (cid,productid) values (?,?)";
 		int res=0;
 		
 		try {
@@ -167,7 +167,7 @@ public class CartDAOImpl implements CartDAO{
 		Cart c=null;
 		List<Cart> li=new ArrayList<Cart>();
 		
-		String query="select * from cart order by desc";
+		String query="select * from cart order by cartId desc";
 	
 		try {
 			ps=con.prepareStatement(query);
@@ -184,6 +184,53 @@ public class CartDAOImpl implements CartDAO{
 			e.printStackTrace();
 		}
 		return li;
+	}
+	
+	
+	@Override
+	public List<Cart> getAllCartItems(int cid) {
+		PreparedStatement ps=null;
+		ResultSet rs=null;
+		Cart c=null;
+		List<Cart> li=new ArrayList<Cart>();
+		
+		String query="select * from cart where cid=? order by cartId desc";
+	
+		try {
+			ps=con.prepareStatement(query);
+			ps.setInt(1, cid);
+			rs=ps.executeQuery();
+			while(rs.next()) {
+				c=new Cart();
+				c.setCartId(rs.getInt(1));
+				c.setCid(rs.getInt(2));
+				c.setProductId(rs.getInt(3));
+				li.add(c);
+			}
+					
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return li;
+	}
+	
+	@Override
+	public boolean checkCart(int userId, int productId) {
+		String query = "SELECT * FROM CART WHERE CID=? AND PRODUCTID=?";
+		try {
+			PreparedStatement preparedStatement = con.prepareStatement(query);
+			preparedStatement.setInt(1, userId);
+			preparedStatement.setInt(2, productId);
+			ResultSet resultSet = preparedStatement.executeQuery();
+			if(resultSet.next())
+			{
+				return true;
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return false;
 	}
 
 }

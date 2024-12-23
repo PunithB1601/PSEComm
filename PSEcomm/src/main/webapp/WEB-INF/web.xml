@@ -3,7 +3,6 @@
   <display-name>Archetype Created Web Application</display-name>
   <welcome-file-list>
     <welcome-file>employeelogin.jsp</welcome-file>
-
     <welcome-file>location.jsp</welcome-file>
   </welcome-file-list>
   <servlet>
@@ -15,5 +14,25 @@
   <servlet-mapping>
     <servlet-name>RequestLocation</servlet-name>
     <url-pattern>/RequestLocation</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>AddToCart</display-name>
+    <servlet-name>AddToCart</servlet-name>
+    <servlet-class>com.customer.servlet.AddToCart</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AddToCart</servlet-name>
+    <url-pattern>/AddToCart</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>CheckoutOrder</display-name>
+    <servlet-name>CheckoutOrder</servlet-name>
+    <servlet-class>com.customer.servlet.CheckoutOrder</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>CheckoutOrder</servlet-name>
+    <url-pattern>/CheckoutOrder</url-pattern>
   </servlet-mapping>
 </web-app>
