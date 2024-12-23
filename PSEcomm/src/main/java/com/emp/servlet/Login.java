@@ -55,7 +55,7 @@ public class Login extends HttpServlet
 		else if(e!=null && e.getJob().equalsIgnoreCase("Dispatcher"))
 		{
 			session.setAttribute("employee", e);
-			RequestDispatcher rd=req.getRequestDispatcher("#");
+			RequestDispatcher rd=req.getRequestDispatcher("Dispatcher.jsp");
 			rd.forward(req, resp);
 		}
 		else {
