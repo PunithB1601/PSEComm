@@ -131,7 +131,7 @@ int totalData = productDAO.getAllProductsCount(selectedCategory);
  }
   .buy-btn{
    background: black;
-   color: white;
+   color: white !important;
   }
   .cart-btn{
    color: black !important;
@@ -203,7 +203,7 @@ int totalData = productDAO.getAllProductsCount(selectedCategory);
     	      	          <h4 class="product-category">Category : <%=pc.getName() %></h4>
     	      	           
     	      	           <div class="mt-1 card-footer">
-    	      	            <button class="buy-btn">Buy</button>
+    	      	            <a class="buy-btn" href="<%= request.getContextPath()+"/Customer/BuyProduct.jsp?productId="+p.getProduct_Id()%>">Buy</a>
     	      	            <%
     	      	              boolean isSaved  = user !=null ? new CartDAOImpl().checkCart(user.getCid(), p.getProduct_Id()) : false;
     	      	              if(isSaved)

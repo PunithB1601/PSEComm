@@ -122,7 +122,7 @@ public class ProductDAOImp implements ProductDAO
 				p.setImg(rs.getString(4));
 				p.setCategory_Id(rs.getInt(5));
 
-				p.setDescription(rs.getString(6));
+				//p.setDescription(rs.getString(6));
 			}
 		}
 		catch (SQLException e) {

@@ -1,9 +1,13 @@
+<%@page import="com.customer.dao.CartDAOImpl"%>
+<%@page import="com.customer.dao.CartDAO"%>
 <%@page import="com.customer.dto.Customer"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 	
 <%
   Customer user = (Customer) session.getAttribute("user");
+  CartDAO cartDAO1 = new CartDAOImpl();
+  int cartCount = cartDAO1.getCartItemCount(user!=null ? user.getCid() :-1);
 %>
 <style type="text/css">
    li {
@@ -115,12 +119,13 @@
             <%
              if(user!=null)
              {
+            	
             	 %>
             	  
-             <li><a class="menu-list-item <%= request.getAttribute("menu").toString().equalsIgnoreCase("Cart") ? "menu-list-item-active" :"" %>" href="<%= request.getContextPath()+"/Customer/Cart.jsp"%>">Cart</a></li>
-            <li><a class="menu-list-item <%= request.getAttribute("menu").toString().equalsIgnoreCase("Orders") ? "menu-list-item-active" :"" %>" href="">Orders</a></li>
+             <li><a class="menu-list-item <%= request.getAttribute("menu").toString().equalsIgnoreCase("Cart") ? "menu-list-item-active" :"" %>" href="<%= request.getContextPath()+"/Customer/Cart.jsp"%>">Cart <%= cartCount>0 ? cartCount :"" %></a></li>
+            <li><a class="menu-list-item <%= request.getAttribute("menu").toString().equalsIgnoreCase("Orders") ? "menu-list-item-active" :"" %>" href="<%= request.getContextPath()+"/Customer/Order.jsp"%>">Orders</a></li>
             <li><a class="menu-list-item <%= request.getAttribute("menu").toString().equalsIgnoreCase("Profile") ? "menu-list-item-active" :"" %>" href="<%= request.getContextPath()+"/Customer/Profile.jsp"%>">Profile</a></li>
-            <li><a class="menu-list-item" href="">Logout</a></li>
+            <li><a class="menu-list-item" href="<%=request.getContextPath()+"/customer/logout"%>">Logout</a></li>
             	  
             	 <%
              }else{
@@ -142,10 +147,10 @@
              {
             	 %>
             	  
-            	  <li><a class="menu-list-item <%= request.getAttribute("menu").toString().equalsIgnoreCase("Cart") ? "menu-list-item-active" :"" %>" href="<%= request.getContextPath()+"/Customer/Cart.jsp"%>">Cart</a></li>
-            <li><a class="menu-list-item <%= request.getAttribute("menu").toString().equalsIgnoreCase("Orders") ? "menu-list-item-active" :"" %>" href="">Orders</a></li>
+             <li><a class="menu-list-item <%= request.getAttribute("menu").toString().equalsIgnoreCase("Cart") ? "menu-list-item-active" :"" %>" href="<%= request.getContextPath()+"/Customer/Cart.jsp"%>">Cart <%= cartCount>0 ? cartCount :"" %> </a></li>
+            <li><a class="menu-list-item <%= request.getAttribute("menu").toString().equalsIgnoreCase("Orders") ? "menu-list-item-active" :"" %>" href="<%= request.getContextPath()+"/Customer/Order.jsp"%>">Orders</a></li>
             <li><a class="menu-list-item <%= request.getAttribute("menu").toString().equalsIgnoreCase("Profile") ? "menu-list-item-active" :"" %>" href="<%= request.getContextPath()+"/Customer/Profile.jsp"%>">Profile</a></li>
-            <li><a class="menu-list-item" href="">Logout</a></li>
+            <li><a class="menu-list-item" href="<%=request.getContextPath()+"/customer/logout"%>">Logout</a></li>
             	  
             	 <%
              }
