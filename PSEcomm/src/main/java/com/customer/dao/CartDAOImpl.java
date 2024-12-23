@@ -233,10 +233,6 @@ public class CartDAOImpl implements CartDAO{
 		return false;
 	}
 
-
-
-	
-	
 	@Override
 	public int getCartItemCount(int cid) {
 		String query="SELECT COUNT(*) FROM CART WHERE CID = ?";
