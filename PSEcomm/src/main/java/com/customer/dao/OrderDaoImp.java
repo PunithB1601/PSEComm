@@ -137,7 +137,7 @@ public class OrderDaoImp implements OrderDao{
 		ResultSet rs=null;
 		Order o=null;
 		
-		String query="select * from order where orderid=?";
+		String query="select * from orders where order_id=?";
 	
 		try {
 			ps=con.prepareStatement(query);
@@ -151,6 +151,8 @@ public class OrderDaoImp implements OrderDao{
 				o.setDeliveryDate(rs.getTimestamp(4));
 				o.setEid(rs.getInt(5));
 				o.setCid(rs.getInt(6));
+				o.setQunatity(rs.getInt(7));
+				o.setTotalPrice(rs.getDouble(8));
 			}
 			
 			
@@ -168,7 +170,7 @@ public class OrderDaoImp implements OrderDao{
 		Order o=null;
 		ArrayList<Order> al=new ArrayList<Order>();
 		
-		String query="select * from order order by desc";
+		String query="select * from orders order by desc";
 	
 		try {
 			ps=con.prepareStatement(query);
@@ -182,6 +184,8 @@ public class OrderDaoImp implements OrderDao{
 				o.setDeliveryDate(rs.getTimestamp(4));
 				o.setEid(rs.getInt(5));
 				o.setCid(rs.getInt(6));
+				o.setQunatity(rs.getInt(7));
+				o.setTotalPrice(rs.getDouble(8));
 				al.add(o);
 			}
 			
