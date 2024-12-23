@@ -25,6 +25,11 @@
         .forgot .btn{
            margin: 20px;
         }
+        label{
+			font-size:1.0rem;
+			font-weight: bold;
+			margin-bottom: 5px;
+        }
         .back
         {
         	text-decoration:none;
@@ -51,10 +56,7 @@
 	 <div class="card" style="box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;">
 	 <div class="card-header text-center" style="box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;">
 	 <h2 class="mb-3 mt-3">Reset Password</h2>
-	 <%String success=(String)request.getAttribute("success"); 
-		if(success!=null) {%>
-		<h4 class="success"><%=success %></h4>
-		<%}%>
+	 
 	
 		<%String failure=(String)request.getAttribute("failure");
 		if(failure!=null) {%>
@@ -65,19 +67,19 @@
     <form action="changePassword" method="post" class="forgot">
         
         <div class="mb-2">
-          <label for="exampleInputEmail1" class="form-label">Email address</label>
-          <input type="email" name="mail" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Your Mail id">
+          <label for="exampleInputEmail1" class="form-label">Email address :</label>
+          <input type="email" name="mail" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Your Mail id" required="required">
         </div>
         <div class="mb-2">
-          <label for="exampleInputPassword1" class="form-label">Enter new Password</label>
-          <input type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="Enter New Password">
+          <label for="exampleInputPassword1" class="form-label">Enter new Password :</label>
+          <input type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="Enter New Password" required="required">
         </div>
         <div class="mb-2">
-            <label for="exampleInputPassword1" class="form-label">Confirm Your Password</label>
-            <input type="password" name="confirm_password" class="form-control" id="exampleInputPassword1" placeholder="Confirm New Password">
+            <label for="exampleInputPassword1" class="form-label">Confirm Your Password :</label>
+            <input type="password" name="confirm_password" class="form-control" id="exampleInputPassword1" placeholder="Confirm New Password" required="required">
           </div>
         <div class="mb-2 form-check">
-          <input type="checkbox" class="form-check-input" id="exampleCheck1">
+          <input type="checkbox" class="form-check-input" id="exampleCheck1" required="required">
           <label class="form-check-label" for="exampleCheck1">Check me out</label>
         </div>
         
