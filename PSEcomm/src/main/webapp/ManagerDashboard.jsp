@@ -45,19 +45,31 @@
         .card {
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
+        
+        .effect:hover{
+       background-color: #16a085;
+       }
+       
+       .big{
+          transition: transform 0.3s ease-in-out;
+       }
+       
+       .big:hover{
+          transform: scale(1.07);
+         }
     </style>
 </head>
 
-<body class="d-flex">
+<body class="d-flex" style = "text-align  : center;">
     <!-- Sidebar -->
     <div class="sidebar">
-        <h2>Manager Dashboard</h2>
+        <h2 style = "font-size : 18px;">Manager Dashboard</h2>
         <a href="ViewEmp.jsp">View Employees</a>
         <a href="ViewProduct.jsp">View Products</a>
         <a href="EmployeeProfile.jsp">My Profile</a>
          <a href="forgotPassword.jsp">ResetPin</a>
         <form action="logout" method="post">
-                <input type="submit" name="logout" value="Logout" class="btn btn-outline-light btn-sm ms-3">
+                <input type="submit" name="logout" value="Logout" class="btn btn-sm ms-3 effect" style="color : white; font-size : 18px;" >
             </form>
     </div>
 
@@ -66,7 +78,7 @@
         <!-- Header -->
         <% Employee manager = (Employee) session.getAttribute("employee"); %>
         <div class="d-flex justify-content-between align-items-center bg-white p-3 mb-4 shadow-sm">
-            <h1>Welcome, <%= manager.getFname() %></h1>
+            <h1 style="font-size : 22px;">Welcome, <%= manager.getFname() %></h1>
         </div>
 
         <!-- Overview Cards -->
@@ -75,7 +87,7 @@
                 <div class="card text-center">
                     <div class="card-body">
                         <h5 class="card-title">Salesman</h5>
-                        <a href="ViewSalesmen.jsp" class="btn btn-secondary">View Salesman</a>
+                        <a href="ViewSalesmen.jsp" class="btn btn-secondary effect big">View Salesman</a>
                     </div>
                 </div>
             </div>
@@ -83,7 +95,7 @@
                 <div class="card text-center">
                     <div class="card-body">
                         <h5 class="card-title">Testers</h5>
-                        <a href="ViewTester.jsp" class="btn btn-secondary">view Testers</a>
+                        <a href="ViewTester.jsp" class="btn btn-secondary effect big">View Testers</a>
                     </div>
                 </div>
             </div>
@@ -91,19 +103,19 @@
                 <div class="card text-center">
                     <div class="card-body">
                         <h5 class="card-title">Developers</h5>
-                        <a href="ViewDevelopers.jsp" class="btn btn-secondary">View Developer</a>
+                        <a href="ViewDevelopers.jsp" class="btn btn-secondary effect big">View Developer</a>
                     </div>
                 </div>
             </div>
         </div>
 
         <!-- Department Details -->
-        <div class="container">
+        <div class="container" style = "margin-top : 50px;">
             <div class="bg-primary text-white p-3 rounded-top">
                 <h4>Department Details</h4>
             </div>
-            <table class="table table-bordered table-striped">
-                <thead class="table-primary">
+            <table class="table ">
+                <thead>
                     <tr>
                         <th>Department Name</th>
                         <th>Dept No</th>

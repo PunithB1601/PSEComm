@@ -42,6 +42,8 @@ body {
 	background-color: #3C3D37;
 	padding: 15px;
 	color: white;
+	overflow-y: auto;
+	overflow: auto;
 }
 
 .sidebar a {
@@ -50,9 +52,14 @@ body {
 	display: block;
 	padding: 10px;
 	border-radius: 5px;
+	text-align : center;
 }
 
 .sidebar a:hover {
+	background-color: #1abc9c;
+}
+
+.sidebar input:hover {
 	background-color: #1abc9c;
 }
 
@@ -78,6 +85,15 @@ a {
 a:hover {
 	opacity: 0.8;
 }
+
+ .big{
+          transition: transform 0.3s ease-in-out;
+       }
+       
+       .big:hover{
+          transform: scale(1.08);
+         }
+
 </style>
 </head>
 
@@ -110,11 +126,11 @@ a:hover {
 			<a href="#dashboard">Dashboard</a>
 			 <a href="ViewProduct.jsp">View Products</a>
 			 <a href="AddOrder.jsp">Add Orders</a> 
-			 <a href="ViewDispatcher.jsp">view Dispatcher</a> 
+			 <a href="ViewDispatcher.jsp">View Dispatcher</a> 
 			 <a href="EmployeeProfile.jsp">Profile</a>
 			 <a href="forgotPassword.jsp">ResetPin</a>
 			<form action="logout" method="post">
-                <input type="submit" name="logout" value="Logout" class="btn btn-outline-light btn-sm ms-3">
+                <input type="submit" name="logout" value="Logout" class="btn btn-sm ms-3" style="color : white; font-size : 16px; padding : 13px;">
             </form>
 		</div>
 
@@ -130,7 +146,7 @@ a:hover {
                    OrderDao odao=new OrderDaoImp();
                    List<Order> orders=odao.getOrder();
                 %>
-				<div class="col-md-4">
+				<div class="col-md-4 big">
 					<div class="card text-center">
 						<div class="card-body">
 							<h5 class="card-title">Total Products</h5>
@@ -138,7 +154,7 @@ a:hover {
 						</div>
 					</div>
 				</div>
-				<div class="col-md-4">
+				<div class="col-md-4 big">
 					<div class="card text-center">
 						<div class="card-body">
 							<h5 class="card-title">Total Orders</h5>
@@ -146,7 +162,7 @@ a:hover {
 						</div>
 					</div>
 				</div>
-				<div class="col-md-4">
+				<div class="col-md-4 big">
 					<div class="card text-center">
 						<div class="card-body">
 							<h5 class="card-title">Total Customers</h5>
@@ -166,8 +182,8 @@ a:hover {
 								class="text-white">View All Products</a>
 						</div>
 						<div class="card-body">
-							<table class="table table-striped">
-								<thead class="table-dark">
+							<table class="table">
+								<thead>
 									<tr>
 										<th scope="col">PID</th>
 										<th scope="col">Product Name</th>
