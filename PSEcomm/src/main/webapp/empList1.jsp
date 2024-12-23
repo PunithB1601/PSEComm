@@ -59,7 +59,7 @@
     <div class="container">
         
       
-      <div>  <h1 class="text-center " style="margin-bottom: 20px;margin-top: 80px; ">Employee List</h1></div>
+      <div>  <h2 class="text-center " style="margin-bottom: 20px;margin-top: 80px; ">Employee List</h2></div>
           <% String success = (String) request.getAttribute("success"); %>
             <% if (success != null) { %>
                 <p class="text-success text-center mb-3"><%= success %></p>
