@@ -52,6 +52,12 @@ public class Login extends HttpServlet
 			RequestDispatcher rd=req.getRequestDispatcher("ManagerDashboard.jsp");
 			rd.forward(req, resp);
 		}
+		else if(e!=null && e.getJob().equalsIgnoreCase("Dispatcher"))
+		{
+			session.setAttribute("employee", e);
+			RequestDispatcher rd=req.getRequestDispatcher("#");
+			rd.forward(req, resp);
+		}
 		else {
 			req.setAttribute("failure", "failed to login, try Again!");
 			RequestDispatcher rd=req.getRequestDispatcher("employeelogin.jsp");

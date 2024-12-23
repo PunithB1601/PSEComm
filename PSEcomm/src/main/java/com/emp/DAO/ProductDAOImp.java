@@ -27,7 +27,7 @@ public class ProductDAOImp implements ProductDAO
 	{
 		PreparedStatement ps=null;
 		int res=0;
-		String query="INSERT INTO PRODUCT (PNAME,PRICE,IMG,CATEGORYID) VALUES(?,?,?,?)";
+		String query="INSERT INTO PRODUCT (PNAME,PRICE,IMG,CATEGORYID,DESCRIPTION) VALUES(?,?,?,?,?)";
 		try {
 			con.setAutoCommit(false);
 			ps=con.prepareStatement(query);
@@ -35,6 +35,7 @@ public class ProductDAOImp implements ProductDAO
 			ps.setDouble(2, p.getPrice());
 			ps.setString(3, p.getImg());
 			ps.setInt(4, p.getCategory_Id());
+			ps.setString(5, p.getDescription());
 			res=ps.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -119,6 +120,7 @@ public class ProductDAOImp implements ProductDAO
 				p.setPrice(rs.getDouble(3));
 				p.setImg(rs.getString(4));
 				p.setCategory_Id(rs.getInt(5));
+				p.setDescription(rs.getString(6));
 			}
 		}
 		catch (SQLException e) {
@@ -148,6 +150,7 @@ public class ProductDAOImp implements ProductDAO
 				p.setPrice(rs.getDouble(3));
 				p.setImg(rs.getString(4));
 				p.setCategory_Id(rs.getInt(5));
+				p.setDescription(rs.getString(6));
 				products.add(p);
 			}
 			
@@ -167,8 +170,7 @@ public class ProductDAOImp implements ProductDAO
 	    ResultSet rs = null;
 	    Product p = null;
 	    // Modify the query to join PRODUCT table with product_category table
-	    String query = "SELECT p.PRODUCT_ID, p.PNAME, p.PRICE, p.IMG, p.categoryId, c.name AS category_name FROM PRODUCT p JOIN product_category c ON p.categoryId = c.categoryId";
-;
+	    String query = "SELECT p.PRODUCT_ID, p.PNAME, p.PRICE, p.IMG, p.categoryId,p.description ,c.name AS category_name FROM PRODUCT p JOIN product_category c ON p.categoryId = c.categoryId";;
 	    try {
 	        ps = con.prepareStatement(query);
 	        rs = ps.executeQuery();
@@ -180,7 +182,7 @@ public class ProductDAOImp implements ProductDAO
 	            p.setImg(rs.getString("IMG"));
 	            p.setCategory_Id(rs.getInt("categoryId"));
 	            p.setCategory_Name(rs.getString("category_name")); // Directly get the category name from the query
-
+	            p.setDescription("description");
 	            products.add(p);
 	        }
 	    } catch (SQLException e) {
