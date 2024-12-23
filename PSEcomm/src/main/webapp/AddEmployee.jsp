@@ -127,7 +127,7 @@
                                 </div>
                                 <div class="mb-3">
                                     <label for="mgr" class="form-label">Manager</label>
-                                    <input type="text" class="form-control" name="mgr" placeholder="Enter Manager Name">
+                                    <input type="text" class="form-control" name="mgr" placeholder="Enter Manager id">
                                 </div>
                                 <div class="mb-3">
                                     <label for="doj" class="form-label">Date of Joining</label>
