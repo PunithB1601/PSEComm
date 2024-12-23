@@ -65,6 +65,7 @@
         }
         a{
             text-decoration: none;
+            color: black;
         }
         a:hover{
             opacity: 0.8;
@@ -121,8 +122,8 @@
         </div>
     </nav>
 
-    <div class="d-flex" >
-        <div class="sidebar p-3" style="background-color:#3C3D37;">
+    <div class="d-flex"  >
+        <div class="sidebar p-3" style="background-color: #213555;">
             <a href="#dashboard">Dashboard</a>
             <a href="empList1.jsp">Manage Users</a>
 			<a href="ViewProduct.jsp">View Products</a>
@@ -263,7 +264,7 @@ List<Product> products = dao.getproducts();
                         </div>
                     </div> -->
                   <div class="card">
-                        <div class="card-header bg-success text-white">Product List</div>
+                        <div class="card-header  " style="background-color: #3E5879 ; color: black; font-size: 1.2rem;">Product List</div>
                         <div class="card-body">
                             <table class="table">
                                 <thead>
@@ -300,7 +301,7 @@ List<Product> products = dao.getproducts();
   <!-- EMPLOYEE TABLE --> 
                <div class="col-md-6">
                     <div class="card">
-                        <div class="card-header bg-primary text-white">Employees</div>
+                        <div class="card-header  " style="background-color: #3E5879; color: black; font-size: 1.2rem;">Employees</div>
                         <div class="card-body">
                             <table class="table">
                                 <thead>

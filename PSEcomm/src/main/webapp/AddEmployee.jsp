@@ -6,6 +6,7 @@
 <%@page import="com.emp.DAO.EmployeeDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
 <!DOCTYPE html>
 <html lang="en">
 
@@ -75,84 +76,95 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                       <!--  <a class="nav-link" href="#">Welcome</a> -->
-                    </li>
-                    <!-- <li class="nav-item">
                         <a class="nav-link text-danger" href="#logout">Logout</a>
-                    </li> -->
+                    </li>
                 </ul>
             </div>
         </div>
     </nav>
 
     <div class="d-flex">
-        <!-- <div class="sidebar p-3">
-            <h4 class="text-white">Menu</h4>
-            <a href="#dashboard">Dashboard</a>
-            <a href="#users">Manage Users</a>
-            <a href="#settings">Settings</a>
-            <a href="#reports">Reports</a>
-            <a href="#logout">Logout</a>
-        </div> -->
-
         <div class="content flex-grow-1">
             <div class="row mb-4">
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-header bg-primary text-white">Add New Employee</div>
+                           <%Employee e=(Employee)session.getAttribute("employee"); %>
                         <div class="card-body">
-                            <form>
+                          <%String success = (String)request.getAttribute("success");
+                  if(success!=null){%>
+                  <h4 style="color : green; font-size : 17px; font-weight : bold;"><%=success%></h4>
+                  <%} %>
+                  
+                <%String failure = (String)request.getAttribute("failure");
+                  if(failure!=null){%>
+                  <h4 style="color : red; font-size : 17px; font-weight : bold;"><%=failure%></h4>
+                  <%} %> 
+                            <form action="addemp" method="post">
                                 <div class="mb-3">
-                                    <label for="Fname" class="form-label">Fname</label>
-                                    <input type="text" class="form-control" id="Fname" placeholder="Enter First name">
+                                    <label for="fname" class="form-label">First Name</label>
+                                    <input type="text" class="form-control" name="fname" placeholder="Enter First Name">
                                 </div>
                                 <div class="mb-3">
-                                    <label for="Lname" class="form-label">Lname</label>
-                                    <input type="text" class="form-control" id="Lname" placeholder="Enter Last name">
+                                    <label for="lname" class="form-label">Last Name</label>
+                                    <input type="text" class="form-control" name="lname" placeholder="Enter Last Name">
                                 </div>
                                 <div class="mb-3">
-                                    <label for="Email ID" class="form-label">Email ID</label>
-                                    <input type="email" class="form-control" id="Email ID" placeholder="Enter Email ID">
+                                    <label for="dob" class="form-label">Date of Birth</label>
+                                    <input type="date" class="form-control" name="dob">
                                 </div>
                                 <div class="mb-3">
-                                    <label for="Phone number" class="form-label">Phone number</label>
-                                    <input type="tel" class="form-control" id="Phone number" placeholder="Enter Phone number">
-
+                                    <label for="gender" class="form-label">Gender</label>
+                                    <select class="form-control" name="gender">
+                                        <option value="M">Male</option>
+                                        <option value="F">Female</option>
+                                     
+                                    </select>
                                 </div>
                                 <div class="mb-3">
-                                    <label for="Designation" class="form-label">Designation</label>
-                                    <input type="text" class="form-control" id="Designation" placeholder="Enter Designation">
+                                    <label for="job" class="form-label">Designation</label>
+                                    <input type="text" class="form-control" name="job" placeholder="Enter Designation">
                                 </div>
                                 <div class="mb-3">
-                                    <label for="Salary" class="form-label">Salary</label>
-                                    <input type="number" class="form-control" id="Salary" placeholder="Enter Salary">
+                                    <label for="mgr" class="form-label">Manager</label>
+                                    <input type="text" class="form-control" name="mgr" placeholder="Enter Manager Name">
                                 </div>
                                 <div class="mb-3">
-                                    <label for="com" class="form-label">Commission</label>
-                                    <input type="number" class="form-control" id="comm" placeholder="Enter Commission">
+                                    <label for="doj" class="form-label">Date of Joining</label>
+                                    <input type="date" class="form-control" name="doj">
                                 </div>
                                 <div class="mb-3">
+                                    <label for="sal" class="form-label">Salary</label>
+                                    <input type="number" class="form-control" name="sal" placeholder="Enter Salary">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="comm" class="form-label">Commission</label>
+                                    <input type="number" class="form-control" name="comm" placeholder="Enter Commission">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="dno" class="form-label">Department No</label>
+                                    <input type="text" class="form-control" name="dno" placeholder="Enter Department No">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="cid" class="form-label">CID</label>
+                                    <input type="text" class="form-control" name="cid" placeholder="Enter CID">
+                                </div>
+                                 <div class="mb-3">
+                                    <label for="mailid" class="form-label">Email ID</label>
+                                    <input type="email" class="form-control" name="mailid" placeholder="Enter Email ID">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="phone" class="form-label">Phone Number</label>
+                                    <input type="tel" class="form-control" name="phone" placeholder="Enter Phone Number">
+                                </div>
+                               <div class="mb-3">
                                     <label for="Password" class="form-label">Password</label>
-                                    <input type="Password" class="form-control" id="Password" placeholder="Enter Password">
+                                    <input type="Password" class="form-control" name="Password" placeholder="Enter password">
                                 </div>
-                                <div class="mb-3">
-                                    <label for="Confirm Password" class="form-label">Confirm Password</label>
-                                    <input type="Password" class="form-control" id="Confirm Password" placeholder="Enter Confirm Password">
-                                </div>
-
- <%Employee hr=(Employee)session.getAttribute("employee"); %>
-     <%Employee e=(Employee)session.getAttribute("employee"); %>
-        
-
                                 <div class="form-actions">
                                     <button type="submit" class="btn btn-success">Submit</button>
-                                     <% if(e.getJob().equalsIgnoreCase("ceo")){ %>
                                     <a href="EmployeeAdminDashboard.jsp" class="btn btn-secondary">Back to Dashboard</a>
-                                    <%} else if(hr.getJob().equalsIgnoreCase("hr")){ %>
-                                    <a href="HrDashboard.jsp" class="btn btn-secondary">Back to Dashboard</a>
-                                    <%} %>
                                 </div>
-
                             </form>
                         </div>
                     </div>
@@ -163,4 +175,3 @@
 </body>
 
 </html>
-    
