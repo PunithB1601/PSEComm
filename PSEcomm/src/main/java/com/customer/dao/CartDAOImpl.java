@@ -213,5 +213,24 @@ public class CartDAOImpl implements CartDAO{
 		}
 		return li;
 	}
+	
+	@Override
+	public boolean checkCart(int userId, int productId) {
+		String query = "SELECT * FROM CART WHERE CID=? AND PRODUCTID=?";
+		try {
+			PreparedStatement preparedStatement = con.prepareStatement(query);
+			preparedStatement.setInt(1, userId);
+			preparedStatement.setInt(2, productId);
+			ResultSet resultSet = preparedStatement.executeQuery();
+			if(resultSet.next())
+			{
+				return true;
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return false;
+	}
 
 }

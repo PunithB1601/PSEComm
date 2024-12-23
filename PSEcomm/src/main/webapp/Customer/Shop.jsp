@@ -1,3 +1,4 @@
+<%@page import="com.customer.dao.CartDAOImpl"%>
 <%@page import="com.productCategory.DAO.productCategoryDDAOImpl"%>
 <%@page import="com.productCategory.DAO.productCategoryDAO"%>
 <%@page import="com.productCategory.DTO.ProductCategory"%>
@@ -132,6 +133,9 @@ int totalData = productDAO.getAllProductsCount(selectedCategory);
    background: black;
    color: white;
   }
+  .cart-btn{
+   color: black !important;
+  }
   .card-footer{
    width: 100%;
    display: flex;
@@ -191,7 +195,7 @@ int totalData = productDAO.getAllProductsCount(selectedCategory);
     	    		 ProductCategory pc = productCategoryDAO.getById(p.getCategory_Id());
     	    		 %>
     	      	       
-    	      	       <article class="product-card">
+    	      	       <article class="product-card" onclick="handleProductCardClick('<%= request.getContextPath()+"/Customer/ProductItem.jsp?productId="+p.getProduct_Id() %>')" >
     	      	          
     	      	          <img alt="" src="<%= p.getImg()%>">
     	      	          <h3 class="product-title"><%=p.getProducr_Name() %></h3>
@@ -200,7 +204,19 @@ int totalData = productDAO.getAllProductsCount(selectedCategory);
     	      	           
     	      	           <div class="mt-1 card-footer">
     	      	            <button class="buy-btn">Buy</button>
-    	      	            <button class="cart-btn">Add to cart</button>
+    	      	            <%
+    	      	              boolean isSaved  = user !=null ? new CartDAOImpl().checkCart(user.getCid(), p.getProduct_Id()) : false;
+    	      	              if(isSaved)
+    	      	              {
+    	      	            	  %>
+    	      	            	   <a class="cart-btn" >Saved</a>
+    	      	            	  <%
+    	      	              }else{
+    	      	            	  %>
+    	      	            	   <a class="cart-btn" href="<%= request.getContextPath()+"/user/cart/add?productId="+p.getProduct_Id()%>">Add to cart</a>
+    	      	            	  <% 
+    	      	              }
+    	      	            %>
     	      	           </div>
     	      	           
     	      	       </article>
@@ -217,13 +233,7 @@ int totalData = productDAO.getAllProductsCount(selectedCategory);
    
   
   %>
-  
-  
-  
-  
-    
-  
-   
+ 
      <%
 		int noOfPages = (int) Math.ceil((double) totalData / limit);
 		int startPage = Math.max(1, currentPage - 2);
@@ -255,6 +265,6 @@ int totalData = productDAO.getAllProductsCount(selectedCategory);
 			%>
 		</div>
      
-
+<script type="text/javascript" src="<%= request.getContextPath()+"/Customer/js/ShopJs.js"%>"></script>
 </body>
 </html>

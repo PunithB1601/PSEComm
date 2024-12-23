@@ -117,7 +117,7 @@ public class ProductDAOImp implements ProductDAO
 				p.setPrice(rs.getDouble(3));
 				p.setImg(rs.getString(4));
 				p.setCategory_Id(rs.getInt(5));
-				p.setDescription(rs.getString(6));
+			//	p.setDescription(rs.getString(6));
 			
 			}
 		}
@@ -197,7 +197,7 @@ public class ProductDAOImp implements ProductDAO
 				p.setPrice(rs.getDouble(3));
 				p.setImg(rs.getString(4));
 				p.setCategory_Id(rs.getInt(5));
-				p.setDescription(rs.getString(6));
+				//p.setDescription(rs.getString(6));
 				products.add(p);
 			}
 			
@@ -240,5 +240,30 @@ public class ProductDAOImp implements ProductDAO
 			e.printStackTrace();
 		}
 		return 0;
+	}
+	
+	@Override
+	public List<Product> getSimilarProducts(Product p) {
+		String query = "SELECT * FROM PRODUCT WHERE CATEGORYID=? AND PRODUCT_ID!=? ORDER BY PRODUCT_ID DESC LIMIT 10";
+		List<Product> similarProducts = new ArrayList<Product>();
+		
+		try {
+			PreparedStatement preparedStatement = con.prepareStatement(query);
+			preparedStatement.setInt(1, p.getCategory_Id());
+			preparedStatement.setInt(2, p.getProduct_Id());
+			ResultSet resultSet =  preparedStatement.executeQuery();
+			while(resultSet.next())
+			{
+				Product newProduct = getProduct(resultSet.getInt(1));
+				similarProducts.add(newProduct);
+				
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		return similarProducts;
 	}
 }

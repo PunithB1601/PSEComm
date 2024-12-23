@@ -22,16 +22,17 @@ public class OrderDaoImp implements OrderDao{
 	public Order insertOrder(Order o) {
 		PreparedStatement ps = null;
 		int res=0;
-		String query = "INSERT INTO Order(productId,orderDate, deliveryDate,eid,cid)VALUES(?,sysdate(),date_Add(sysdate(),interval 5 day),?,?)";
+		String query = "INSERT INTO Orders (product_Id,order_Date, delivery_Date,cid,quantity,totalPrice) VALUES (?,?,?,?,?,?)";
 		try {
 			ps = con.prepareStatement(query,Statement.RETURN_GENERATED_KEYS);
 			
 			ps.setInt(1,o.getProductId());
 			ps.setTimestamp(2,o.getOrderDate());
 			ps.setTimestamp(3,o.getDeliveryDate());
-			ps.setInt(4,o.getEid());
-			ps.setInt(5, o.getCid());
-		 res=ps.executeUpdate();
+			ps.setInt(4,o.getCid());
+			ps.setInt(5, o.getQunatity());
+			ps.setDouble(6, o.getTotalPrice());
+		    res=ps.executeUpdate();
 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -41,6 +42,7 @@ public class OrderDaoImp implements OrderDao{
 		{
 			try {
 				ResultSet rs=ps.getGeneratedKeys();
+				rs.next();
 				o.setOrderId(rs.getInt(1));
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block

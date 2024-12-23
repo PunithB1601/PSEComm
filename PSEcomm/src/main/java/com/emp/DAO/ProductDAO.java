@@ -12,4 +12,10 @@ public interface ProductDAO
 	public List getproducts();
 	public List getAllProducts(int categoryId,int page,int limit);
 	public int getAllProductsCount(int categoryId);
+	
+	
+	//To get Similar products 
+	
+	public List<Product> getSimilarProducts(Product p);
+	
 }

@@ -14,5 +14,10 @@ public interface CartDAO {
 	//To get all cart items of specific user
 	
 	public List<Cart> getAllCartItems(int cid);
+	
+	//Check to item exists in cart
+	
+	public boolean checkCart(int userId,int productId);
+	
 
 }

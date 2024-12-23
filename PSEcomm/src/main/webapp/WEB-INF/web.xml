@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns:web="http://xmlns.jcp.org/xml/ns/javaee">
-<display-name>Archetype Created Web Application</display-name>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:web="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+  <display-name>Archetype Created Web Application</display-name>
   <welcome-file-list>
     <welcome-file>employeelogin.jsp</welcome-file>
-
     <welcome-file>location.jsp</welcome-file>
   </welcome-file-list>
   <servlet>
@@ -15,5 +14,25 @@
   <servlet-mapping>
     <servlet-name>RequestLocation</servlet-name>
     <url-pattern>/RequestLocation</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>AddToCart</display-name>
+    <servlet-name>AddToCart</servlet-name>
+    <servlet-class>com.customer.servlet.AddToCart</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AddToCart</servlet-name>
+    <url-pattern>/AddToCart</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>CheckoutOrder</display-name>
+    <servlet-name>CheckoutOrder</servlet-name>
+    <servlet-class>com.customer.servlet.CheckoutOrder</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>CheckoutOrder</servlet-name>
+    <url-pattern>/CheckoutOrder</url-pattern>
   </servlet-mapping>
 </web-app>
