@@ -12,7 +12,7 @@ public class DBConnection
 
 
 	static String username = "root";
-	static String password = "lion";
+	static String password = "root";
 	static Connection conn = null;
 
 	public static Connection getConnection() {

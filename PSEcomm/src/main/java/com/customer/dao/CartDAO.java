@@ -19,5 +19,9 @@ public interface CartDAO {
 	
 	public boolean checkCart(int userId,int productId);
 	
+	//To get Cart item Count
+	
+	public int getCartItemCount(int cid);
+	
 
 }

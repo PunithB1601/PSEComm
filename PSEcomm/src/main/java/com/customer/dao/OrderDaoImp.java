@@ -58,7 +58,7 @@ public class OrderDaoImp implements OrderDao{
 	public boolean deleteOrder(Order o) {
 		PreparedStatement ps=null;
 
-		String query="delete from order where orderId=?";
+		String query="delete from orders where orderId=?";
 		int res=0;
 		
 		try {
@@ -95,7 +95,7 @@ public class OrderDaoImp implements OrderDao{
 	public Order UpdateOrder(Order o) {
 		PreparedStatement ps=null;
 
-		String query="update order set productId=?,orderDate=?,deliveryDate=?,eid=?,cid=? where orderId=?";
+		String query="update orders set productId=?,orderDate=?,deliveryDate=?,eid=?,cid=? where orderId=?";
 		
 		int res=0;
 		
@@ -137,7 +137,7 @@ public class OrderDaoImp implements OrderDao{
 		ResultSet rs=null;
 		Order o=null;
 		
-		String query="select * from order where orderid=?";
+		String query="select * from orders where orderid=?";
 	
 		try {
 			ps=con.prepareStatement(query);
@@ -168,7 +168,7 @@ public class OrderDaoImp implements OrderDao{
 		Order o=null;
 		ArrayList<Order> al=new ArrayList<Order>();
 		
-		String query="select * from order order by desc";
+		String query="select * from orders order by order_id desc";
 	
 		try {
 			ps=con.prepareStatement(query);
@@ -190,6 +190,68 @@ public class OrderDaoImp implements OrderDao{
 			e.printStackTrace();
 		}
 		return al;
+	}
+	
+	@Override
+	public List<Order> getAllOrders(int page, int limit, int cid) {
+		PreparedStatement ps=null;
+		ResultSet rs=null;
+		Order o=null;
+		ArrayList<Order> al=new ArrayList<Order>();
+		int skip = (page -1)*limit;
+		
+		String query="select * from orders where cid = ?  order by order_id desc limit ? offset ?";
+	
+		try {
+			ps=con.prepareStatement(query);
+			ps.setInt(1, cid);
+			ps.setInt(2, limit);
+			ps.setInt(3, skip);
+			
+			rs=ps.executeQuery();
+			while(rs.next()) {
+				o=new Order();
+				o.setOrderId(rs.getInt(1));
+				o.setProductId(rs.getInt(2));
+				o.setOrderDate(rs.getTimestamp(3));
+				o.setDeliveryDate(rs.getTimestamp(4));
+				o.setEid(rs.getInt(5));
+				o.setCid(rs.getInt(6));
+				o.setQunatity(rs.getInt(7));
+				o.setTotalPrice(rs.getDouble(8));
+				al.add(o);
+			}
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return al;
+	}
+	
+	@Override
+	public int getAllOrdersCount(int cid) {
+		PreparedStatement ps=null;
+		ResultSet rs=null;
+		
+		
+		String query="select COUNT(*) from orders where cid = ?  ";
+	
+		try {
+			ps=con.prepareStatement(query);
+			ps.setInt(1, cid);
+			
+			rs=ps.executeQuery();
+			if(rs.next())
+			{
+				return rs.getInt(1);
+			}
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return 0;
 	}
 
 }

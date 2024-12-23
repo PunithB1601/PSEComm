@@ -98,6 +98,14 @@ body {
  margin: 5px 0px;
  box-shadow: 0px 1px 2px #efefef !important;
  border: 1px solid #efefef;
+ position: relative;
+}
+
+#cart-delete-btn{
+ position: absolute;
+ top: 5px;
+ right: 5px;
+ color: black !important;
 }
 
 .cart-card .card-info{
@@ -216,7 +224,7 @@ cursor: pointer;
 		   %>
 		    
 		    <div class="cart-card">
-		      
+		      <a id="cart-delete-btn" href="<%= request.getContextPath()+"/customer/cart/remove?cartId="+c.getCartId()%>"><i class="fa-regular fa-trash-can"></i></a>
 		      <div class="card-info">
 		         <img alt="" src="<%=p.getImg() %>">
 		         <h5><%=p.getProducr_Name() %></h5>
