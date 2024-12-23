@@ -1,3 +1,9 @@
+<%@page import="com.customer.dao.OrderDaoImp"%>
+<%@page import="com.customer.dao.OrderDao"%>
+<%@page import="com.customer.dto.Order"%>
+<%@page import="com.customer.dto.Customer"%>
+<%@page import="com.customer.dao.CustomerDAOImpl"%>
+<%@page import="com.customer.dao.CustomerDAO"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="com.productCategory.DAO.productCategoryDDAOImpl"%>
 <%@page import="com.productCategory.DAO.productCategoryDAO"%>
@@ -119,6 +125,10 @@ a:hover {
 				<% ProductDAO productDAO = new ProductDAOImp();
                    List<Product> products = productDAO.getproducts();
                    productCategoryDAO pdao= new productCategoryDDAOImpl();
+                   CustomerDAO cdao=new CustomerDAOImpl();
+                   List<Customer> customers=cdao.getAllCustomer();
+                   OrderDao odao=new OrderDaoImp();
+                   List<Order> orders=odao.getOrder();
                 %>
 				<div class="col-md-4">
 					<div class="card text-center">
@@ -132,7 +142,7 @@ a:hover {
 					<div class="card text-center">
 						<div class="card-body">
 							<h5 class="card-title">Total Orders</h5>
-							<p class="card-text fs-4">200</p>
+							<p class="card-text fs-4"><%=orders.size() %></p>
 						</div>
 					</div>
 				</div>
@@ -140,7 +150,7 @@ a:hover {
 					<div class="card text-center">
 						<div class="card-body">
 							<h5 class="card-title">Total Customers</h5>
-							<p class="card-text fs-4">150</p>
+							<p class="card-text fs-4"><%=customers.size() %></p>
 						</div>
 					</div>
 				</div>
