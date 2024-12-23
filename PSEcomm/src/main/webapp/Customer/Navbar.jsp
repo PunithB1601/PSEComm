@@ -125,7 +125,7 @@
              <li><a class="menu-list-item <%= request.getAttribute("menu").toString().equalsIgnoreCase("Cart") ? "menu-list-item-active" :"" %>" href="<%= request.getContextPath()+"/Customer/Cart.jsp"%>">Cart <%= cartCount>0 ? cartCount :"" %></a></li>
             <li><a class="menu-list-item <%= request.getAttribute("menu").toString().equalsIgnoreCase("Orders") ? "menu-list-item-active" :"" %>" href="<%= request.getContextPath()+"/Customer/Order.jsp"%>">Orders</a></li>
             <li><a class="menu-list-item <%= request.getAttribute("menu").toString().equalsIgnoreCase("Profile") ? "menu-list-item-active" :"" %>" href="<%= request.getContextPath()+"/Customer/Profile.jsp"%>">Profile</a></li>
-            <li><a class="menu-list-item" href="">Logout</a></li>
+            <li><a class="menu-list-item" href="<%=request.getContextPath()+"/customer/logout"%>">Logout</a></li>
             	  
             	 <%
              }else{
@@ -150,7 +150,7 @@
              <li><a class="menu-list-item <%= request.getAttribute("menu").toString().equalsIgnoreCase("Cart") ? "menu-list-item-active" :"" %>" href="<%= request.getContextPath()+"/Customer/Cart.jsp"%>">Cart <%= cartCount>0 ? cartCount :"" %> </a></li>
             <li><a class="menu-list-item <%= request.getAttribute("menu").toString().equalsIgnoreCase("Orders") ? "menu-list-item-active" :"" %>" href="<%= request.getContextPath()+"/Customer/Order.jsp"%>">Orders</a></li>
             <li><a class="menu-list-item <%= request.getAttribute("menu").toString().equalsIgnoreCase("Profile") ? "menu-list-item-active" :"" %>" href="<%= request.getContextPath()+"/Customer/Profile.jsp"%>">Profile</a></li>
-            <li><a class="menu-list-item" href="">Logout</a></li>
+            <li><a class="menu-list-item" href="<%=request.getContextPath()+"/customer/logout"%>">Logout</a></li>
             	  
             	 <%
              }
