@@ -10,7 +10,12 @@ public interface locationDAO {
 	public boolean updatelocation(Location l);
 	public Location getlocation(int id);
 	public boolean deletelocation(Location l);
+
+	public boolean setlocation(int id);
+	public boolean deletelocation(int lid);
+	public Location getLocation(int lid);
 	public List <Location> getlocation();
+	public int getCount();
 	
 
 }

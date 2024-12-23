@@ -9,6 +9,10 @@ import java.util.List;
 
 import com.database.DBConnection;
 import com.emp.DTO.Product;
+import com.productCategory.DAO.productCategoryDAO;
+import com.productCategory.DAO.productCategoryDDAOImpl;
+import com.productCategory.DAO.productCategoryDDAOImpl;
+import com.productCategory.DTO.ProductCategory;
 
 public class ProductDAOImp implements ProductDAO
 {
@@ -23,7 +27,8 @@ public class ProductDAOImp implements ProductDAO
 	{
 		PreparedStatement ps=null;
 		int res=0;
-		String query="INSERT INTO PRODUCT (PNAME,PRICE,IMG,CATEGORYID,description) VALUES(?,?,?,?,?)";
+
+		String query="INSERT INTO PRODUCT (PNAME,PRICE,IMG,CATEGORYID,DESCRIPTION) VALUES(?,?,?,?,?)";
 		try {
 			con.setAutoCommit(false);
 			ps=con.prepareStatement(query);
@@ -32,7 +37,6 @@ public class ProductDAOImp implements ProductDAO
 			ps.setString(3, p.getImg());
 			ps.setInt(4, p.getCategory_Id());
 			ps.setString(5, p.getDescription());
-		
 			res=ps.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -117,8 +121,8 @@ public class ProductDAOImp implements ProductDAO
 				p.setPrice(rs.getDouble(3));
 				p.setImg(rs.getString(4));
 				p.setCategory_Id(rs.getInt(5));
-			//	p.setDescription(rs.getString(6));
-			
+
+				p.setDescription(rs.getString(6));
 			}
 		}
 		catch (SQLException e) {
@@ -266,4 +270,33 @@ public class ProductDAOImp implements ProductDAO
 		
 		return similarProducts;
 	}
+	
+	public List<Product> getProductAndCategorys() {
+	    ArrayList<Product> products = new ArrayList<Product>();
+	    PreparedStatement ps = null;
+	    ResultSet rs = null;
+	    Product p = null;
+	    // Modify the query to join PRODUCT table with product_category table
+	    String query = "SELECT p.PRODUCT_ID, p.PNAME, p.PRICE, p.IMG, p.categoryId,p.description ,c.name AS category_name FROM PRODUCT p JOIN product_category c ON p.categoryId = c.categoryId";;
+	    try {
+	        ps = con.prepareStatement(query);
+	        rs = ps.executeQuery();
+	        while (rs.next()) {
+	            p = new Product();
+	            p.setProduct_Id(rs.getInt("PRODUCT_ID"));
+	            p.setProducr_Name(rs.getString("PNAME"));
+	            p.setPrice(rs.getDouble("PRICE"));
+	            p.setImg(rs.getString("IMG"));
+	            p.setCategory_Id(rs.getInt("categoryId"));
+	            p.setCategory_Name(rs.getString("category_name")); // Directly get the category name from the query
+	            p.setDescription("description");
+	            products.add(p);
+	        }
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+	    return products;
+	}
+
+	
 }

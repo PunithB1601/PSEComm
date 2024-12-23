@@ -32,7 +32,8 @@
 
     <style>
         * {
-            box-shadow: none !important;
+            box-shadow: none !important; 
+            
         }
 
         body {

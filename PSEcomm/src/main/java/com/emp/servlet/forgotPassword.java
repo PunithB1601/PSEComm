@@ -13,37 +13,43 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-@WebServlet("/resetPassword")
+@WebServlet("/changePassword")
 public class forgotPassword extends HttpServlet
 {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException 
 	{
-		HttpSession session=req.getSession(false);
+		
 		String mail=req.getParameter("mail");
 		String setpass=req.getParameter("password");
 		String conpass=req.getParameter("confirm_password");
 		
-		Employee e=new Employee();
+		HttpSession session=req.getSession(false);
 		EmployeeDAO edao=new EmployeeDAOImp();
 		
-		e=(Employee)session.getAttribute("employee");
-		if(e!=null&&mail.equals(e.getMail())&&setpass.equals(conpass))
+		Employee e=edao.getEmployee(mail);
+		
+		if(e!=null && mail.equals(e.getMail()) && setpass.equals(conpass))
 		{
 			e.setPassword(setpass);
-			boolean res1=edao.updateemployee(e);
+			boolean res1=edao.updatePassword(e);
 			if(res1)
 			{
-				req.setAttribute("success", "Pin updated Successful");
-				RequestDispatcher rd=req.getRequestDispatcher("forgotpassword.jsp");
+				req.setAttribute("success", "Password updated Successfully..please login here.!");
+				RequestDispatcher rd=req.getRequestDispatcher("employeelogin.jsp");
 				rd.forward(req, resp);
 			}
 			else
 			{
-				req.setAttribute("failure", "Pin update Failed");
-				RequestDispatcher rd=req.getRequestDispatcher("forgotpassword.jsp");
+				req.setAttribute("failure", "Password update Failed");
+				RequestDispatcher rd=req.getRequestDispatcher("forgotPassword.jsp");
 				rd.forward(req, resp);
 			}
+		}
+		else {
+		req.setAttribute("failure", "Invalid Credentials");
+		RequestDispatcher rd=req.getRequestDispatcher("forgotPassword.jsp");
+		rd.forward(req, resp);
 		}
 	}
 }

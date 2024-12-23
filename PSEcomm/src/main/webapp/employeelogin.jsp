@@ -7,35 +7,57 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
         body {
-            background-color: #f8f9fa;
+            background-color: #F2F9FF;
+             font-family: "Times New Roman", Times, serif;
         }
-        .card {
-            margin-top: 50px;
+       
+        h3{
+        font-family: fantasy;
         }
+        label {
+	font-size:1.2rem;
+	font-weight: bold;
+	margin-bottom: 15px;
+	
+}
+input {
+
+	
+}
+.input-style{
+border: none;
+border-bottom: 1px solid black;
+width: 100%;
+}
+div input:focus {
+	outline: none;
+	
+}
+.input-style:active {
+	background-color: white;
+}
+	
+
     </style>
 </head>
 <body>
-    <div class="container"  style="width: 60%">
-        <div class="row justify-content-center">
+    <div class="container"  style="width: 65%;">
+        <div class="row justify-content-center"  >
             <div class="col-md-6">
-                <div class="card" style="box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;">
-                    <div class="card-header text-center" >
-                        <h3>Login</h3>
+                <div class="card" style="box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px; border-radius:20px; padding: 10px;margin: 80px 0;">
+                    <div class="card-header text-center" style="background-color: white; border: none;" >
+                        <h2>Login</h2>
                         <%String success=(String)request.getAttribute("success");
                         if(success!= null){
                         %>
-                        <p style="color: green; font-size: 0.8rem;"><%=success %></p>
+                        <p style="color: green; font-size: 0.9rem;"><%=success %></p>
                         <%} %>
                         <%String failure=(String)request.getAttribute("failure");
                         if(failure!= null){
                         %>
                         <p style="color: red; font-size: 0.8rem;"><%=failure %></p>
                         <%} %>
-                        <%String success1=(String)request.getAttribute("success");
-                        if(success1!= null){
-                        %>
-                        <p style="color: red; font-size: 0.8rem;"><%=success1 %></p>
-                        <%} %>
+                        
                     </div>
                     <div class="card-body">
                         <form action="employeeLogin" method="post" >
@@ -44,13 +66,13 @@
                                
 
                                 <label for="username">Employee id :</label>
-                                <input type="tel" id="username" name="empId" class="form-control" placeholder="Employee id" required>
-
+                               <div> <input type="tel" id="username" name="empId" class="input-style" placeholder="Employee id"  required>
+                               </div>
                                 <div class="invalid-feedback">Username is required.</div>
                             </div>
                             <div class="form-group">
                                 <label for="password">Password :</label>
-                                <input type="password" id="password" name="empPassword" class="form-control" placeholder="Password" required="required">
+                      <div>          <input type="password" id="password" name="empPassword" class="input-style" placeholder="Password" required="required"></div>
                                 <div class="invalid-feedback">Password is required and must be at least 6 characters long.</div>
                             </div>
                             <button type="submit" class="btn btn-primary btn-block">Login</button>

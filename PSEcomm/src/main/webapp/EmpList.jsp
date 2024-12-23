@@ -36,7 +36,15 @@
 </head>
 <body>
     <div class="container" style="box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px; padding: 40px; background-color: whiresmoke; border-radius: 15px;">
-        <h1 class="text-center">Employee List</h1>
+        <h1 class="text-center" style="font-size : 28px; margin-bottom : 30px;">Employee List</h1>
+        <% String success = (String) request.getAttribute("success"); %>
+            <% if (success != null) { %>
+                <p class="text-success text-center mb-3"><%= success %></p>
+            <% } %>
+            <% String failure = (String) request.getAttribute("failure"); %>
+            <% if (failure != null) { %>
+                <p class="text-danger text-center mb-3"><%= failure %></p>
+            <% } %>
         <table class="table ">
             <thead class="thead-dark">
                 <tr>
@@ -59,13 +67,13 @@
                     <td><%= emp.getLname() %></td>
                     <td><%= emp.getJob() %></td>
                     <td class="table-actions">
-                        <form action="DeleteEmployeeServlet" method="post" style="display:inline;">
+                        <form action="deleteEmployee" method="post">
+           					 <input type="hidden" name="eid" value="<%= emp.getEid() %>">
+            				 <input type="submit" name="delete" value="Delete" class="btn btn-danger">
+        				</form>
+                        <form action="ModifyEmp.jsp" method="get" style="display:inline;">
                             <input type="hidden" name="eid" value="<%= emp.getEid() %>">
-                            <button type="submit" class="btn btn-danger">Delete</button>
-                        </form>
-                        <form action="ViewEmployeeServlet" method="get" style="display:inline;">
-                            <input type="hidden" name="eid" value="<%= emp.getEid() %>">
-                            <button type="submit" class="btn btn-primary">View</button>
+                           <!--  <button type="submit" class="btn btn-primary">View</button> -->
                         </form>
                     </td>
                 </tr>
@@ -74,8 +82,16 @@
                 %>
             </tbody>
         </table>
+        
+        <%Employee hr=(Employee)session.getAttribute("employee"); %>
+     <%Employee e=(Employee)session.getAttribute("employee"); %>
+
         <div>
-       <a href="EmployeeAdminDashboard.jsp"><button type="button" class="btn btn-primary" style="font-size: 1.2rem; color: black;">Back</button></a>
+          <% if(e.getJob().equalsIgnoreCase("ceo")){ %>
+       <a href="EmployeeAdminDashboard.jsp"><button type="button" class="btn btn-primary" style="font-size: 1.2rem; color: black;">Back to Dashboard</button></a>
+        <%} else if(hr.getJob().equalsIgnoreCase("hr")){ %>
+          <a href="HrDashboard.jsp"><button type="button" class="btn btn-primary" style="font-size: 1.2rem; color: black;">Back</button></a>
+           <%} %>
         </div>
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>

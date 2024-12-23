@@ -7,8 +7,10 @@ public class Product
 	private double price;
 	private String img;
 	private int category_Id;
-	private String description;
 
+	private String category_Name;
+	private String description;
+	
 	public Product(int product_Id, String producr_Name, double price, String img, int category_Id, String description) {
 		super();
 		this.product_Id = product_Id;
@@ -20,14 +22,6 @@ public class Product
 		
 	}
 	
-
-	public String getDescription() {
-		return description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
-	}
 
 	public Product() {
 		super();
@@ -63,12 +57,26 @@ public class Product
 	public void setCategory_Id(int category_Id) {
 		this.category_Id = category_Id;
 	}
+	public String getCategory_Name() {
+        return category_Name; 
+    }
+    public void setCategory_Name(String category_Name) {
+        this.category_Name = category_Name; 
+    }
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
 
 	@Override
 	public String toString() {
 		return "Product [product_Id=" + product_Id + ", producr_Name=" + producr_Name + ", price=" + price + ", img="
-				+ img + ", category_Id=" + category_Id + ", description=" + description + ", quantity=" 
-				+ "]";
+
+				+ img + ", category_Id=" + category_Id + ", category_Name=" + category_Name + ", description="
+				+ description + "]";
 	}
 
 	

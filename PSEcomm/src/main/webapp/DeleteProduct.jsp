@@ -1,3 +1,4 @@
+<%@page import="com.emp.DTO.Employee"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -12,12 +13,13 @@
         .sidebar {
             height: 100vh;
             overflow-y: auto;
-            background-color: #1abc9c;
+            background-color: #3c3d37;
         }
         .sidebar a {
             color: #ffffff;
-            padding: 15px;
+            padding: 12px;
             display: block;
+            text-align : center;
             text-decoration: none;
             font-weight: bold;
             margin: 5px 0;
@@ -57,10 +59,8 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Welcome, Admin</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-danger" href="#logout">Logout</a>
+                        <%Employee e=(Employee)session.getAttribute("employee"); %>
+                        <a class="nav-link" href="#">Welcome, <%=e.getFname() %></a>
                     </li>
                 </ul>
             </div>
@@ -68,13 +68,15 @@
     </nav>
 
     <div class="d-flex">
-        <div class="sidebar p-3">
-            <h4 class="text-white">Menu</h4>
+        <div class="sidebar p-3" style="background-color:#3C3D37;">
             <a href="#dashboard">Dashboard</a>
-            <a href="#users">Manage Users</a>
-            <a href="#settings">Settings</a>
-            <a href="#reports">Reports</a>
-            <a href="#logout">Logout</a>
+            <a href="EmpList.jsp">Manage Users</a>
+			<a href="ViewProduct.jsp">View Products</a>
+            <a href="AdminProfile.jsp">Profile</a>
+            <a href="forgotPassword.jsp">ResetPin</a>
+         	<form action="logout" method="post">
+                <input type="submit" name="logout" value="Logout" class="btn btn-outline-light btn-sm ms-3">
+            </form> 
         </div>
 
         <div class="content flex-grow-1">
