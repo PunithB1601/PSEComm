@@ -50,7 +50,7 @@ div input:focus {
                         <%String success=(String)request.getAttribute("success");
                         if(success!= null){
                         %>
-                        <p style="color: green; font-size: 0.8rem;"><%=success %></p>
+                        <p style="color: green; font-size: 0.9rem;"><%=success %></p>
                         <%} %>
                         <%String failure=(String)request.getAttribute("failure");
                         if(failure!= null){

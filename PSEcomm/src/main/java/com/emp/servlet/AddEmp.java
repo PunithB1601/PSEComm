@@ -32,11 +32,11 @@ public class AddEmp extends HttpServlet {
 	 */
 	
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		System.out.println("First Name: " + req.getParameter("fname"));
-		System.out.println("Last Name: " + req.getParameter("lname"));
-		System.out.println("Phone: " + req.getParameter("phone"));
-			System.out.println("emailid: " + req.getParameter("mailid"));
-			req.getSession().removeAttribute("employee");
+//		System.out.println("First Name: " + req.getParameter("fname"));
+//		System.out.println("Last Name: " + req.getParameter("lname"));
+//		System.out.println("Phone: " + req.getParameter("phone"));
+//			System.out.println("emailid: " + req.getParameter("mailid"));
+			//req.getSession().removeAttribute("employee");
 
 			
 			String fname = req.getParameter("fname");

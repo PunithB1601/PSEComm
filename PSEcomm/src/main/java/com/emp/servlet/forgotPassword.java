@@ -35,13 +35,13 @@ public class forgotPassword extends HttpServlet
 			boolean res1=edao.updatePassword(e);
 			if(res1)
 			{
-				req.setAttribute("success", "Pin updated Successful");
-				RequestDispatcher rd=req.getRequestDispatcher("forgotPassword.jsp");
+				req.setAttribute("success", "Password updated Successfully..please login here.!");
+				RequestDispatcher rd=req.getRequestDispatcher("employeelogin.jsp");
 				rd.forward(req, resp);
 			}
 			else
 			{
-				req.setAttribute("failure", "Pin update Failed");
+				req.setAttribute("failure", "Password update Failed");
 				RequestDispatcher rd=req.getRequestDispatcher("forgotPassword.jsp");
 				rd.forward(req, resp);
 			}
