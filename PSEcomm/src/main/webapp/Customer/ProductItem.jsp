@@ -1,3 +1,6 @@
+<%@page import="com.productCategory.DAO.productCategoryDDAOImpl"%>
+<%@page import="com.productCategory.DAO.productCategoryDAO"%>
+<%@page import="com.productCategory.DTO.ProductCategory"%>
 <%@page import="com.customer.dao.CartDAOImpl"%>
 <%@page import="com.emp.DAO.ProductDAO"%>
 <%@page import="java.util.List"%>
@@ -11,6 +14,8 @@ request.setAttribute("menu", "Shop");
 int productId = request.getParameter("productId") != null ? Integer.parseInt(request.getParameter("productId")) : -1;
 ProductDAO productDAO = new ProductDAOImp();
 Product product = productDAO.getProduct(productId);
+productCategoryDAO pcDAO=new productCategoryDDAOImpl();
+ProductCategory productCategory=pcDAO.getById(product.getCategory_Id());
 %>
 <%@include file="/Customer/CustomerSession.jsp"%>
 <!DOCTYPE html>
@@ -212,11 +217,10 @@ img {
 				<h3 id="price">
 					<i class="fa-solid fa-indian-rupee-sign"></i>
 					<%=product.getPrice()%></h3>
-				<h4>Category</h4>
-				<p id="desc">Lorem, ipsum dolor sit amet consectetur adipisicing
-					elit. Tempore itaque inventore quaerat illum sit eius architecto
-					neque ipsam nostrum. Cumque labore doloribus hic, vitae reiciendis
-					dignissimos! Consequuntur labore hic nisi!</p>
+					<%if(product.getCategory_Id()==productCategory.getCategoryId()){ %>
+					<h4><%= productCategory.getName()%></h4>
+				<%} %>
+				<p id="desc"><%=product.getDescription()%></p>
 			</div>
 			<div class="btns">
 				<button class="btn1">
