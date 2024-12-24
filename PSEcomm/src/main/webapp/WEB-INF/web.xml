@@ -35,4 +35,34 @@
     <servlet-name>CheckoutOrder</servlet-name>
     <url-pattern>/CheckoutOrder</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>CartItemDelete</display-name>
+    <servlet-name>CartItemDelete</servlet-name>
+    <servlet-class>com.customer.servlet.CartItemDelete</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>CartItemDelete</servlet-name>
+    <url-pattern>/CartItemDelete</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>OrderProduct</display-name>
+    <servlet-name>OrderProduct</servlet-name>
+    <servlet-class>com.customer.servlet.OrderProduct</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>OrderProduct</servlet-name>
+    <url-pattern>/OrderProduct</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>CustomerLogout</display-name>
+    <servlet-name>CustomerLogout</servlet-name>
+    <servlet-class>com.customer.servlet.CustomerLogout</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>CustomerLogout</servlet-name>
+    <url-pattern>/CustomerLogout</url-pattern>
+  </servlet-mapping>
 </web-app>

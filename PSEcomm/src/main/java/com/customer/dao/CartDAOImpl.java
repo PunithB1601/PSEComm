@@ -233,4 +233,22 @@ public class CartDAOImpl implements CartDAO{
 		return false;
 	}
 
+	@Override
+	public int getCartItemCount(int cid) {
+		String query="SELECT COUNT(*) FROM CART WHERE CID = ?";
+		try {
+			PreparedStatement preparedStatement = con.prepareStatement(query);
+			preparedStatement.setInt(1, cid);
+			ResultSet resultSet = preparedStatement.executeQuery();
+			if(resultSet.next())
+			{
+				return resultSet.getInt(1);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return 0;
+	}
+
 }
