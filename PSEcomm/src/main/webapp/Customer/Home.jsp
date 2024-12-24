@@ -51,7 +51,6 @@ body {
 	background: rgb(241, 225, 225);
 }
 
-/* Custom navigation buttons */
 .swiper-button-next::after, .swiper-button-prev::after {
 	content: "";
 }
@@ -143,23 +142,174 @@ body {
 	font-weight: 300;
 	margin-bottom: 0;
 }
-.offer{
-	width: 100%;	
-	background-size:cover;
-}
-.offer1{
-	width: 100%;	
-	height:70vh;
-	background-size:cover;
+
+.offer {
+	width: 100%;
+	background-size: cover;
 }
 
-@media ( max-width :600px) {
+.offer1 {
+	width: 100%;
+	height: 70vh;
+	background-size: cover;
+}
+@media ( max-width : 1500px) {
+	.info-wrapper {
+		width: 90%;
+		height: 450px;
+	}
+	.card {
+		height: 450px;
+	}
+	.swiper-wrapper img {
+		height: 450px;
+		width: 100%;
+	}
+	.category-card {
+		width: 130px;
+		height: 130px;
+	}
+	.category-card img {
+		height: 80px;
+	}
+}
+
+@media ( max-width : 1200px) {
+	.info-wrapper {
+		width: 90%;
+		height: 450px;
+	}
+	.card {
+		height: 450px;
+	}
+	.swiper-wrapper img {
+		height: 450px;
+		width: 100%;
+	}
+	.category-card {
+		width: 130px;
+		height: 130px;
+	}
+	.category-card img {
+		height: 80px;
+	}
+}
+
+@media ( max-width : 992px) {
 	.info-wrapper {
 		width: 95%;
 		height: 400px;
 	}
 	.card {
 		height: 400px;
+	}
+	.swiper-wrapper img {
+		height: 400px;
+		width: 100%;
+	}
+	.swiper-button-next, .swiper-button-prev {
+		width: 25px;
+		height: 25px;
+		font-size: 14px;
+	}
+	.category-card {
+		width: 120px;
+		height: 120px;
+	}
+	.category-card img {
+		height: 70px;
+	}
+	.category-title {
+		font-size: 0.8rem;
+	}
+}
+
+@media ( max-width : 768px) {
+	.info-wrapper {
+		width: 100%;
+		height: 350px;
+	}
+	.card {
+		height: 350px;
+	}
+	.swiper-wrapper img {
+		height: 350px;
+		width: 100%;
+	}
+	.category-items {
+		flex-wrap: wrap;
+		justify-content: center;
+	}
+	.category-card {
+		width: 110px;
+		height: 110px;
+	}
+	.category-card img {
+		height: 60px;
+	}
+	.category-title {
+		font-size: 0.75rem;
+	}
+	#innerhead{
+		text-align: center;
+	}
+}
+
+@media ( max-width : 576px) {
+	.info-wrapper {
+		width: 100%;
+		height: 300px;
+	}
+	.card {
+		height: 300px;
+	}
+	.swiper-wrapper img {
+		height: 305px;
+		width: 100%;
+	}
+	.swiper-button-next, .swiper-button-prev {
+		width: 20px;
+		height: 20px;
+		font-size: 12px;
+	}
+	.category-card {
+		width: 100px;
+		height: 100px;
+	}
+	.category-card img {
+		height: 50px;
+	}
+	.category-title {
+		font-size: 0.7rem;
+	}
+	#innerhead{
+		text-align: center;
+	}
+}
+
+@media ( max-width : 400px) {
+	.info-wrapper {
+		height: 250px;
+	}
+	.card {
+		height: 250px;
+	}
+	.swiper-wrapper img {
+		height: 245px;
+		width: 100%;
+	}
+	.category-card {
+		width: 90px;
+		height: 90px;
+	}
+	.category-card img {
+		height: 45px;
+	}
+	.category-title {
+		font-size: 0.65rem;
+	}
+	#innerhead{
+		text-align: center;
 	}
 }
 </style>
@@ -174,16 +324,17 @@ body {
 			<div class="card_container swiper">
 				<div class="swiper-wrapper">
 					<article class="card swiper-slide">
-						<a><img class ="offer" alt="" src="SwiperSlideImg/Offer.jpg"/></a>
+						<a><img class="offer" alt="" src="SwiperSlideImg/Offer.jpg" /></a>
 					</article>
 					<article class="card swiper-slide">
-						<a><img class ="offer" alt="" src="SwiperSlideImg/BoldFashion.png" /></a>
+						<a><img class="offer" alt=""
+							src="SwiperSlideImg/BoldFashion.png" /></a>
 					</article>
 					<article class="card swiper-slide">
 						<a><img alt="" src="SwiperSlideImg/perfume.webp" /></a>
 					</article>
 					<article class="card swiper-slide">
-						<a><img  alt="" src="SwiperSlideImg/menshoe.webp" /></a>
+						<a><img alt="" src="SwiperSlideImg/menshoe.webp" /></a>
 					</article>
 					<article class="card swiper-slide">
 						<a><img class="offer" alt="" src="SwiperSlideImg/Fashion.png" /></a>
@@ -191,8 +342,9 @@ body {
 					<article class="card swiper-slide">
 						<a><img class="offer" alt="" src="SwiperSlideImg/2052.jpg" /></a>
 					</article>
-					<article  class="card swiper-slide">
-						<a><img class="offer1" alt="" src="SwiperSlideImg/electronics.jpg" /></a>
+					<article class="card swiper-slide">
+						<a><img class="offer1" alt=""
+							src="SwiperSlideImg/electronics.jpg" /></a>
 					</article>
 					<article class="card swiper-slide">
 						<a><img class="offer1" alt="" src="SwiperSlideImg/9848861.jpg" /></a>
@@ -214,7 +366,7 @@ body {
 		<!-- category wrapper -->
 		<section class="category-wrapper">
 
-			<h2>Featured Categories</h2>
+			<h2 id="innerhead">Featured Categories</h2>
 
 			<article class="category-items">
 
@@ -244,7 +396,6 @@ body {
 	</section>
 
 	<script>
-		// Initialize Swiper
 		var swiper = new Swiper(
 				".card_container",
 				{
@@ -273,7 +424,6 @@ body {
 							document.querySelector(".swiper-button-next").style.display = "none";
 						},
 						fromEdge : function() {
-							// Show both buttons when not at the edges
 							document.querySelector(".swiper-button-prev").style.display = "flex";
 							document.querySelector(".swiper-button-next").style.display = "flex";
 						},
