@@ -1,3 +1,4 @@
+<%@page import="java.util.Collections"%>
 <%@page import="com.emp.DTO.Employee"%>
 <%@page import="com.productCategory.DAO.productCategoryDAO"%>
 <%@page import="com.productCategory.DAO.productCategoryDDAOImpl"%>
@@ -40,21 +41,43 @@
     }
     
     .view-product{
-        margin: 100px;
-        margin-top:80px;
-    }
-    .view-product h3{
-        margin-bottom: 30px;
+        margin:80px;
     }
     
-    .table th{
-        font-weight:bold;
-        color:white;
-    }
-    .table td{
-        background-color: snow;
-    }
-    
+    .product-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 30px;
+            padding: 10px;
+            cursor:pointer;
+        }
+
+        .product-card {
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            text-align: center;
+            padding: 20px;
+            width: 280px;
+            height:auto;
+            box-shadow: 0 8px 10px 0 rgba(0, 0, 0, 0.2), 0 12px 25px 0 rgba(0, 0, 0, 0.19);
+        }
+        .product-card:hover{
+        	box-shadow: 0 -8px 4px 0 rgba(10, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 10, 0, 0.19);
+        }
+
+        .product-card h2 {
+            font-size: 1.5em;
+            margin: 10px 0;
+            color: #8692FC;
+        }
+
+        .product-card p {
+            font-size: 1em;
+            color: #555;
+        }
+        
     </style>
 </head>
 <body>
@@ -62,6 +85,7 @@
 	<h3>All Product Details</h3>
 </header>
 	<div class="btnn ms-3 mt-3">
+	
             <% Employee hr = (Employee) session.getAttribute("employee"); %>
             <% Employee e = (Employee) session.getAttribute("employee"); %>
              <% Employee sales = (Employee) session.getAttribute("employee"); %>
@@ -75,45 +99,39 @@
             <%}  else if(manager.getJob().equalsIgnoreCase("manager")) {%>
             <a href="ManagerDashboard.jsp" class="btn btn-secondary">Back to Dashboard</a>
             <%} %>
+            
         </div>	
 
     <div class="view-product">
         
-    <table class="table table-bordered border-info shadow p-3 mb-5 bg-body-tertiary rounded rounded">
-        <thead >
-            <tr>
-                <th class="bg-primary">#<%int count=1; %></th>
-                <th class="bg-primary">Product ID</th>
-                <th class="bg-primary">Product Name</th>
-                <th class="bg-primary">Price</th>
-                <th class="bg-primary">Category</th>
-            </tr>
-        </thead>
-        <% ProductDAO productDAO = new ProductDAOImp();
+     <% ProductDAO productDAO = new ProductDAOImp();
            List<Product> products = productDAO.getproducts();
-           productCategoryDAO pdao= new productCategoryDDAOImpl(); %>
-        <tbody>
+           productCategoryDAO pdao= new productCategoryDDAOImpl(); 
+           Collections.reverse(products);%>
         
+        <div class="product-container">
        <% for (Product p : products) { 
     	   List<ProductCategory> pc = pdao.getProductCategoryById(p.getCategory_Id());%>
-			<tr>
-			<td><%=count++ %></td>
-			<td><%= p.getProduct_Id() %></td>
-			<td><%= p.getProducr_Name() %></td>
-			<td><%= p.getPrice() %></td>
-			<td>
-			<% if (pc != null && !pc.isEmpty()) {
+    	   <div class="product-card">
+                <div class="profile-pic"><image src="<%=p.getImg()%>" width="120px" height="140px" style="border-radius:5px;" ></div>
+                <h2><%= p.getProduct_Id() %></h2>
+                <p class="card-text"><strong>Product Name:</strong> <%= p.getProducr_Name() %></p>
+                <p class="card-text"><strong>Price:</strong> <%= p.getPrice()%></p>
+                <p class="card-text"><strong>Product_category:</strong>
+                <% if (pc != null && !pc.isEmpty()) {
 				for (ProductCategory procat : pc) { %>
 				<%= procat.getName() %>
 				<% }
 					} else { %>
 						N/A
 					<% } %>
-			</td>
-			</tr>
-			<%} %>
-        </tbody>
-      </table>
+                
+                </p>
+            </div>
+            
+    	<%} %>
+    	</div>
+    
     </div>
 </body>
 </html>
