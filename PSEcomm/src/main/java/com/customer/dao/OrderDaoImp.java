@@ -95,7 +95,7 @@ public class OrderDaoImp implements OrderDao{
 	public Order UpdateOrder(Order o) {
 		PreparedStatement ps=null;
 
-		String query="update orders set productId=?,orderDate=?,deliveryDate=?,eid=?,cid=? where orderId=?";
+		String query="update orders set product_Id=?,order_Date=?,delivery_Date=?,eid=?,cid=?,Quantity=?,Totalprice=?,Status=? where order_Id=?";
 		
 		int res=0;
 		
@@ -107,7 +107,11 @@ public class OrderDaoImp implements OrderDao{
 			ps.setTimestamp(3,o.getDeliveryDate());
 			ps.setInt(4,o.getEid());
 			ps.setInt(5, o.getCid());
-			ps.setInt(6, o.getOrderId());
+			ps.setInt(6, o.getQunatity());
+			ps.setDouble(7, o.getTotalPrice());
+			ps.setString(8, o.getStatus());
+			ps.setInt(9, o.getOrderId());
+			
 			res=ps.executeUpdate();
 		 
 		} catch (SQLException e) {
@@ -288,6 +292,7 @@ public class OrderDaoImp implements OrderDao{
 	
 	@Override
 	public List<Order> getDispatcherOrders(int empId) {
+		System.out.println(empId);
 		String query  = "SELECT * FROM ORDERS WHERE EID = ? ORDER BY ORDER_ID DESC";
 		List<Order> orders = new ArrayList<Order>();
 		try {

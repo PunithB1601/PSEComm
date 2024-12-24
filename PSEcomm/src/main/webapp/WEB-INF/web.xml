@@ -65,4 +65,14 @@
     <servlet-name>CustomerLogout</servlet-name>
     <url-pattern>/CustomerLogout</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>updateOrders</display-name>
+    <servlet-name>updateOrders</servlet-name>
+    <servlet-class>com.emp.servlet.updateOrders</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>updateOrders</servlet-name>
+    <url-pattern>/updateOrders</url-pattern>
+  </servlet-mapping>
 </web-app>
