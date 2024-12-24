@@ -258,5 +258,60 @@ public class OrderDaoImp implements OrderDao{
 		}
 		return 0;
 	}
+	
+	@Override
+	public List<Order> getAllUnAssignedOrders() {
+		String query  = "SELECT * FROM ORDERS WHERE EID IS NULL ORDER BY ORDER_ID DESC";
+		List<Order> orders = new ArrayList<Order>();
+		try {
+			PreparedStatement preparedStatement  = con.prepareStatement(query);
+			ResultSet resultSet = preparedStatement.executeQuery();
+			while(resultSet.next())
+			{
+				Order order = getOrder(resultSet.getInt(1));
+				if(order!=null)
+				{
+					orders.add(order);
+				}
+			}
+			
+			
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		return orders;
+	}
+	
+	@Override
+	public List<Order> getDispatcherOrders(int empId) {
+		String query  = "SELECT * FROM ORDERS WHERE EID = ? ORDER BY ORDER_ID DESC";
+		List<Order> orders = new ArrayList<Order>();
+		try {
+			PreparedStatement preparedStatement  = con.prepareStatement(query);
+			preparedStatement.setInt(1, empId);
+			ResultSet resultSet = preparedStatement.executeQuery();
+			while(resultSet.next())
+			{
+				Order order = getOrder(resultSet.getInt(1));
+				if(order!=null)
+				{
+					orders.add(order);
+				}
+			}
+			
+			
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		return orders;
+	}
 
 }
