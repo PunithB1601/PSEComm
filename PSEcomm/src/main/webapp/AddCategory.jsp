@@ -1,6 +1,15 @@
 <%@page import="com.emp.DTO.Employee"%>
+<%@page import="com.productCategory.DAO.productCategoryDDAOImpl"%>
+<%@page import="com.productCategory.DAO.productCategoryDAO"%>
+<%@page import="com.productCategory.DTO.ProductCategory"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+<%
+  productCategoryDAO productCategoryDAO= new productCategoryDDAOImpl();
+  List<ProductCategory> productCategories =  productCategoryDAO.getProductCategory();
+%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -47,6 +56,10 @@
             justify-content: space-between;
             align-items: center;
         }
+        .btn btn-secondary:hover{
+            background: #1abc9c;
+        }
+        
     </style>
 </head>
 <body>
@@ -59,7 +72,7 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <%Employee e=(Employee)session.getAttribute("employee"); %>
+                    <%Employee e=(Employee)session.getAttribute("employee"); %>
                         <a class="nav-link" href="#">Welcome, <%=e.getFname() %></a>
                     </li>
                 </ul>
@@ -68,9 +81,9 @@
     </nav>
 
     <div class="d-flex">
-        <div class="sidebar p-3" style="background-color:#3C3D37;">
+       <div class="sidebar p-3" style="background-color:#3C3D37;">
             <a href="#dashboard">Dashboard</a>
-            <a href="EmpList.jsp">Manage Users</a>
+            <a href="empList1.jsp">Manage Users</a>
 			<a href="ViewProduct.jsp">View Products</a>
             <a href="AdminProfile.jsp">Profile</a>
             <a href="forgotPassword.jsp">ResetPin</a>
@@ -83,17 +96,33 @@
             <div class="row mb-4">
                 <div class="col-md-12">
                     <div class="card">
-                        <div class="card-header bg-danger text-white">Delete Product</div>
+                        <div class="card-header bg-primary text-white">Add New Category</div>
+                         <%String success=(String)request.getAttribute("success");
+                        if(success!= null){
+                        %>
+                        <p style="color: green; font-size: 0.9rem;"><%=success %></p>
+                        <%} %>
+                        <%String failure=(String)request.getAttribute("failure");
+                        if(failure!= null){
+                        %>
+                        <p style="color: red; font-size: 0.8rem;"><%=failure %></p>
+                        <%} %>
                         <div class="card-body">
-                            <form onsubmit="return validateForm(event)">
+                            <form method="post" action="<%= request.getContextPath()+"/category/add"%>" enctype="multipart/form-data">
                                 <div class="mb-3">
-                                    <label for="deleteProductID" class="form-label">Product ID</label>
-                                    <input type="text" class="form-control" id="deleteProductID" placeholder="Enter Product ID to Delete">
+                                    <label for="productName" class="form-label">Product Category</label>
+                                    <input type="text" class="form-control" name="categoryName" id="categoryName" placeholder="Enter Category Name">
                                 </div>
+                                <div class="mb-3">
+                                    <label for="productImage" class="form-label">Product Image</label>
+                                    <input type="file" class="form-control" name="productImg" id="productImage">
+                                </div>
+                               
                                 <div class="form-actions">
-                                    <a href="delete.html" ><button type="submit" class="btn btn-danger">Delete Product</button></a>
-                                    <a href="EmployeeAdminDashboard.jsp" class="btn btn-secondary">Back to Dashboard</a>
+                                    <button type="submit" class="btn btn-success">Add Category</button>
+                                    <a href="EmployeeAdminDashboard.jsp" class="btn btn-secondary" style="margin-top: 10px">Back to Dashboard</a>
                                 </div>
+
                             </form>
                         </div>
                     </div>
@@ -101,19 +130,6 @@
             </div>
         </div>
     </div>
-
-    <script>
-        function validateForm(event) {
-            const productId = document.getElementById('deleteProductID').value.trim();
-            if (!productId) {
-                alert('Please provide a Product ID to delete.');
-                return false; // Prevent form submission
-            }
-            // Proceed with deletion logic if needed
-            alert('Product ID provided. Deleting the product...');
-            return true; // Allow form submission
-        }
-    </script>
 </body>
 </html>
     

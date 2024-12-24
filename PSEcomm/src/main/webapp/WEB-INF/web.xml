@@ -75,4 +75,14 @@
     <servlet-name>updateOrders</servlet-name>
     <url-pattern>/updateOrders</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>AddCategory</display-name>
+    <servlet-name>AddCategory</servlet-name>
+    <servlet-class>com.emp.servlet.AddCategory</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AddCategory</servlet-name>
+    <url-pattern>/AddCategory</url-pattern>
+  </servlet-mapping>
 </web-app>

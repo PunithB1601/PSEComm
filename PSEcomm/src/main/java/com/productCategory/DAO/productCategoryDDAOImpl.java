@@ -152,6 +152,41 @@ private Connection con;
 		}
 		return images;
 	}
+
+	@Override
+	public ProductCategory AddCategory(ProductCategory p) {
+		PreparedStatement ps=null;
+		int res=0;
+
+		String query="INSERT INTO product_category (NAME,PRODUCT_IMAGE) VALUES(?,?)";
+		try {
+			con.setAutoCommit(false);
+			ps=con.prepareStatement(query);
+			ps.setString(1, p.getName());
+			ps.setString(2, p.getImg());
+			res=ps.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		if(res>0)
+		{
+			try {
+				con.commit();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			return p;
+		}
+		else
+		{
+			try {
+				con.rollback();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			return null;
+		}
+	}
 	
 	
 }
