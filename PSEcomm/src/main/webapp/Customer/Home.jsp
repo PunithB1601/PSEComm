@@ -225,7 +225,7 @@ body {
 					href="<%=request.getContextPath() + "/Customer/Shop.jsp?category=" + pc.getCategoryId()%>">
 
 					<img
-					src="https://cdn.dribbble.com/userupload/4390125/file/original-9df8ad18f4bf7535ce4f18c4116c5cf9.jpg?resize=400x0"
+					src="<%=pc.getImg() %>"
 					alt="">
 					<h2 class="category-title"><%=pc.getName()%></h2>
 
