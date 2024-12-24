@@ -19,4 +19,5 @@ public class Order
   private int cid;
   private int qunatity;
   private double totalPrice;
+  private String stauts;
 }

@@ -154,6 +154,7 @@ public class OrderDaoImp implements OrderDao{
 				o.setCid(rs.getInt(6));
 				o.setQunatity(rs.getInt(7));
 				o.setTotalPrice(rs.getDouble(8));
+				o.setStauts(rs.getString(9));
 			}
 			
 			
@@ -187,6 +188,7 @@ public class OrderDaoImp implements OrderDao{
 				o.setCid(rs.getInt(6));
 				o.setQunatity(rs.getInt(7));
 				o.setTotalPrice(rs.getDouble(8));
+				o.setStauts(rs.getString(9));
 				al.add(o);
 			}
 			
@@ -224,6 +226,7 @@ public class OrderDaoImp implements OrderDao{
 				o.setCid(rs.getInt(6));
 				o.setQunatity(rs.getInt(7));
 				o.setTotalPrice(rs.getDouble(8));
+				o.setStauts(rs.getString(9));
 				al.add(o);
 			}
 			
