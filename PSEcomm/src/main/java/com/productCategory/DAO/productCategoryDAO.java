@@ -10,5 +10,5 @@ public interface productCategoryDAO {
  public List getProductCategoryById(int categoryId);
  public boolean insertCategory(ProductCategory p);
  public List getImage(int categoryId);
-
+public ProductCategory AddCategory(ProductCategory p);
 }

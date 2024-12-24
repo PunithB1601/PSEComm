@@ -150,7 +150,7 @@ body {
     	        <h6> <span>Total Amount :</span> <i class="fa-solid fa-indian-rupee-sign"></i> <%=o.getTotalPrice() %></h6>
     	        <h6> <span>Ordered On :</span> <%=o.getOrderDate().toLocaleString() %></h6>
     	        <h6> <span>Delivered By :</span> <%=o.getDeliveryDate().toLocaleString() %></h6>
-    	        <h6> <span>Order Stauts :</span> <%=o.getStauts() %></h6>
+    	        <h6> <span>Order Stauts :</span> <%=o.getStatus() %></h6>
     	      
     	      </div>
     	       
