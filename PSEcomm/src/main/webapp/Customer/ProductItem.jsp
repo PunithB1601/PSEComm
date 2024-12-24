@@ -81,6 +81,9 @@ img {
 	width: 8rem;
 	margin-right: 10px;
 	border-radius: 10px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
 .btn2 ,.saved-btn {
@@ -223,9 +226,9 @@ img {
 				<p id="desc"><%=product.getDescription()%></p>
 			</div>
 			<div class="btns">
-				<button class="btn1">
+				<a class="btn1" href="<%= request.getContextPath()+"/Customer/BuyProduct.jsp?productId="+product.getProduct_Id()%>">
 					<i class="fa-solid fa-bolt"></i> Buy Now
-				</button>
+				</a>
 				<%
 				boolean isSaved = user != null ? new CartDAOImpl().checkCart(user.getCid(), product.getProduct_Id()) : false;
 				if (isSaved) {

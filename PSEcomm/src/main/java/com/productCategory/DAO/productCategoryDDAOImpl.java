@@ -31,6 +31,7 @@ private Connection con;
 					ProductCategory productCategory= new ProductCategory();
 					productCategory.setCategoryId(resultSet.getInt(1));
 					productCategory.setName(resultSet.getString(2));
+					productCategory.setImg(resultSet.getString(3));
 					return productCategory;
 				}
 			} catch (SQLException e) {
@@ -43,7 +44,7 @@ private Connection con;
 
 	@Override
 	public List getProductCategory() {
-		String query = "SELECT * FROM PRODUCT_CATEGORY";
+		String query = "SELECT * FROM PRODUCT_CATEGORY ORDER BY CATEGORYID DESC";
 		List<ProductCategory> pList = new ArrayList<ProductCategory>();
 		ResultSet rs = null;
 		try {
@@ -54,6 +55,7 @@ private Connection con;
 				ProductCategory p = new ProductCategory();
 				p.setCategoryId(rs.getInt(1));
 				p.setName(rs.getString(2));
+				p.setImg(rs.getString(3));
 				pList.add(p);
 			}
 		} catch (SQLException e) {
@@ -89,7 +91,7 @@ private Connection con;
 
 	@Override
 	public boolean insertCategory(ProductCategory p) {
-		String query = "INSERT INTO product_category(name,product_image) VALUES(?,?)";
+		String query = "INSERT INTO product_category (name,product_image) VALUES(?,?)";
 		int res = 0;
 		PreparedStatement ps;
 		
