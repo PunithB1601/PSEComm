@@ -3,165 +3,185 @@
 <%@page import="com.customer.dto.Customer"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	
+
 <%
-  Customer user = (Customer) session.getAttribute("user");
-  CartDAO cartDAO1 = new CartDAOImpl();
-  int cartCount = cartDAO1.getCartItemCount((user!=null ? user.getCid() :-1));
+Customer user = (Customer) session.getAttribute("user");
+CartDAO cartDAO1 = new CartDAOImpl();
+int cartCount = cartDAO1.getCartItemCount((user != null ? user.getCid() : -1));
 %>
 <style type="text/css">
-   li {
+li {
+	list-style: none;
+}
 
-            list-style: none;
-        }
+a {
+	text-decoration: none;
+}
 
-        a {
-            text-decoration: none;
-        }
+nav {
+	width: 100%;
+	max-width: 1800px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin: 0 auto;
+	padding: 5px 10px;
+	overflow-x: hidden;
+}
 
-        nav {
-            width: 100%;
-            max-width: 1800px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin: 0 auto;
-            padding: 5px 10px;
-            overflow-x: hidden;
-        }
+.brand a {
+	font-size: 2rem;
+	color: black;
+}
 
-        .brand a {
-            font-size: 2rem;
-            color: black;
-        }
+.menu-list {
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+	gap: 10px;
+	margin-bottom: 0;
+}
 
-        .menu-list {
-            display: flex;
-            justify-content: flex-end;
-            align-items: center;
-            gap: 10px;
-            margin-bottom: 0;
-        }
+.desktop-menu .menu-list-item, .mobile-menu-list .menu-list-item {
+	color: black;
+	padding: 5px 7px;
+	font-size: 1.05rem;
+	;
+}
 
-        .desktop-menu .menu-list-item,
-        .mobile-menu-list .menu-list-item {
-            color: black;
-            padding: 5px 7px;
-            font-size: 1.05rem;
-            ;
-        }
+.desktop-menu .menu-list-item-active, .mobile-menu-list .menu-list-item-active
+	{
+	background: black;
+	color: white;
+	border-radius: 8px;
+}
 
-        .desktop-menu .menu-list-item-active,
-        .mobile-menu-list .menu-list-item-active {
-            background: black;
-            color: white;
-            border-radius: 8px;
-        }
+.desktop-menu {
+	display: flex;
+}
 
-        .desktop-menu {
-            display: flex;
-        }
+.mobile-menu {
+	display: none;
+}
 
-        .mobile-menu {
-            display: none;
-        }
+.mobile-menu-list {
+	position: fixed;
+	top: 0;
+	right: 0;
+	background: white;
+	width: 35%;
+	padding: 20px;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: center;
+	transition: all 1s;
+	z-index: 999;
+	height: 100vh;
+	gap: 10px;
+}
 
-        .mobile-menu-list {
-            position: fixed;
-            top: 0;
-            right: 0;
-            background: white;
-            width: 60%;
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-start;
-            align-items: center;
-            transition: all 1s;
-            z-index: 999;
-            height: 100vh;
-            gap: 10px;
-        }
+.hide-mobile-menu {
+	right: -100%;
+}
 
-        .hide-mobile-menu {
-            right: -100%;
-        }
+#menu-close-btn {
+	position: absolute;
+	top: 20px;
+	left: 20px;
+}
 
-        #menu-close-btn {
-            position: absolute;
-            top: 20px;
-            left: 20px;
-        }
-        @media (max-width:680px) {
-
-            .desktop-menu {
-                display: none;
-            }
-
-            .mobile-menu {
-                display: block;
-            }
-        }
+@media ( max-width :680px) {
+	.desktop-menu {
+		display: none;
+	}
+	.mobile-menu {
+		display: block;
+	}
+}
 </style>
 
 <nav>
 
-        <div class="brand">
+	<div class="brand">
 
-            <a href="#">Ecommerce</a>
+		<a href="#">Ecommerce</a>
 
-        </div>
+	</div>
 
-        <ul class="menu-list desktop-menu">
+	<ul class="menu-list desktop-menu">
 
-           <li><a class="menu-list-item <%= request.getAttribute("menu").toString().equalsIgnoreCase("Home") ? "menu-list-item-active" :"" %>" href="<%= request.getContextPath()+"/Customer/Home.jsp"%>">Home</a></li>
-            <li><a class="menu-list-item <%= request.getAttribute("menu").toString().equalsIgnoreCase("Shop") ? "menu-list-item-active" :"" %>" href="<%= request.getContextPath()+"/Customer/Shop.jsp"%>">Shop</a></li>
-            <%
-             if(user!=null)
-             {
-            	
-            	 %>
-            	  
-             <li><a class="menu-list-item <%= request.getAttribute("menu").toString().equalsIgnoreCase("Cart") ? "menu-list-item-active" :"" %>" href="<%= request.getContextPath()+"/Customer/Cart.jsp"%>">Cart <%= cartCount>0 ? cartCount :"" %></a></li>
-            <li><a class="menu-list-item <%= request.getAttribute("menu").toString().equalsIgnoreCase("Orders") ? "menu-list-item-active" :"" %>" href="<%= request.getContextPath()+"/Customer/Order.jsp"%>">Orders</a></li>
-            <li><a class="menu-list-item <%= request.getAttribute("menu").toString().equalsIgnoreCase("Profile") ? "menu-list-item-active" :"" %>" href="<%= request.getContextPath()+"/Customer/Profile.jsp"%>">Profile</a></li>
-            <li><a class="menu-list-item" href="<%=request.getContextPath()+"/customer/logout"%>">Logout</a></li>
-            	  
-            	 <%
-             }else{
-            	 %>
-            	  <li><a class="menu-list-item menu-list-item-active " href="<%= request.getContextPath()+"/Customer/Login.jsp"%>">Login</a></li>
-            	 <%
-             }
-            %>
-        </ul>
+		<li><a
+			class="menu-list-item <%=request.getAttribute("menu").toString().equalsIgnoreCase("Home") ? "menu-list-item-active" : ""%>"
+			href="<%=request.getContextPath() + "/Customer/Home.jsp"%>">Home</a></li>
+		<li><a
+			class="menu-list-item <%=request.getAttribute("menu").toString().equalsIgnoreCase("Shop") ? "menu-list-item-active" : ""%>"
+			href="<%=request.getContextPath() + "/Customer/Shop.jsp"%>">Shop</a></li>
+		<%
+		if (user != null) {
+		%>
 
-        <div class="mobile-menu">
-            <i class="fa-solid fa-bars" id="menu-bar"></i>
-            <ul class="mobile-menu-list hide-mobile-menu">
-                <i class="fa-solid fa-arrow-right" id="menu-close-btn"></i>
-               <li><a class="menu-list-item <%= request.getAttribute("menu").toString().equalsIgnoreCase("Home") ? "menu-list-item-active" :"" %>" href="">Home</a></li>
-            <li><a class="menu-list-item <%= request.getAttribute("menu").toString().equalsIgnoreCase("Shop") ? "menu-list-item-active" :"" %>" href="">Shop</a></li>
-            <%
-             if(user!=null)
-             {
-            	 %>
-            	  
-             <li><a class="menu-list-item <%= request.getAttribute("menu").toString().equalsIgnoreCase("Cart") ? "menu-list-item-active" :"" %>" href="<%= request.getContextPath()+"/Customer/Cart.jsp"%>">Cart <%= cartCount>0 ? cartCount :"" %> </a></li>
-            <li><a class="menu-list-item <%= request.getAttribute("menu").toString().equalsIgnoreCase("Orders") ? "menu-list-item-active" :"" %>" href="<%= request.getContextPath()+"/Customer/Order.jsp"%>">Orders</a></li>
-            <li><a class="menu-list-item <%= request.getAttribute("menu").toString().equalsIgnoreCase("Profile") ? "menu-list-item-active" :"" %>" href="<%= request.getContextPath()+"/Customer/Profile.jsp"%>">Profile</a></li>
-            <li><a class="menu-list-item" href="<%=request.getContextPath()+"/customer/logout"%>">Logout</a></li>
-            	  
-            	 <%
-             }
-            %>
-            </ul>
-        </div>
+		<li><a
+			class="menu-list-item <%=request.getAttribute("menu").toString().equalsIgnoreCase("Cart") ? "menu-list-item-active" : ""%>"
+			href="<%=request.getContextPath() + "/Customer/Cart.jsp"%>">Cart <%=cartCount > 0 ? cartCount : ""%></a></li>
+		<li><a
+			class="menu-list-item <%=request.getAttribute("menu").toString().equalsIgnoreCase("Orders") ? "menu-list-item-active" : ""%>"
+			href="<%=request.getContextPath() + "/Customer/Order.jsp"%>">Orders</a></li>
+		<li><a
+			class="menu-list-item <%=request.getAttribute("menu").toString().equalsIgnoreCase("Profile") ? "menu-list-item-active" : ""%>"
+			href="<%=request.getContextPath() + "/Customer/Profile.jsp"%>">Profile</a></li>
+		<li><a class="menu-list-item"
+			href="<%=request.getContextPath() + "/customer/logout"%>">Logout</a></li>
 
-    </nav>
-    
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js" ></script>
-    <script type="text/javascript">
+		<%
+		} else {
+		%>
+		<li><a class="menu-list-item menu-list-item-active "
+			href="<%=request.getContextPath() + "/Customer/Login.jsp"%>">Login</a></li>
+		<%
+		}
+		%>
+	</ul>
+
+	<div class="mobile-menu">
+		<i class="fa-solid fa-bars" id="menu-bar"></i>
+		<ul class="mobile-menu-list hide-mobile-menu">
+			<i class="fa-solid fa-arrow-right" id="menu-close-btn"></i>
+			<li><a
+				class="menu-list-item <%=request.getAttribute("menu").toString().equalsIgnoreCase("Home") ? "menu-list-item-active" : ""%>"
+				href="">Home</a></li>
+			<li><a
+				class="menu-list-item <%=request.getAttribute("menu").toString().equalsIgnoreCase("Shop") ? "menu-list-item-active" : ""%>"
+				href="">Shop</a></li>
+			<%
+			if (user != null) {
+			%>
+
+			<li><a
+				class="menu-list-item <%=request.getAttribute("menu").toString().equalsIgnoreCase("Cart") ? "menu-list-item-active" : ""%>"
+				href="<%=request.getContextPath() + "/Customer/Cart.jsp"%>">Cart
+					<%=cartCount > 0 ? cartCount : ""%>
+			</a></li>
+			<li><a
+				class="menu-list-item <%=request.getAttribute("menu").toString().equalsIgnoreCase("Orders") ? "menu-list-item-active" : ""%>"
+				href="<%=request.getContextPath() + "/Customer/Order.jsp"%>">Orders</a></li>
+			<li><a
+				class="menu-list-item <%=request.getAttribute("menu").toString().equalsIgnoreCase("Profile") ? "menu-list-item-active" : ""%>"
+				href="<%=request.getContextPath() + "/Customer/Profile.jsp"%>">Profile</a></li>
+			<li><a class="menu-list-item"
+				href="<%=request.getContextPath() + "/customer/logout"%>">Logout</a></li>
+
+			<%
+			}
+			%>
+		</ul>
+	</div>
+
+</nav>
+
+<script
+	src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script type="text/javascript">
         
 
             $("#menu-bar").on('click', () => {
