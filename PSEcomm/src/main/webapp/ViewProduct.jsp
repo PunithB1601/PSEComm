@@ -101,9 +101,19 @@
             <%} %>
             
         </div>	
+        
+        <% String success = (String) request.getAttribute("success"); %>
+            <% if (success != null) { %>
+                <p class="text-success text-center mb-3 mt-3"><%= success %></p>
+            <% } %>
+            <% String failure = (String) request.getAttribute("failure"); %>
+            <% if (failure != null) { %>
+                <p class="text-danger text-center mb-3"><%= failure %></p>
+            <% } %>
 
     <div class="view-product">
         
+     
      <% ProductDAO productDAO = new ProductDAOImp();
            List<Product> products = productDAO.getproducts();
            productCategoryDAO pdao= new productCategoryDDAOImpl(); 
@@ -127,6 +137,14 @@
 					<% } %>
                 
                 </p>
+                <%if(e.getJob().equalsIgnoreCase("ceo")){ %>
+                <div class="table-actions">
+                        <form action="deleteProduct" method="post" style="display:inline;">
+                            <input type="hidden" name="pid" value="<%= p.getProduct_Id()%>">
+                            <button type="submit" class="btn btn-danger">Delete</button>
+                        </form>
+                    </div>
+                    <%} %>
             </div>
             
     	<%} %>
