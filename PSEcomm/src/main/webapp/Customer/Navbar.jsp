@@ -7,7 +7,7 @@
 <%
   Customer user = (Customer) session.getAttribute("user");
   CartDAO cartDAO1 = new CartDAOImpl();
-  int cartCount = cartDAO1.getCartItemCount(user!=null ? user.getCid() :-1);
+  int cartCount = cartDAO1.getCartItemCount((user!=null ? user.getCid() :-1));
 %>
 <style type="text/css">
    li {

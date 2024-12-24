@@ -137,7 +137,8 @@ public class OrderDaoImp implements OrderDao{
 		ResultSet rs=null;
 		Order o=null;
 		
-		String query="select * from orders where orderid=?";
+		String query="select * from orders where order_id=?";
+
 	
 		try {
 			ps=con.prepareStatement(query);
@@ -151,6 +152,8 @@ public class OrderDaoImp implements OrderDao{
 				o.setDeliveryDate(rs.getTimestamp(4));
 				o.setEid(rs.getInt(5));
 				o.setCid(rs.getInt(6));
+				o.setQunatity(rs.getInt(7));
+				o.setTotalPrice(rs.getDouble(8));
 			}
 			
 			
@@ -182,6 +185,8 @@ public class OrderDaoImp implements OrderDao{
 				o.setDeliveryDate(rs.getTimestamp(4));
 				o.setEid(rs.getInt(5));
 				o.setCid(rs.getInt(6));
+				o.setQunatity(rs.getInt(7));
+				o.setTotalPrice(rs.getDouble(8));
 				al.add(o);
 			}
 			
@@ -252,6 +257,61 @@ public class OrderDaoImp implements OrderDao{
 			e.printStackTrace();
 		}
 		return 0;
+	}
+	
+	@Override
+	public List<Order> getAllUnAssignedOrders() {
+		String query  = "SELECT * FROM ORDERS WHERE EID IS NULL ORDER BY ORDER_ID DESC";
+		List<Order> orders = new ArrayList<Order>();
+		try {
+			PreparedStatement preparedStatement  = con.prepareStatement(query);
+			ResultSet resultSet = preparedStatement.executeQuery();
+			while(resultSet.next())
+			{
+				Order order = getOrder(resultSet.getInt(1));
+				if(order!=null)
+				{
+					orders.add(order);
+				}
+			}
+			
+			
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		return orders;
+	}
+	
+	@Override
+	public List<Order> getDispatcherOrders(int empId) {
+		String query  = "SELECT * FROM ORDERS WHERE EID = ? ORDER BY ORDER_ID DESC";
+		List<Order> orders = new ArrayList<Order>();
+		try {
+			PreparedStatement preparedStatement  = con.prepareStatement(query);
+			preparedStatement.setInt(1, empId);
+			ResultSet resultSet = preparedStatement.executeQuery();
+			while(resultSet.next())
+			{
+				Order order = getOrder(resultSet.getInt(1));
+				if(order!=null)
+				{
+					orders.add(order);
+				}
+			}
+			
+			
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		return orders;
 	}
 
 }
