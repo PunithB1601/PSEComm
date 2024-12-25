@@ -153,6 +153,7 @@
     <div class="d-flex">
         <div class="sidebar">
             <a href="viewLocations.jsp">View Locations</a>
+             <a href="RequestedLoction.jsp">Requested Location</a>
             <a href="AdminProfile.jsp">Profile</a>
             <a href="employeelogin.jsp">Logout</a>
         </div>

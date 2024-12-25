@@ -116,7 +116,7 @@ public class RequestedLocationDAOImp implements RequestedLocationDAO {
 		RequestedLocation r=null;
 		ArrayList<RequestedLocation> a1=new ArrayList<RequestedLocation>();
 		
-		String query="select * from Requested_location order by desc";
+		String query="select * from Requested_location ";
 	
 		try {
 			ps=con.prepareStatement(query);
