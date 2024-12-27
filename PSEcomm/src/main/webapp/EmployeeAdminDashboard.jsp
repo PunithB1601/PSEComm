@@ -255,7 +255,7 @@ List<Product> products = dao.getproducts();
                                         </a>             
                                         </td>
                                     </tr>
-                                                              
+                                                        
                                     <tr>
                                         <td>Managers</td>
                                         <td><%=manager.size() %></td>
