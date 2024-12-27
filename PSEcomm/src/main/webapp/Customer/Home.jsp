@@ -430,7 +430,7 @@ body {
 					},
 				});
 	</script>
-
+<%@include file="/Customer/Footer.jsp"%>
 
 </body>
 </html>

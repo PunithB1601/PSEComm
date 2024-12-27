@@ -120,7 +120,7 @@
         Swal.fire({
             icon: "error",
             title: "Oops...",
-            text: "<%= message %>"
+            text: "<%= message %>",
         });
         <% } %>
 
