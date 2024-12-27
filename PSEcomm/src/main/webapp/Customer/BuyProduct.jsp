@@ -178,7 +178,9 @@ cursor: pointer;
 
 
 </section>
-
+<section>
+	    <%@include file="/Customer/Footer.jsp"%>
+</section>
 
 <script type="text/javascript" src="<%= request.getContextPath()+"/Customer/js/BuyProductJs.js"%>"></script>
 

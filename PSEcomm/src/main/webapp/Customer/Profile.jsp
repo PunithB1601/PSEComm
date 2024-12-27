@@ -1,3 +1,4 @@
+
 <%@page import="com.emp.DTO.Location"%>
 <%@page import="java.util.List"%>
 <%@page import="com.emp.DAO.locationDAOimp"%>
@@ -238,6 +239,9 @@
             });
         });
     </script>
+    <section>
+	    <%@include file="/Customer/Footer.jsp"%>
+	 </section>
 
 </body>
 </html>

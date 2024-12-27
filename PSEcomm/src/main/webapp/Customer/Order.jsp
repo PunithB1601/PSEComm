@@ -211,6 +211,8 @@ body {
 	<%
 	}
 	%>
-
+<section>
+	    <%@include file="/Customer/Footer.jsp"%>
+	 </section>
 </body>
 </html>

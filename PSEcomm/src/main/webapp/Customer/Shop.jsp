@@ -264,7 +264,9 @@ int totalData = productDAO.getAllProductsCount(selectedCategory);
 			}
 			%>
 		</div>
-     
+     <section>
+	    <%@include file="/Customer/Footer.jsp"%>
+</section>
 <script type="text/javascript" src="<%= request.getContextPath()+"/Customer/js/ShopJs.js"%>"></script>
 </body>
 </html>

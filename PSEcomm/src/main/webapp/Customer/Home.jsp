@@ -26,6 +26,7 @@ body {
 	width: 100%;
 	max-width: 1800px;
 	margin: 0 auto;
+	min-height: 100vh;
 }
 
 .info-wrapper {
@@ -34,6 +35,7 @@ body {
 	height: 500px;
 	background: rgb(198, 107, 107);
 	position: relative;
+	overflow: hidden;
 }
 
 .swiper {
@@ -430,7 +432,10 @@ body {
 					},
 				});
 	</script>
-<%@include file="/Customer/Footer.jsp"%>
+	<section>
+	    <%@include file="/Customer/Footer.jsp"%>
+	 </section>
+
 
 </body>
 </html>

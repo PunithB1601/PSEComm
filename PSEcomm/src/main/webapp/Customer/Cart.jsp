@@ -272,7 +272,9 @@ cursor: pointer;
 
   
   <script type="text/javascript" src="<%= request.getContextPath()+"/Customer/js/CartJS.js"%>"></script>
-
+<section>
+	    <%@include file="/Customer/Footer.jsp"%>
+	 </section>
 
 </body>
 </html>
