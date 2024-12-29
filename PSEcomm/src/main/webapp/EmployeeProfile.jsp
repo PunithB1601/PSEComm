@@ -91,7 +91,9 @@
             <a href="SalesmanDashboard.jsp" class="btn btn-secondary">Back to Dashboard</a>
             <%}  else if(e.getJob().equalsIgnoreCase("manager")) {%>
             <a href="ManagerDashboard.jsp" class="btn btn-secondary">Back to Dashboard</a>
-            <%} %>
+            <%}  else if(e.getJob().equalsIgnoreCase("Dispatcher")) {%>
+            <a href="Dispatcher.jsp" class="btn btn-secondary">Back to Dashboard</a>
+            <%}  %>
     </div>
 
                             

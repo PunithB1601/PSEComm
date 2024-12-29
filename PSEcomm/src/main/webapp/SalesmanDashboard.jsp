@@ -125,7 +125,6 @@ a:hover {
 		<div class="sidebar">
 			<a href="#dashboard">Dashboard</a>
 			 <a href="ViewProduct.jsp">View Products</a>
-			 <a href="AddOrder.jsp">Add Orders</a> 
 			 <a href="ViewDispatcher.jsp">View Dispatcher</a> 
 			 <a href="EmployeeProfile.jsp">Profile</a>
 			 <a href="forgotPassword.jsp">ResetPin</a>
@@ -219,24 +218,6 @@ a:hover {
 								    <% count++; } %>
 								</tbody>
 							</table>
-						</div>
-					</div>
-				</div>
-			</div>
-
-
-
-			<!-- Orders and Performance -->
-			<div class="row mt-4">
-				<div class="col-md-6">
-					<div class="card">
-						<div class="card-header bg-success text-white">Recent Orders</div>
-						<div class="card-body">
-							<ul class="list-group">
-								<li class="list-group-item">Order #12345 - Completed</li>
-								<li class="list-group-item">Order #12346 - Pending</li>
-								<li class="list-group-item">Order #12347 - Shipped</li>
-							</ul>
 						</div>
 					</div>
 				</div>
